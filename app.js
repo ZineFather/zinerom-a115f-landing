@@ -2,8 +2,8 @@ const DOWNLOAD_URL = "https://github.com/nova-arch008/ZineROM-A115F-OneUI7-boot-
 const A11_SHA256 = "f51460eff376466d24c12d39902e954e6037e5de22b3a7aef68088346f26fa95";
 
 const devices = [
-  {id:"a11", name:"Galaxy A11", code:"SM-A115F", image:"device-a11.webp", ui:"One UI 7", android:"Android 15", status:"available", noteKey:"noteA11", download:DOWNLOAD_URL, checksum:A11_SHA256},
-  {id:"a52s", name:"Galaxy A52s 5G", code:"SM-A528B", image:"device-a52s.webp", ui:"One UI 7", android:"Android 15", status:"working", noteKey:"noteWorking"},
+  {id:"a11", name:"Galaxy A11", code:"SM-A115F", image:"device-a11.webp", ui:"One UI 7", android:"Android 15", base:"Galaxy A05s (SM-A057F)", status:"available", noteKey:"noteA11", download:DOWNLOAD_URL, checksum:A11_SHA256},
+  {id:"a52s", name:"Galaxy A52s 5G", code:"SM-A528B", image:"device-a52s.webp", ui:"One UI 7", android:"Android 15", base:"Galaxy S23 FE (S711BXXU4DXH7)", status:"working", noteKey:"noteWorking"},
   {id:"a53", name:"Galaxy A53 5G", code:"SM-A536B", image:"device-a53.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
   {id:"a25", name:"Galaxy A25 5G", code:"SM-A256E", image:"device-a25.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
   {id:"a34", name:"Galaxy A34 5G", code:"SM-A346E", image:"device-a34.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
