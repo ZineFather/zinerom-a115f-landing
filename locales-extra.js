@@ -63,7 +63,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "Cerrar navegación",
     "downloadA52s61": "Descargar One UI 6.1 para A52s",
     "noteA52s61": "Build comunitario de One UI 6.1 para Galaxy A52s 5G. GoFile muestra el archivo ZineROM_SM-A528B_V3.2.3.zip.",
-    "warningA52s61": "El archivo enlazado indica SM-A528B. Confirma el modelo exacto y sigue las instrucciones de la fuente antes de instalar."
+    "warningA52s61": "El archivo enlazado indica SM-A528B. Confirma el modelo exacto y sigue las instrucciones de la fuente antes de instalar.",
+    "detailsA52s611": "Ver detalles del build",
+    "noteA52s611": "Información del build One UI 6.1.1 basado en el S23 FE para Galaxy A52s 5G. Esta referencia de Telegram es independiente de la descarga de One UI 6.1."
   },
   "fr": {
     "navHome": "Accueil",
@@ -129,7 +131,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "Fermer la navigation",
     "downloadA52s61": "Télécharger One UI 6.1 pour A52s",
     "noteA52s61": "Build communautaire One UI 6.1 pour le Galaxy A52s 5G. GoFile affiche le fichier ZineROM_SM-A528B_V3.2.3.zip.",
-    "warningA52s61": "Le fichier lié porte la référence SM-A528B. Vérifiez le modèle exact et suivez les instructions de la source avant le flashage."
+    "warningA52s61": "Le fichier lié porte la référence SM-A528B. Vérifiez le modèle exact et suivez les instructions de la source avant le flashage.",
+    "detailsA52s611": "Voir les détails du build",
+    "noteA52s611": "Informations sur le build One UI 6.1.1 basé sur le S23 FE pour le Galaxy A52s 5G. Cette référence Telegram est distincte du téléchargement One UI 6.1."
   },
   "de": {
     "navHome": "Startseite",
@@ -195,7 +199,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "Navigation schließen",
     "downloadA52s61": "One UI 6.1 für A52s herunterladen",
     "noteA52s61": "Community-Build von One UI 6.1 für das Galaxy A52s 5G. GoFile zeigt die Datei ZineROM_SM-A528B_V3.2.3.zip.",
-    "warningA52s61": "Die verknüpfte Datei ist mit SM-A528B gekennzeichnet. Prüfe dein genaues Modell und folge vor dem Flashen den Quellhinweisen."
+    "warningA52s61": "Die verknüpfte Datei ist mit SM-A528B gekennzeichnet. Prüfe dein genaues Modell und folge vor dem Flashen den Quellhinweisen.",
+    "detailsA52s611": "Build-Details ansehen",
+    "noteA52s611": "Informationen zum S23-FE-basierten One UI 6.1.1-Build für das Galaxy A52s 5G. Dieser Telegram-Verweis ist vom One UI 6.1-Download getrennt."
   },
   "tr": {
     "navHome": "Ana sayfa",
@@ -261,7 +267,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "Gezinme menüsünü kapat",
     "downloadA52s61": "A52s için One UI 6.1 indir",
     "noteA52s61": "Galaxy A52s 5G için topluluk One UI 6.1 derlemesi. GoFile sayfasında ZineROM_SM-A528B_V3.2.3.zip dosyası listeleniyor.",
-    "warningA52s61": "Bağlantıdaki dosyada SM-A528B yazıyor. Yüklemeden önce tam modelinizi doğrulayın ve kaynak talimatlarını izleyin."
+    "warningA52s61": "Bağlantıdaki dosyada SM-A528B yazıyor. Yüklemeden önce tam modelinizi doğrulayın ve kaynak talimatlarını izleyin.",
+    "detailsA52s611": "Derleme ayrıntılarını gör",
+    "noteA52s611": "Galaxy A52s 5G için S23 FE tabanlı One UI 6.1.1 derleme bilgileri. Bu Telegram referansı One UI 6.1 indirmesinden ayrıdır."
   },
   "pt": {
     "navHome": "Início",
@@ -327,7 +335,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "Fechar navegação",
     "downloadA52s61": "Baixar One UI 6.1 para A52s",
     "noteA52s61": "Build comunitária One UI 6.1 para o Galaxy A52s 5G. O GoFile lista o arquivo ZineROM_SM-A528B_V3.2.3.zip.",
-    "warningA52s61": "O arquivo vinculado está identificado como SM-A528B. Confirme o modelo exato e siga as instruções da fonte antes de instalar."
+    "warningA52s61": "O arquivo vinculado está identificado como SM-A528B. Confirme o modelo exato e siga as instruções da fonte antes de instalar.",
+    "detailsA52s611": "Ver detalhes da build",
+    "noteA52s611": "Informações da build One UI 6.1.1 baseada no S23 FE para o Galaxy A52s 5G. Esta referência do Telegram é separada do download do One UI 6.1."
   },
   "id": {
     "navHome": "Beranda",
@@ -393,7 +403,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "Tutup navigasi",
     "downloadA52s61": "Unduh One UI 6.1 untuk A52s",
     "noteA52s61": "Build komunitas One UI 6.1 untuk Galaxy A52s 5G. GoFile mencantumkan file ZineROM_SM-A528B_V3.2.3.zip.",
-    "warningA52s61": "File tertaut berlabel SM-A528B. Pastikan model perangkat tepat dan ikuti instruksi sumber sebelum flashing."
+    "warningA52s61": "File tertaut berlabel SM-A528B. Pastikan model perangkat tepat dan ikuti instruksi sumber sebelum flashing.",
+    "detailsA52s611": "Lihat detail build",
+    "noteA52s611": "Informasi build One UI 6.1.1 berbasis S23 FE untuk Galaxy A52s 5G. Referensi Telegram ini terpisah dari unduhan One UI 6.1."
   },
   "hi": {
     "navHome": "होम",
@@ -459,7 +471,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "नेविगेशन बंद करें",
     "downloadA52s61": "A52s के लिए One UI 6.1 डाउनलोड करें",
     "noteA52s61": "Galaxy A52s 5G के लिए One UI 6.1 कम्युनिटी बिल्ड। GoFile पर ZineROM_SM-A528B_V3.2.3.zip फ़ाइल सूचीबद्ध है।",
-    "warningA52s61": "लिंक की गई फ़ाइल पर SM-A528B लिखा है। फ़्लैश करने से पहले सटीक मॉडल की पुष्टि करें और स्रोत के निर्देश मानें।"
+    "warningA52s61": "लिंक की गई फ़ाइल पर SM-A528B लिखा है। फ़्लैश करने से पहले सटीक मॉडल की पुष्टि करें और स्रोत के निर्देश मानें।",
+    "detailsA52s611": "बिल्ड की जानकारी देखें",
+    "noteA52s611": "Galaxy A52s 5G के लिए S23 FE-आधारित One UI 6.1.1 बिल्ड की जानकारी। यह Telegram संदर्भ One UI 6.1 डाउनलोड से अलग है।"
   },
   "ur": {
     "navHome": "ہوم",
@@ -525,7 +539,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "نیویگیشن بند کریں",
     "downloadA52s61": "A52s کے لیے One UI 6.1 ڈاؤن لوڈ کریں",
     "noteA52s61": "Galaxy A52s 5G کے لیے One UI 6.1 کی کمیونٹی بلڈ۔ GoFile پر ZineROM_SM-A528B_V3.2.3.zip فائل درج ہے۔",
-    "warningA52s61": "منسلک فائل پر SM-A528B درج ہے۔ فلیش کرنے سے پہلے درست ماڈل کی تصدیق کریں اور ماخذ کی ہدایات پر عمل کریں۔"
+    "warningA52s61": "منسلک فائل پر SM-A528B درج ہے۔ فلیش کرنے سے پہلے درست ماڈل کی تصدیق کریں اور ماخذ کی ہدایات پر عمل کریں۔",
+    "detailsA52s611": "بلڈ کی تفصیلات دیکھیں",
+    "noteA52s611": "Galaxy A52s 5G کے لیے S23 FE پر مبنی One UI 6.1.1 بلڈ کی معلومات۔ یہ Telegram حوالہ One UI 6.1 ڈاؤن لوڈ سے الگ ہے۔"
   },
   "bn": {
     "navHome": "হোম",
@@ -591,7 +607,9 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "নেভিগেশন বন্ধ করুন",
     "downloadA52s61": "A52s-এর জন্য One UI 6.1 ডাউনলোড করুন",
     "noteA52s61": "Galaxy A52s 5G-এর জন্য One UI 6.1 কমিউনিটি বিল্ড। GoFile-এ ZineROM_SM-A528B_V3.2.3.zip ফাইলটি তালিকাভুক্ত।",
-    "warningA52s61": "লিঙ্ক করা ফাইলে SM-A528B লেখা আছে। ফ্ল্যাশ করার আগে সঠিক মডেল যাচাই করুন এবং উৎসের নির্দেশনা অনুসরণ করুন।"
+    "warningA52s61": "লিঙ্ক করা ফাইলে SM-A528B লেখা আছে। ফ্ল্যাশ করার আগে সঠিক মডেল যাচাই করুন এবং উৎসের নির্দেশনা অনুসরণ করুন।",
+    "detailsA52s611": "বিল্ডের বিবরণ দেখুন",
+    "noteA52s611": "Galaxy A52s 5G-এর জন্য S23 FE-ভিত্তিক One UI 6.1.1 বিল্ডের তথ্য। এই Telegram রেফারেন্সটি One UI 6.1 ডাউনলোড থেকে আলাদা।"
   },
   "ru": {
     "navHome": "Главная",
@@ -657,6 +675,8 @@ window.ZINE_EXTRA_COPY = {
     "closeMenu": "Закрыть навигацию",
     "downloadA52s61": "Скачать One UI 6.1 для A52s",
     "noteA52s61": "Сборка One UI 6.1 от сообщества для Galaxy A52s 5G. На GoFile указан файл ZineROM_SM-A528B_V3.2.3.zip.",
-    "warningA52s61": "В связанном файле указана модель SM-A528B. Перед прошивкой проверьте точную модель и следуйте инструкциям источника."
+    "warningA52s61": "В связанном файле указана модель SM-A528B. Перед прошивкой проверьте точную модель и следуйте инструкциям источника.",
+    "detailsA52s611": "Подробнее о сборке",
+    "noteA52s611": "Информация о сборке One UI 6.1.1 на базе S23 FE для Galaxy A52s 5G. Эта ссылка на Telegram отделена от загрузки One UI 6.1."
   }
 };

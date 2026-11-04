@@ -5,7 +5,7 @@
  * Only add a downloadUrl after the build has been published and verified.
  * Add or remove entries here to maintain the supported device catalog.
  */
-const ONE_UI_VERSIONS = ["6.1", "7.0", "8.0", "8.5", "9.0"];
+const ONE_UI_VERSIONS = ["6.1", "6.1.1", "7.0", "8.0", "8.5", "9.0"];
 const TELEGRAM_URL = "https://t.me/ZineROMProject/109";
 const devices = [
   {
@@ -46,6 +46,12 @@ const devices = [
         noteKey: "noteA52s61",
         warningKey: "warningA52s61",
         downloadKey: "downloadA52s61"
+      },
+      "6.1.1": {
+        status: "info",
+        infoUrl: "https://t.me/ZineROMProject/3/3898",
+        noteKey: "noteA52s611",
+        detailsKey: "detailsA52s611"
       },
       "7.0": { status: "in-progress", noteKey: "noteWorking" }
     }
@@ -88,6 +94,7 @@ const extraCopy = {
     releaseProgress: "Work in progress. No public download is configured for this version.", missingDownload: "Download link not available yet.",
     requestSupport: "Request Support", downloadWarning: "Experimental diagnostic test build — not a stable release. Confirm the exact model before flashing.",
     downloadA52s61: "Download One UI 6.1 for A52s", noteA52s61: "Community One UI 6.1 build for Galaxy A52s 5G. The GoFile share lists ZineROM_SM-A528B_V3.2.3.zip.",
+    detailsA52s611: "View build details", noteA52s611: "S23 FE-based One UI 6.1.1 build information for Galaxy A52s 5G. This Telegram reference is separate from the One UI 6.1 download.",
     warningA52s61: "The linked file is labeled SM-A528B. Confirm your exact model and follow the source instructions before flashing.",
     checksumLabel: "SHA-256 checksum", copyChecksum: "Copy checksum", catalogStrip: "A catalog built on clear device matching and honest release status.",
     aboutTitle: "Built around the device, not the other way around.", aboutStripTitle: "Device-specific work. Clear release information.",
@@ -115,6 +122,7 @@ const extraCopy = {
     releaseProgress: "العمل جارٍ. لا يوجد رابط تنزيل عام مُعدّ لهذا الإصدار.", missingDownload: "رابط التنزيل غير متاح بعد.",
     requestSupport: "طلب الدعم", downloadWarning: "نسخة اختبار تشخيصية وتجريبية وليست إصدارًا مستقرًا. تأكد من الطراز الدقيق قبل التفليش.",
     downloadA52s61: "تنزيل One UI 6.1 لهاتف A52s", noteA52s61: "إصدار مجتمعي من One UI 6.1 لهاتف Galaxy A52s 5G. تعرض صفحة GoFile الملف ZineROM_SM-A528B_V3.2.3.zip.",
+    detailsA52s611: "عرض تفاصيل الإصدار", noteA52s611: "معلومات إصدار One UI 6.1.1 المبني على S23 FE لهاتف Galaxy A52s 5G. هذا مرجع Telegram منفصل عن تنزيل One UI 6.1.",
     warningA52s61: "الملف المرتبط يحمل الرمز SM-A528B. تأكد من الطراز الدقيق واتبع تعليمات المصدر قبل التفليش.",
     checksumLabel: "بصمة SHA-256", copyChecksum: "نسخ البصمة", catalogStrip: "كتالوج يركز على مطابقة الجهاز ووضوح حالة الإصدارات.",
     aboutTitle: "الروم يبدأ من الجهاز، لا العكس.", aboutStripTitle: "عمل مخصص للأجهزة ومعلومات إصدار واضحة.",
@@ -344,6 +352,15 @@ function renderRelease(device, version) {
   }
   const note = release.noteKey ? t(release.noteKey) : t("noVersionDetails");
   const warning = release.warningKey ? t(release.warningKey) : t("downloadWarning");
+  if (release.status === "info" && release.infoUrl) {
+    host.innerHTML = `
+      <div class="release-configured release-info">
+        <div class="release-empty-heading"><span class="release-state">${versionLabel}</span></div>
+        <p class="release-copy">${escapeHTML(note)}</p>
+        <a class="button button-outline" href="${escapeHTML(release.infoUrl)}" target="_blank" rel="noopener noreferrer"><span>${escapeHTML(t(release.detailsKey || "detailsA52s611"))}</span><span aria-hidden="true">↗</span></a>
+      </div>`;
+    return;
+  }
   if (release.status === "test" && release.downloadUrl) {
     host.innerHTML = `
       <div class="release-configured">
