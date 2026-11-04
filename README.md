@@ -23,3 +23,4 @@ Then open `http://localhost:4173/`. Device pages use URLs such as `/#/devices/a1
 ## Publish
 
 The existing GitHub Pages source is `main` at `/`. Pushing a tested commit to `main` updates the same Pages deployment and preserves its current URL. Do not rename the repository unless its Pages URL and redirect behavior have first been checked.
+link: https://zinefather.github.io/zinerom-a115f-landing/
