@@ -34,7 +34,7 @@ const devices = [
   },
   {
     id: "a53-5g", name: "Galaxy A53 5G", family: "Galaxy A53", variant: "5G",
-    model: "SM-A536 family", image: "device-a53.webp", type: "phone", builds: {}
+    model: "SM-A536 family", image: "a53.webp", type: "phone", builds: {}
   },
   {
     id: "a52s-5g", name: "Galaxy A52s 5G", family: "Galaxy A52s", variant: "5G",
