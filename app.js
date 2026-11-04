@@ -497,6 +497,10 @@ function renderRoute(scroll = true) {
     routeName = "screenshots";
     window.ZINE_SCREENSHOT_GALLERY.render(app, t, escapeHTML);
     document.title = `${t("screenshotsTitle")} — ZineROM Project`;
+  } else if (route === "/community") {
+    routeName = "community";
+    window.ZINE_COMMUNITY_PAGE.render(app, t, escapeHTML);
+    document.title = `${t("communityTitle")} — ZineROM Project`;
   } else if (route === "/about") {
     routeName = "about";
     renderAbout();
@@ -515,7 +519,10 @@ function renderRoute(scroll = true) {
   if (scroll) {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const catalog = routeName === "devices" ? document.getElementById("devices") : null;
-    const target = catalog ? catalog.getBoundingClientRect().top + window.scrollY : 0;
+    const section = routeName === "community" && new URLSearchParams(hash.split("?")[1] || "").get("section") === "feedback" ? document.getElementById("feedback-contributions") : null;
+    const scrollTarget = section || catalog;
+    const headerOffset = section ? document.querySelector(".site-header")?.getBoundingClientRect().height || 0 : 0;
+    const target = scrollTarget ? Math.max(0, scrollTarget.getBoundingClientRect().top + window.scrollY - headerOffset - 10) : 0;
     window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
     document.getElementById("main-content").focus({ preventScroll: true });
   }

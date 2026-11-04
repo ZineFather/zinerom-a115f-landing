@@ -10,6 +10,8 @@ Only configure a public download after the build has been published and verified
 
 The existing A11 entry is an experimental diagnostic test build, not a stable ROM. Confirm the exact device variant before flashing. The support categories and Telegram destination are configured in `app.js` and `index.html`.
 
+The shared device-image canvas centers each source with `object-fit: contain`; it never transforms source files. The current catalog image files do not contain transparent alpha, and were preserved unchanged as requested. To provide transparent device cutouts, upload alpha-enabled PNG assets and update only the corresponding `image` path in `app.js`.
+
 ## Screenshot gallery
 
 The Screenshots page discovers image files directly from the public `screenshots/` folder on GitHub when the page opens. Keep uploaded originals in that folder; the site links to the original files and does not crop, resize, recompress, or annotate them. `screenshots/metadata.json` supplies descriptive titles and category assignments for known images. Newly added images appear automatically; until a metadata entry is added, they use their filename as the title and appear under “Other Features.” The gallery only displays category filters that have at least one image. If GitHub's directory API is temporarily unavailable, the metadata file provides the saved-list fallback.
@@ -22,7 +24,7 @@ This project has no build step or third-party runtime dependency. From the repos
 python3 -m http.server 4173
 ```
 
-Then open `http://localhost:4173/`. Device pages use URLs such as `/#/devices/a11-4g`; About and Support are `/#/about` and `/#/support`.
+Then open `http://localhost:4173/`. Device pages use URLs such as `/#/devices/a11-4g`; Screenshots, Community, and Support are `/#/screenshots`, `/#/community`, and `/#/support`. Feedback & Contributions opens directly at `/#/community?section=feedback`.
 
 ## Publish
 
