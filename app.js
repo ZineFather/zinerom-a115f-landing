@@ -10,7 +10,7 @@ const TELEGRAM_URL = "https://t.me/ZineROMProject/109";
 const devices = [
   {
     id: "a15-4g", name: "Galaxy A15 4G", family: "Galaxy A15", variant: "4G / LTE",
-    model: "Regional model code not supplied", image: "device-a15-4g.webp", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "1793813811813.jpg", type: "phone", builds: {}
   },
   {
     id: "a15-5g", name: "Galaxy A15 5G", family: "Galaxy A15", variant: "5G",
@@ -58,7 +58,7 @@ const devices = [
   },
   {
     id: "a11-4g", name: "Galaxy A11", family: "Galaxy A11", variant: "4G / LTE",
-    model: "SM-A115F", image: "device-a11.webp", type: "phone",
+    model: "SM-A115F", image: "Samsung-Galaxy-A11.jpg", type: "phone",
     builds: {
       "7.0": {
         status: "test",
