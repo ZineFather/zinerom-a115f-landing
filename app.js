@@ -38,7 +38,7 @@ const devices = [
   },
   {
     id: "a52s-5g", name: "Galaxy A52s 5G", family: "Galaxy A52s", variant: "5G",
-    model: "SM-A528 family", image: "a52s.webp", type: "phone",
+    model: "SM-A528 family", image: "58e741a0-d82b-11f1-be9c-4d568969b7f5.jpg", type: "phone",
     builds: {
       "6.1": {
         status: "test",
