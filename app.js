@@ -14,7 +14,7 @@ const devices = [
   },
   {
     id: "a15-5g", name: "Galaxy A15 5G", family: "Galaxy A15", variant: "5G",
-    model: "Regional model code not supplied", image: "device-a15-5g.webp", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "1793813814861.jpg", type: "phone", builds: {}
   },
   {
     id: "a16-4g", name: "Galaxy A16 4G", family: "Galaxy A16", variant: "4G / LTE",
@@ -26,11 +26,11 @@ const devices = [
   },
   {
     id: "a25-5g", name: "Galaxy A25 5G", family: "Galaxy A25", variant: "5G",
-    model: "SM-A256 family", image: "device-a25.webp", type: "phone", builds: {}
+    model: "SM-A256 family", image: "1793813822634.jpg", type: "phone", builds: {}
   },
   {
     id: "a34-5g", name: "Galaxy A34 5G", family: "Galaxy A34", variant: "5G",
-    model: "SM-A346 family", image: "device-a34.webp", type: "phone", builds: {}
+    model: "SM-A346 family", image: "1793813824175.jpg", type: "phone", builds: {}
   },
   {
     id: "a53-5g", name: "Galaxy A53 5G", family: "Galaxy A53", variant: "5G",
@@ -38,7 +38,7 @@ const devices = [
   },
   {
     id: "a52s-5g", name: "Galaxy A52s 5G", family: "Galaxy A52s", variant: "5G",
-    model: "SM-A528 family", image: "device-a52s.webp", type: "phone",
+    model: "SM-A528 family", image: "1793813827088.jpg", type: "phone",
     builds: {
       "6.1": {
         status: "test",
