@@ -210,7 +210,7 @@ function deviceCard(device) {
   return `
     <article class="device-card">
       <a class="device-card-link" href="#/devices/${encodeURIComponent(device.id)}" aria-label="${escapeHTML(t("viewDevice"))}: ${escapeHTML(device.name)}">
-        <span class="device-card-image">
+        <span class="device-card-image device-image-canvas">
           <img src="${escapeHTML(device.image)}" alt="${escapeHTML(t("altPrefix"))} ${escapeHTML(device.name)}" loading="lazy" decoding="async">
           <span class="image-index">${String(devices.indexOf(device) + 1).padStart(2, "0")}</span>
         </span>
@@ -253,7 +253,7 @@ function renderCatalog() {
         <div class="showcase-orbit" aria-hidden="true"></div>
         ${featured.map((device, index) => `
           <a class="showcase-device showcase-device-${index + 1}" href="#/devices/${encodeURIComponent(device.id)}" aria-label="${escapeHTML(t("viewDevice"))}: ${escapeHTML(device.name)}">
-            <span class="showcase-image"><img src="${escapeHTML(device.image)}" alt="" loading="eager" decoding="async"></span>
+            <span class="showcase-image device-image-canvas"><img src="${escapeHTML(device.image)}" alt="" loading="eager" decoding="async"></span>
             <span class="showcase-label"><strong>${escapeHTML(device.name)}</strong><small>${escapeHTML(device.variant)}</small></span>
           </a>`).join("")}
         <span class="showcase-caption">ZINEROM / DEVICE CATALOG</span>
@@ -399,7 +399,7 @@ function renderDevicePage(device, hash) {
     <section class="shell detail-page">
       <a class="back-link" href="#/devices"><span aria-hidden="true">←</span>${escapeHTML(t("backCatalog"))}</a>
       <div class="detail-hero">
-        <div class="detail-image-panel"><span class="detail-image-label">${escapeHTML(device.family)}</span><img src="${escapeHTML(device.image)}" alt="${escapeHTML(t("altPrefix"))} ${escapeHTML(device.name)}" fetchpriority="high"></div>
+        <div class="detail-image-panel device-image-canvas"><span class="detail-image-label">${escapeHTML(device.family)}</span><img src="${escapeHTML(device.image)}" alt="${escapeHTML(t("altPrefix"))} ${escapeHTML(device.name)}" fetchpriority="high"></div>
         <div class="detail-copy">
           <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>${escapeHTML(t("selectedDevice"))}</p>
           <div class="detail-title-row"><h1>${escapeHTML(device.name)}</h1><span class="state-pill status-${statusForDevice(device).type}">${escapeHTML(statusForDevice(device).label)}</span></div>
