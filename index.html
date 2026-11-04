@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#071324">
-  <meta name="description" content="ZineROM community device roadmap. Select a Galaxy device to see its planned One UI and Android target, project status, and available test downloads.">
+  <meta name="description" content="ZineROM community device roadmap. Choose a Galaxy device to view its project details, target software, features, base, and available test downloads.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="ZineROM — Galaxy Device Roadmap">
   <meta property="og:description" content="Community One UI ports, device by device. Experimental builds and roadmap targets are clearly marked.">
@@ -12,6 +12,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230b1d36'/%3E%3Cpath d='M16 18h32v8L27 46h21' fill='none' stroke='%237fc4ff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
   <script src="app.js" defer></script>
+  <script src="details.js" defer></script>
 </head>
 <body>
   <header class="shell topbar" id="top">
@@ -21,7 +22,8 @@
     </a>
     <nav class="top-actions" aria-label="Main navigation">
       <a class="nav-link" href="#devices" data-i18n="navDevices">Devices</a>
-      <a class="nav-link" href="https://github.com/nova-arch008/ZineROM-A115F-OneUI7-boot-test" target="_blank" rel="noopener noreferrer" data-i18n="navGithub">A11 project</a>
+      <a class="nav-link" href="https://t.me/zineromupdates" target="_blank" rel="noopener noreferrer">@zineromupdates</a>
+      <a class="nav-link" href="https://t.me/ZineROMProject" target="_blank" rel="noopener noreferrer">@ZineROMProject</a>
       <label class="sr-only" for="language-select" data-i18n="languageLabel">Language</label>
       <select class="language-select" id="language-select" aria-label="Language">
         <option value="en">English</option>
@@ -41,64 +43,137 @@
   </header>
 
   <main>
-    <section class="shell hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="live-dot" aria-hidden="true"></span><span data-i18n="eyebrow">COMMUNITY PORT ROADMAP</span></span>
-        <h1 id="hero-title" data-i18n="heroTitle">One UI projects.<br><span class="blue-text">Device by device.</span></h1>
-        <p class="lead" data-i18n="heroText">Choose a Galaxy model to see its target software, current status, and whether a test build is actually available.</p>
-        <label class="field-label" for="device-select" data-i18n="selectDevice">Select a device</label>
-        <select class="device-select" id="device-select" aria-label="Select a Galaxy device"></select>
-        <p class="roadmap-note" data-i18n="roadmapNotice">Roadmap versions are community targets, not official Samsung releases. Only a clearly marked test build has a download link.</p>
-      </div>
-
-      <aside class="selected-card" aria-live="polite" aria-label="Selected device details">
-        <div class="selected-image-wrap">
-          <img id="selected-image" src="device-a11.webp" alt="Galaxy A11 product image" fetchpriority="high">
-          <span class="image-caption" id="image-caption">Galaxy A11</span>
+    <div id="home-view">
+      <section class="shell hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="live-dot" aria-hidden="true"></span><span data-i18n="eyebrow">COMMUNITY PORT ROADMAP</span></span>
+          <h1 id="hero-title" data-i18n="heroTitle">One UI projects.<br><span class="blue-text">Device by device.</span></h1>
+          <p class="lead" data-i18n="heroText">Choose a Galaxy model to see its target software, current status, and whether a test build is actually available.</p>
+          <label class="field-label" for="device-select" data-i18n="selectDevice">Select a device</label>
+          <select class="device-select" id="device-select" aria-label="Select a Galaxy device"></select>
+          <p class="roadmap-note" data-i18n="roadmapNotice">Roadmap versions are community targets, not official Samsung releases. Only a clearly marked test build has a download link.</p>
         </div>
-        <div class="selected-body">
-          <div class="selected-heading">
-            <div>
-              <p class="overline" data-i18n="selectedDevice">SELECTED DEVICE</p>
-              <h2 id="selected-name">Galaxy A11</h2>
-              <p class="model-code" id="selected-code">SM-A115F</p>
+
+        <aside class="selected-card" aria-live="polite" aria-label="Selected device details">
+          <div class="selected-image-wrap">
+            <img id="selected-image" src="device-a11.webp" alt="Galaxy A11 product image" fetchpriority="high">
+            <span class="image-caption" id="image-caption">Galaxy A11</span>
+          </div>
+          <div class="selected-body">
+            <div class="selected-heading">
+              <div>
+                <p class="overline" data-i18n="selectedDevice">SELECTED DEVICE</p>
+                <h2 id="selected-name">Galaxy A11</h2>
+                <p class="model-code" id="selected-code">SM-A115F</p>
+              </div>
+              <span class="status-badge" id="selected-status"></span>
             </div>
-            <span class="status-badge" id="selected-status"></span>
+            <div class="spec-grid">
+              <div class="spec"><span data-i18n="targetUi">Target One UI</span><strong id="selected-ui">One UI 7</strong></div>
+              <div class="spec"><span data-i18n="targetAndroid">Target Android</span><strong id="selected-android">Android 15</strong></div>
+            </div>
+            <p class="device-note" id="selected-note"></p>
+            <div id="action-slot" class="action-slot"></div>
+            <div class="checksum" id="checksum-panel" hidden>
+              <span class="checksum-label">SHA-256</span>
+              <div class="hash-row"><code id="checksum-value"></code><button class="copy-button" type="button" id="copy-checksum" data-i18n="copy">Copy</button></div>
+            </div>
+            <a class="details-link" id="open-selected-details" href="#device/a11">View device details</a>
           </div>
-          <div class="spec-grid">
-            <div class="spec"><span data-i18n="targetUi">Target One UI</span><strong id="selected-ui">One UI 7</strong></div>
-            <div class="spec"><span data-i18n="targetAndroid">Target Android</span><strong id="selected-android">Android 15</strong></div>
-          </div>
-          <p class="device-note" id="selected-note"></p>
-          <div id="action-slot" class="action-slot"></div>
-          <div class="checksum" id="checksum-panel" hidden>
-            <span class="checksum-label">SHA-256</span>
-            <div class="hash-row"><code id="checksum-value"></code><button class="copy-button" type="button" id="copy-checksum" data-i18n="copy">Copy</button></div>
-          </div>
-        </div>
-      </aside>
-    </section>
+        </aside>
+      </section>
 
-    <section class="shell section" id="devices" aria-labelledby="devices-title">
-      <div class="section-heading">
-        <div>
-          <p class="overline" data-i18n="roadmapOverline">DEVICE ROADMAP</p>
-          <h2 id="devices-title" data-i18n="devicesTitle">Choose your Galaxy</h2>
+      <section class="shell section" id="devices" aria-labelledby="devices-title">
+        <div class="section-heading">
+          <div>
+            <p class="overline" data-i18n="roadmapOverline">DEVICE ROADMAP</p>
+            <h2 id="devices-title" data-i18n="devicesTitle">Choose your Galaxy</h2>
+          </div>
+          <p class="section-intro" data-i18n="devicesIntro">A11 and A52s target One UI 7 / Android 15. The remaining listed devices are roadmap targets for One UI 8.5 / 9.0 and Android 16 / 17.</p>
         </div>
-        <p class="section-intro" data-i18n="devicesIntro">A11 and A52s target One UI 7 / Android 15. The remaining listed devices are roadmap targets for One UI 8.5 / 9.0 and Android 16 / 17.</p>
+        <p class="grid-hint" id="grid-hint">Select a device to open its ZineROM details.</p>
+        <div class="device-grid" id="device-grid"></div>
+        <div class="notice-box">
+          <strong data-i18n="noticeTitle">Experimental and in progress</strong>
+          <p data-i18n="noticeText">The A11 ZIP is a diagnostic test build, not a stable ROM. No public downloads are available yet for the other devices. Check the exact device variant before testing; never flash a build intended for a different model.</p>
+        </div>
+      </section>
+    </div>
+
+    <section class="shell detail-screen" id="detail-view" hidden aria-live="polite">
+      <div class="detail-topline">
+        <a class="back-link" id="back-devices" href="#devices">← Back to all devices</a>
+        <span class="status-badge" id="detail-status"></span>
       </div>
-      <div class="device-grid" id="device-grid"></div>
-      <div class="notice-box">
-        <strong data-i18n="noticeTitle">Experimental and in progress</strong>
-        <p data-i18n="noticeText">The A11 ZIP is a diagnostic test build, not a stable ROM. No public downloads are available yet for the other devices. Check the exact device variant before testing; never flash a build intended for a different model.</p>
+      <div class="detail-hero">
+        <div class="detail-image-wrap">
+          <img id="detail-image" src="device-a11.webp" alt="Galaxy device front and back">
+          <span class="image-caption" id="detail-image-caption"></span>
+        </div>
+        <div class="detail-copy">
+          <p class="overline" id="detail-overline">DEVICE DETAILS</p>
+          <h1 id="detail-name"></h1>
+          <p class="model-code" id="detail-code"></p>
+          <div class="spec-grid detail-spec-grid">
+            <div class="spec"><span id="detail-ui-label">Target One UI</span><strong id="detail-ui"></strong></div>
+            <div class="spec"><span id="detail-android-label">Target Android</span><strong id="detail-android"></strong></div>
+          </div>
+          <div class="base-box">
+            <span id="detail-base-label">Port base</span>
+            <strong id="detail-base"></strong>
+          </div>
+          <p class="device-note" id="detail-note"></p>
+          <div id="detail-actions" class="action-slot"></div>
+          <div class="checksum" id="detail-checksum" hidden>
+            <span class="checksum-label">SHA-256</span>
+            <div class="hash-row"><code id="detail-checksum-value"></code></div>
+          </div>
+        </div>
       </div>
+
+      <section class="feature-section" aria-labelledby="features-title">
+        <div class="feature-heading">
+          <p class="overline">ZineROM PROJECT</p>
+          <h2 id="features-title">ZineROM | Features</h2>
+          <p id="feature-disclaimer" class="feature-disclaimer"></p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature-card">
+            <h3 id="main-features-title">Main Features</h3>
+            <ul id="main-features-list"></ul>
+          </article>
+          <article class="feature-card">
+            <h3 id="optimization-title">Optimization</h3>
+            <ul id="optimization-list"></ul>
+          </article>
+        </div>
+        <aside class="important-card">
+          <h3 id="important-title">Important</h3>
+          <ul id="important-list"></ul>
+        </aside>
+      </section>
+
+      <section class="developer-links" aria-label="Developer and Telegram links">
+        <div class="developer-card">
+          <span id="developer-label">Developer</span>
+          <strong>@ZineFather</strong>
+        </div>
+        <div class="telegram-card">
+          <span id="telegram-label">Follow ZineROM</span>
+          <div class="telegram-links">
+            <a href="https://t.me/zineromupdates" target="_blank" rel="noopener noreferrer">@zineromupdates</a>
+            <a href="https://t.me/ZineROMProject" target="_blank" rel="noopener noreferrer">@ZineROMProject</a>
+          </div>
+        </div>
+      </section>
     </section>
   </main>
 
   <footer class="shell footer">
     <div><strong>ZineROM</strong><span class="footer-copy" data-i18n="footerText"> Independent community porting project. Not affiliated with Samsung.</span></div>
     <div class="footer-links">
-      <a href="https://github.com/nova-arch008/ZineROM-A115F-OneUI7-boot-test" target="_blank" rel="noopener noreferrer" data-i18n="navGithub">A11 project</a>
+      <a href="https://t.me/zineromupdates" target="_blank" rel="noopener noreferrer">@zineromupdates</a>
+      <a href="https://t.me/ZineROMProject" target="_blank" rel="noopener noreferrer">@ZineROMProject</a>
       <a href="IMAGE_CREDITS.md" data-i18n="imageCredits">Image credits</a>
       <a href="#top" data-i18n="backToTop">Back to top</a>
     </div>

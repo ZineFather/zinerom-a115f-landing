@@ -1,18 +1,16 @@
-# Device image notes
+# Image credits and model matching
 
-The product images on this fan project are shown only to identify the listed device models. ZineROM is not affiliated with Samsung or the listed retailers. Samsung names, product designs, logos, and images remain the property of their respective owners. The files in the site were resized or re-encoded to WebP for faster loading; no new product features were added.
+ZineROM is an independent community project and is not affiliated with Samsung or the retailers referenced below. Product names and images remain the property of their owners. Website copies are resized WebP derivatives used to identify the roadmap device; listing a source does not claim a license or Samsung endorsement. Contact the original rights holder for reuse permissions.
 
-| Device | Image source / reference |
+| Roadmap device | Image/source notes |
 | --- | --- |
-| Galaxy A11 | Model-specific Galaxy A11 SM-A115F/DS product image from an eBay product-image search result; seller ownership remains with the listing source. |
-| Galaxy A52s 5G | Galaxy A52s 5G product image from an eBay product-image search result; seller ownership remains with the listing source. |
-| Galaxy A53 5G | Galaxy A53 5G product image from an eBay product-image search result; seller ownership remains with the listing source. |
-| Galaxy A25 5G | Galaxy A25 5G product image from an eBay product-image search result; seller ownership remains with the listing source. |
-| Galaxy A34 5G | Galaxy A34 5G product image from an eBay product-image search result; seller ownership remains with the listing source. |
-| Galaxy A15 | Galaxy A15 product image from the Boost Mobile catalog search result; image rights remain with its owner. The device's LTE/5G variant is not confirmed by this roadmap. |
-| Galaxy A16 | Galaxy A16 product image from the AT&T catalog search result; image rights remain with its owner. The device's LTE/5G variant is not confirmed by this roadmap. |
-| Galaxy A17 | Galaxy A17 product image from Samsung US search result; image rights remain with Samsung. The device's LTE/5G variant is not confirmed by this roadmap. |
-| Galaxy A24 | Samsung Philippines product reference: <https://www.samsung.com/ph/smartphones/galaxy-a/galaxy-a24-black-128gb-sm-a245fzkwphl/>. |
-| Galaxy Tab A9+ 5G | Samsung Levant product reference: <https://www.samsung.com/levant/tablets/galaxy-tab-a/galaxy-tab-a9-plus-5g-graphite-128gb-sm-x216bzaemea/>. |
-
-The source image search results for the eBay and retailer images did not expose stable seller-specific listing URLs. No image license is claimed by the ZineROM project; rights requests should be directed to the respective image owner.
+| Galaxy A11 — SM-A115F | Product render from [PhoneMore's SM-A115F/DS specification page](https://www.phonemore.com/specs/samsung/galaxy-a11/sm-a115fds-32gb2gb/); model checked against [Samsung Levant support](https://www.samsung.com/levant/support/model/SM-A115FZKDMID/). The render shows the front, side, and back, not a package. |
+| Galaxy A52s 5G — SM-A528B | Front/back product image from [the exact Amazon UK SM-A528B listing](https://www.amazon.co.uk/Samsung-Galaxy-SM-A528B-Double-Android/dp/B09CHDTLJN). The selected photo shows the correct centered selfie camera and four-camera rear housing; it is not the previously mismatched A-series handset. |
+| Galaxy A53 5G — SM-A536B | Front/back product image from [Vodafone News Centre](https://www.vodafone.co.uk/newscentre/media/samsung-galaxy_a53_5g_front_back_3000x2000_awesome_peach/); model family checked against [Samsung UK support](https://www.samsung.com/uk/support/model/SM-A536BZWNEUB/). |
+| Galaxy A25 5G — SM-A256E | Front/back product image from the product gallery on [MyWorldPhone's exact SM-A256E listing](https://myworldphone.com/products/sm-a256e-5g-8-256-bk). The listing title and SKU name SM-A256E; the selected media image shows the device rather than its box. |
+| Galaxy A34 5G — SM-A346E | Samsung product render for product code SM-A346EZSAAFA from [Samsung Africa's official product page](https://www.samsung.com/africa_en/smartphones/galaxy-a/galaxy-a34-5g-silver-128gb-sm-a346ezsaafa/); front and rear are shown. |
+| Galaxy A15 — SM-A155F | Product image from the Boost Mobile catalog search result. It shows a Galaxy A15 handset rather than packaging; the exact regional variant of that image was not independently confirmed. The roadmap target code is SM-A155F. |
+| Galaxy A16 LTE — SM-A165F | Samsung's LTE product render from the official [Galaxy A16 page](https://www.samsung.com/levant/smartphones/galaxy-a/galaxy-a16-black-128gb-sm-a165fzkgmea/), product code SM-A165FZKGMEA; the source gallery presents the front and back. Samsung's published model-specific gallery thumbnail is 330×330 and was enlarged for the site's display. |
+| Galaxy A17 — target variant to confirm | Samsung's official [Galaxy A17 5G product page](https://www.samsung.com/uk/smartphones/galaxy-a/galaxy-a17-5g-black-128gb-sm-a176bzkaeub/) verifies SM-A176B and supplies the product-gallery handset image. The roadmap target is still recorded as variant-to-confirm; this image should not be read as confirmation that the target ROM is for 5G. |
+| Galaxy A24 — SM-A245F | Official Samsung Galaxy A24 product render for SM-A245FZKVAFC from [Samsung Africa](https://www.samsung.com/africa_en/smartphones/galaxy-a/galaxy-a24-black-128gb-sm-a245fzkvafc/); front and rear shown. |
+| Galaxy Tab A9+ 5G — SM-X216B | Official Graphite product render for SM-X216BZAEMEA from [Samsung Levant's product page](https://www.samsung.com/levant/tablets/galaxy-tab-a/galaxy-tab-a9-plus-5g-graphite-128gb-sm-x216bzaemea/); the product page and [support page](https://www.samsung.com/levant/support/model/SM-X216BZAEMEA/) verify the 5G model. Front and rear are shown. |

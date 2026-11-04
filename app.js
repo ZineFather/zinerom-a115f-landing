@@ -2,16 +2,16 @@ const DOWNLOAD_URL = "https://github.com/nova-arch008/ZineROM-A115F-OneUI7-boot-
 const A11_SHA256 = "f51460eff376466d24c12d39902e954e6037e5de22b3a7aef68088346f26fa95";
 
 const devices = [
-  {id:"a11", name:"Galaxy A11", code:"SM-A115F", image:"device-a11.webp", ui:"One UI 7", android:"Android 15", status:"available", noteKey:"noteA11", download:DOWNLOAD_URL, checksum:A11_SHA256},
-  {id:"a52s", name:"Galaxy A52s 5G", code:"SM-A528 family", image:"device-a52s.webp", ui:"One UI 7", android:"Android 15", status:"working", noteKey:"noteWorking"},
-  {id:"a53", name:"Galaxy A53 5G", code:"SM-A536 family", image:"device-a53.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
-  {id:"a25", name:"Galaxy A25 5G", code:"SM-A256 family", image:"device-a25.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
-  {id:"a34", name:"Galaxy A34 5G", code:"SM-A346 family", image:"device-a34.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
-  {id:"a15", name:"Galaxy A15", code:"Variant to confirm", image:"device-a15.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"noteVariant"},
-  {id:"a16", name:"Galaxy A16", code:"Variant to confirm", image:"device-a16.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"noteVariant"},
+  {id:"a11", name:"Galaxy A11", code:"SM-A115F", image:"device-a11.webp", ui:"One UI 7", android:"Android 15", base:"Galaxy A05s (SM-A057F)", status:"available", noteKey:"noteA11", download:DOWNLOAD_URL, checksum:A11_SHA256},
+  {id:"a52s", name:"Galaxy A52s 5G", code:"SM-A528B", image:"device-a52s.webp", ui:"One UI 7", android:"Android 15", base:"Galaxy S23 FE (S711BXXU4DXH7)", status:"working", noteKey:"noteWorking"},
+  {id:"a53", name:"Galaxy A53 5G", code:"SM-A536B", image:"device-a53.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
+  {id:"a25", name:"Galaxy A25 5G", code:"SM-A256E", image:"device-a25.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
+  {id:"a34", name:"Galaxy A34 5G", code:"SM-A346E", image:"device-a34.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
+  {id:"a15", name:"Galaxy A15", code:"SM-A155F", image:"device-a15.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"noteVariant"},
+  {id:"a16", name:"Galaxy A16", code:"SM-A165F", image:"device-a16.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"noteVariant"},
   {id:"a17", name:"Galaxy A17", code:"Variant to confirm", image:"device-a17.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"noteVariant"},
-  {id:"a24", name:"Galaxy A24", code:"SM-A245 family", image:"device-a24.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
-  {id:"taba9plus", name:"Galaxy Tab A9+ 5G", code:"SM-X216 family", image:"device-tab-a9plus-5g.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"}
+  {id:"a24", name:"Galaxy A24", code:"SM-A245F", image:"device-a24.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
+  {id:"taba9plus", name:"Galaxy Tab A9+ 5G", code:"SM-X216B", image:"device-tab-a9plus-5g.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"}
 ];
 
 const translations = {
