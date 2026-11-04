@@ -39,7 +39,16 @@ const devices = [
   {
     id: "a52s-5g", name: "Galaxy A52s 5G", family: "Galaxy A52s", variant: "5G",
     model: "SM-A528 family", image: "device-a52s.webp", type: "phone",
-    builds: { "7.0": { status: "in-progress", noteKey: "noteWorking" } }
+    builds: {
+      "6.1": {
+        status: "test",
+        downloadUrl: "https://gofile.io/d/TYKq0wOl",
+        noteKey: "noteA52s61",
+        warningKey: "warningA52s61",
+        downloadKey: "downloadA52s61"
+      },
+      "7.0": { status: "in-progress", noteKey: "noteWorking" }
+    }
   },
   {
     id: "a11-4g", name: "Galaxy A11", family: "Galaxy A11", variant: "4G / LTE",
@@ -78,6 +87,8 @@ const extraCopy = {
     noVersionDetails: "ROM details are not configured for this One UI version.", noBuildStatus: "No public builds",
     releaseProgress: "Work in progress. No public download is configured for this version.", missingDownload: "Download link not available yet.",
     requestSupport: "Request Support", downloadWarning: "Experimental diagnostic test build — not a stable release. Confirm the exact model before flashing.",
+    downloadA52s61: "Download One UI 6.1 for A52s", noteA52s61: "Community One UI 6.1 build for Galaxy A52s 5G. The GoFile share lists ZineROM_SM-A528B_V3.2.3.zip.",
+    warningA52s61: "The linked file is labeled SM-A528B. Confirm your exact model and follow the source instructions before flashing.",
     checksumLabel: "SHA-256 checksum", copyChecksum: "Copy checksum", catalogStrip: "A catalog built on clear device matching and honest release status.",
     aboutTitle: "Built around the device, not the other way around.", aboutStripTitle: "Device-specific work. Clear release information.",
     aboutCopy: "ZineROM Project is an independent community custom-ROM effort. This catalog separates published test builds from work in progress and devices with no configured release. A listed device does not mean that every One UI version has a ROM available.",
@@ -103,6 +114,8 @@ const extraCopy = {
     noVersionDetails: "لم تُعدّ تفاصيل روم لهذا الإصدار من One UI.", noBuildStatus: "لا توجد نسخ عامة",
     releaseProgress: "العمل جارٍ. لا يوجد رابط تنزيل عام مُعدّ لهذا الإصدار.", missingDownload: "رابط التنزيل غير متاح بعد.",
     requestSupport: "طلب الدعم", downloadWarning: "نسخة اختبار تشخيصية وتجريبية وليست إصدارًا مستقرًا. تأكد من الطراز الدقيق قبل التفليش.",
+    downloadA52s61: "تنزيل One UI 6.1 لهاتف A52s", noteA52s61: "إصدار مجتمعي من One UI 6.1 لهاتف Galaxy A52s 5G. تعرض صفحة GoFile الملف ZineROM_SM-A528B_V3.2.3.zip.",
+    warningA52s61: "الملف المرتبط يحمل الرمز SM-A528B. تأكد من الطراز الدقيق واتبع تعليمات المصدر قبل التفليش.",
     checksumLabel: "بصمة SHA-256", copyChecksum: "نسخ البصمة", catalogStrip: "كتالوج يركز على مطابقة الجهاز ووضوح حالة الإصدارات.",
     aboutTitle: "الروم يبدأ من الجهاز، لا العكس.", aboutStripTitle: "عمل مخصص للأجهزة ومعلومات إصدار واضحة.",
     aboutCopy: "مشروع ZineROM مبادرة مجتمعية مستقلة لتطوير رومات مخصصة. يميّز هذا الكتالوج بين نسخ الاختبار المنشورة والعمل الجاري والأجهزة التي لا يتوفر لها إصدار مُعدّ. ظهور الجهاز في القائمة لا يعني توافر روم لكل إصدار من One UI.",
@@ -330,13 +343,14 @@ function renderRelease(device, version) {
     return;
   }
   const note = release.noteKey ? t(release.noteKey) : t("noVersionDetails");
+  const warning = release.warningKey ? t(release.warningKey) : t("downloadWarning");
   if (release.status === "test" && release.downloadUrl) {
     host.innerHTML = `
       <div class="release-configured">
         <div class="release-empty-heading"><span class="release-state">${versionLabel}</span><span class="state-pill status-available">${escapeHTML(t("statusAvailable"))}</span></div>
         <p class="release-copy">${escapeHTML(note)}</p>
         ${release.androidVersion ? `<div class="release-meta"><span>${escapeHTML(t("targetAndroid"))}</span><strong>Android ${escapeHTML(release.androidVersion)}</strong></div>` : ""}
-        <div class="experimental-warning"><span aria-hidden="true">!</span><p>${escapeHTML(t("downloadWarning"))}</p></div>
+        <div class="experimental-warning"><span aria-hidden="true">!</span><p>${escapeHTML(warning)}</p></div>
         <a class="button button-primary download-button" href="${escapeHTML(release.downloadUrl)}" target="_blank" rel="noopener noreferrer"><span>${escapeHTML(t(release.downloadKey || "download"))}</span><span aria-hidden="true">↓</span></a>
         ${release.sha256 ? `<div class="checksum-block"><div><span class="checksum-title">${escapeHTML(t("checksumLabel"))}</span><code id="checksum-value">${escapeHTML(release.sha256)}</code></div><button class="copy-button" id="copy-checksum" type="button">${escapeHTML(t("copyChecksum"))}</button></div>` : ""}
         <div class="release-support"><p>${escapeHTML(t("supportCopyShort"))}</p><button class="button button-quiet" type="button" data-request-support>${escapeHTML(t("requestSupport"))}</button></div>

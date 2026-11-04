@@ -60,7 +60,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "Cambiar al tema claro",
     "themeDark": "Cambiar al tema oscuro",
     "openMenu": "Abrir navegación",
-    "closeMenu": "Cerrar navegación"
+    "closeMenu": "Cerrar navegación",
+    "downloadA52s61": "Descargar One UI 6.1 para A52s",
+    "noteA52s61": "Build comunitario de One UI 6.1 para Galaxy A52s 5G. GoFile muestra el archivo ZineROM_SM-A528B_V3.2.3.zip.",
+    "warningA52s61": "El archivo enlazado indica SM-A528B. Confirma el modelo exacto y sigue las instrucciones de la fuente antes de instalar."
   },
   "fr": {
     "navHome": "Accueil",
@@ -123,7 +126,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "Passer au thème clair",
     "themeDark": "Passer au thème sombre",
     "openMenu": "Ouvrir la navigation",
-    "closeMenu": "Fermer la navigation"
+    "closeMenu": "Fermer la navigation",
+    "downloadA52s61": "Télécharger One UI 6.1 pour A52s",
+    "noteA52s61": "Build communautaire One UI 6.1 pour le Galaxy A52s 5G. GoFile affiche le fichier ZineROM_SM-A528B_V3.2.3.zip.",
+    "warningA52s61": "Le fichier lié porte la référence SM-A528B. Vérifiez le modèle exact et suivez les instructions de la source avant le flashage."
   },
   "de": {
     "navHome": "Startseite",
@@ -186,7 +192,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "Zum hellen Design wechseln",
     "themeDark": "Zum dunklen Design wechseln",
     "openMenu": "Navigation öffnen",
-    "closeMenu": "Navigation schließen"
+    "closeMenu": "Navigation schließen",
+    "downloadA52s61": "One UI 6.1 für A52s herunterladen",
+    "noteA52s61": "Community-Build von One UI 6.1 für das Galaxy A52s 5G. GoFile zeigt die Datei ZineROM_SM-A528B_V3.2.3.zip.",
+    "warningA52s61": "Die verknüpfte Datei ist mit SM-A528B gekennzeichnet. Prüfe dein genaues Modell und folge vor dem Flashen den Quellhinweisen."
   },
   "tr": {
     "navHome": "Ana sayfa",
@@ -249,7 +258,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "Açık temaya geç",
     "themeDark": "Koyu temaya geç",
     "openMenu": "Gezinme menüsünü aç",
-    "closeMenu": "Gezinme menüsünü kapat"
+    "closeMenu": "Gezinme menüsünü kapat",
+    "downloadA52s61": "A52s için One UI 6.1 indir",
+    "noteA52s61": "Galaxy A52s 5G için topluluk One UI 6.1 derlemesi. GoFile sayfasında ZineROM_SM-A528B_V3.2.3.zip dosyası listeleniyor.",
+    "warningA52s61": "Bağlantıdaki dosyada SM-A528B yazıyor. Yüklemeden önce tam modelinizi doğrulayın ve kaynak talimatlarını izleyin."
   },
   "pt": {
     "navHome": "Início",
@@ -312,7 +324,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "Mudar para o tema claro",
     "themeDark": "Mudar para o tema escuro",
     "openMenu": "Abrir navegação",
-    "closeMenu": "Fechar navegação"
+    "closeMenu": "Fechar navegação",
+    "downloadA52s61": "Baixar One UI 6.1 para A52s",
+    "noteA52s61": "Build comunitária One UI 6.1 para o Galaxy A52s 5G. O GoFile lista o arquivo ZineROM_SM-A528B_V3.2.3.zip.",
+    "warningA52s61": "O arquivo vinculado está identificado como SM-A528B. Confirme o modelo exato e siga as instruções da fonte antes de instalar."
   },
   "id": {
     "navHome": "Beranda",
@@ -375,7 +390,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "Beralih ke tema terang",
     "themeDark": "Beralih ke tema gelap",
     "openMenu": "Buka navigasi",
-    "closeMenu": "Tutup navigasi"
+    "closeMenu": "Tutup navigasi",
+    "downloadA52s61": "Unduh One UI 6.1 untuk A52s",
+    "noteA52s61": "Build komunitas One UI 6.1 untuk Galaxy A52s 5G. GoFile mencantumkan file ZineROM_SM-A528B_V3.2.3.zip.",
+    "warningA52s61": "File tertaut berlabel SM-A528B. Pastikan model perangkat tepat dan ikuti instruksi sumber sebelum flashing."
   },
   "hi": {
     "navHome": "होम",
@@ -438,7 +456,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "लाइट थीम पर जाएँ",
     "themeDark": "डार्क थीम पर जाएँ",
     "openMenu": "नेविगेशन खोलें",
-    "closeMenu": "नेविगेशन बंद करें"
+    "closeMenu": "नेविगेशन बंद करें",
+    "downloadA52s61": "A52s के लिए One UI 6.1 डाउनलोड करें",
+    "noteA52s61": "Galaxy A52s 5G के लिए One UI 6.1 कम्युनिटी बिल्ड। GoFile पर ZineROM_SM-A528B_V3.2.3.zip फ़ाइल सूचीबद्ध है।",
+    "warningA52s61": "लिंक की गई फ़ाइल पर SM-A528B लिखा है। फ़्लैश करने से पहले सटीक मॉडल की पुष्टि करें और स्रोत के निर्देश मानें।"
   },
   "ur": {
     "navHome": "ہوم",
@@ -501,7 +522,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "لائٹ تھیم پر جائیں",
     "themeDark": "ڈارک تھیم پر جائیں",
     "openMenu": "نیویگیشن کھولیں",
-    "closeMenu": "نیویگیشن بند کریں"
+    "closeMenu": "نیویگیشن بند کریں",
+    "downloadA52s61": "A52s کے لیے One UI 6.1 ڈاؤن لوڈ کریں",
+    "noteA52s61": "Galaxy A52s 5G کے لیے One UI 6.1 کی کمیونٹی بلڈ۔ GoFile پر ZineROM_SM-A528B_V3.2.3.zip فائل درج ہے۔",
+    "warningA52s61": "منسلک فائل پر SM-A528B درج ہے۔ فلیش کرنے سے پہلے درست ماڈل کی تصدیق کریں اور ماخذ کی ہدایات پر عمل کریں۔"
   },
   "bn": {
     "navHome": "হোম",
@@ -564,7 +588,10 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "হালকা থিমে যান",
     "themeDark": "গাঢ় থিমে যান",
     "openMenu": "নেভিগেশন খুলুন",
-    "closeMenu": "নেভিগেশন বন্ধ করুন"
+    "closeMenu": "নেভিগেশন বন্ধ করুন",
+    "downloadA52s61": "A52s-এর জন্য One UI 6.1 ডাউনলোড করুন",
+    "noteA52s61": "Galaxy A52s 5G-এর জন্য One UI 6.1 কমিউনিটি বিল্ড। GoFile-এ ZineROM_SM-A528B_V3.2.3.zip ফাইলটি তালিকাভুক্ত।",
+    "warningA52s61": "লিঙ্ক করা ফাইলে SM-A528B লেখা আছে। ফ্ল্যাশ করার আগে সঠিক মডেল যাচাই করুন এবং উৎসের নির্দেশনা অনুসরণ করুন।"
   },
   "ru": {
     "navHome": "Главная",
@@ -627,6 +654,9 @@ window.ZINE_EXTRA_COPY = {
     "themeLight": "Переключить на светлую тему",
     "themeDark": "Переключить на тёмную тему",
     "openMenu": "Открыть навигацию",
-    "closeMenu": "Закрыть навигацию"
+    "closeMenu": "Закрыть навигацию",
+    "downloadA52s61": "Скачать One UI 6.1 для A52s",
+    "noteA52s61": "Сборка One UI 6.1 от сообщества для Galaxy A52s 5G. На GoFile указан файл ZineROM_SM-A528B_V3.2.3.zip.",
+    "warningA52s61": "В связанном файле указана модель SM-A528B. Перед прошивкой проверьте точную модель и следуйте инструкциям источника."
   }
 };
