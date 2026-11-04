@@ -1,151 +1,552 @@
-const DOWNLOAD_URL = "https://github.com/nova-arch008/ZineROM-A115F-OneUI7-boot-test/releases/download/a115f-boot-test/ZineROM_OneUI7_A115F-Port-A057F.zip";
-const A11_SHA256 = "f51460eff376466d24c12d39902e954e6037e5de22b3a7aef68088346f26fa95";
+"use strict";
 
+/*
+ * ZineROM Project device and build data.
+ * Only add a downloadUrl after the build has been published and verified.
+ * Add or remove entries here to maintain the supported device catalog.
+ */
+const ONE_UI_VERSIONS = ["6.1", "7.0", "8.0", "8.5", "9.0"];
+const TELEGRAM_URL = "https://t.me/ZineROMProject/109";
 const devices = [
-  {id:"a11", name:"Galaxy A11", code:"SM-A115F", image:"device-a11.webp", ui:"One UI 7", android:"Android 15", status:"available", noteKey:"noteA11", download:DOWNLOAD_URL, checksum:A11_SHA256},
-  {id:"a52s", name:"Galaxy A52s 5G", code:"SM-A528 family", image:"device-a52s.webp", ui:"One UI 7", android:"Android 15", status:"working", noteKey:"noteWorking"},
-  {id:"a53", name:"Galaxy A53 5G", code:"SM-A536 family", image:"device-a53.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
-  {id:"a25", name:"Galaxy A25 5G", code:"SM-A256 family", image:"device-a25.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
-  {id:"a34", name:"Galaxy A34 5G", code:"SM-A346 family", image:"device-a34.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
-  {id:"a15", name:"Galaxy A15", code:"Variant to confirm", image:"device-a15.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"noteVariant"},
-  {id:"a16", name:"Galaxy A16", code:"Variant to confirm", image:"device-a16.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"noteVariant"},
-  {id:"a17", name:"Galaxy A17", code:"Variant to confirm", image:"device-a17.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"noteVariant"},
-  {id:"a24", name:"Galaxy A24", code:"SM-A245 family", image:"device-a24.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"},
-  {id:"taba9plus", name:"Galaxy Tab A9+ 5G", code:"SM-X216 family", image:"device-tab-a9plus-5g.webp", ui:"One UI 8.5 / 9.0", android:"Android 16 / 17", status:"planned", noteKey:"notePlanned"}
+  {
+    id: "a15-4g", name: "Galaxy A15 4G", family: "Galaxy A15", variant: "4G / LTE",
+    model: "Regional model code not supplied", image: "device-a15.webp", type: "phone", builds: {}
+  },
+  {
+    id: "a15-5g", name: "Galaxy A15 5G", family: "Galaxy A15", variant: "5G",
+    model: "Regional model code not supplied", image: "device-a15.webp", type: "phone", builds: {}
+  },
+  {
+    id: "a16-4g", name: "Galaxy A16 4G", family: "Galaxy A16", variant: "4G / LTE",
+    model: "Regional model code not supplied", image: "device-a16.webp", type: "phone", builds: {}
+  },
+  {
+    id: "a16-5g", name: "Galaxy A16 5G", family: "Galaxy A16", variant: "5G",
+    model: "Regional model code not supplied", image: "device-a16.webp", type: "phone", builds: {}
+  },
+  {
+    id: "a25-5g", name: "Galaxy A25 5G", family: "Galaxy A25", variant: "5G",
+    model: "SM-A256 family", image: "device-a25.webp", type: "phone", builds: {}
+  },
+  {
+    id: "a34-5g", name: "Galaxy A34 5G", family: "Galaxy A34", variant: "5G",
+    model: "SM-A346 family", image: "device-a34.webp", type: "phone", builds: {}
+  },
+  {
+    id: "a53-5g", name: "Galaxy A53 5G", family: "Galaxy A53", variant: "5G",
+    model: "SM-A536 family", image: "device-a53.webp", type: "phone", builds: {}
+  },
+  {
+    id: "a52s-5g", name: "Galaxy A52s 5G", family: "Galaxy A52s", variant: "5G",
+    model: "SM-A528 family", image: "device-a52s.webp", type: "phone",
+    builds: { "7.0": { status: "in-progress", noteKey: "noteWorking" } }
+  },
+  {
+    id: "a11-4g", name: "Galaxy A11", family: "Galaxy A11", variant: "4G / LTE",
+    model: "SM-A115F", image: "device-a11.webp", type: "phone",
+    builds: {
+      "7.0": {
+        status: "test",
+        androidVersion: "15",
+        downloadUrl: "https://github.com/nova-arch008/ZineROM-A115F-OneUI7-boot-test/releases/download/a115f-boot-test/ZineROM_OneUI7_A115F-Port-A057F.zip",
+        sha256: "f51460eff376466d24c12d39902e954e6037e5de22b3a7aef68088346f26fa95",
+        noteKey: "noteA11",
+        downloadKey: "download"
+      }
+    }
+  },
+  {
+    id: "a24-4g", name: "Galaxy A24", family: "Galaxy A24", variant: "4G / LTE",
+    model: "SM-A245 family", image: "device-a24.webp", type: "phone", builds: {}
+  },
+  {
+    id: "tab-a9-plus-5g-x216b", name: "Galaxy Tab A9+ 5G", family: "Galaxy Tab A9+", variant: "5G",
+    model: "SM-X216B", image: "device-tab-a9plus-5g.webp", type: "tablet", builds: {}
+  }
 ];
 
-const translations = {
-  en:{title:"ZineROM — Galaxy Device Roadmap",meta:"ZineROM community device roadmap. Select a Galaxy device to see its planned One UI and Android target, project status, and available test downloads.",navDevices:"Devices",navGithub:"A11 project",languageLabel:"Language",eyebrow:"COMMUNITY PORT ROADMAP",heroTitle:"One UI projects.\nDevice by device.",heroText:"Choose a Galaxy model to see its target software, current status, and whether a test build is actually available.",selectDevice:"Select a device",roadmapNotice:"Roadmap versions are community targets, not official Samsung releases. Only a clearly marked test build has a download link.",selectedDevice:"SELECTED DEVICE",targetUi:"Target One UI",targetAndroid:"Target Android",copy:"Copy",copied:"Copied",roadmapOverline:"DEVICE ROADMAP",devicesTitle:"Choose your Galaxy",devicesIntro:"A11 and A52s target One UI 7 / Android 15. The remaining listed devices are roadmap targets for One UI 8.5 / 9.0 and Android 16 / 17.",noticeTitle:"Experimental and in progress",noticeText:"The A11 ZIP is a diagnostic test build, not a stable ROM. No public downloads are available yet for the other devices. Check the exact device variant before testing; never flash a build intended for a different model.",footerText:"Independent community porting project. Not affiliated with Samsung.",imageCredits:"Image credits",backToTop:"Back to top",statusAvailable:"TEST BUILD",statusWorking:"IN PROGRESS",statusPlanned:"PLANNED",noteA11:"A diagnostic test ZIP is available for SM-A115F. This is experimental and not a stable release.",noteWorking:"Work is in progress. No public download has been published for this model yet.",notePlanned:"Roadmap target only. No public test build is available yet.",noteVariant:"Roadmap target only. The exact LTE/5G and regional variant still needs confirmation; no public build is available.",download:"Download A11 test build",notAvailable:"No download yet",altPrefix:"Product image for",ariaSelect:"Select a Galaxy device",deviceStatus:"Project status"},
-  ar:{title:"ZineROM — خارطة أجهزة Galaxy",meta:"خارطة أجهزة ZineROM المجتمعية. اختر جهاز Galaxy لعرض إصدار One UI وAndroid المستهدف وحالة المشروع وروابط الاختبار المتاحة.",navDevices:"الأجهزة",navGithub:"مشروع A11",languageLabel:"اللغة",eyebrow:"خارطة منافذ المجتمع",heroTitle:"مشاريع One UI،\nجهازًا بعد جهاز.",heroText:"اختر طراز Galaxy لمعرفة البرنامج المستهدف وحالة العمل وما إذا كانت نسخة اختبار متاحة فعلًا.",selectDevice:"اختر جهازًا",roadmapNotice:"الإصدارات في الخارطة أهداف مجتمعية وليست إصدارات رسمية من Samsung. رابط التحميل يظهر فقط للبناء التجريبي المتاح بوضوح.",selectedDevice:"الجهاز المحدد",targetUi:"واجهة One UI المستهدفة",targetAndroid:"إصدار Android المستهدف",copy:"نسخ",copied:"تم النسخ",roadmapOverline:"خارطة الأجهزة",devicesTitle:"اختر جهاز Galaxy",devicesIntro:"يستهدف A11 وA52s واجهة One UI 7 وAndroid 15. بقية الأجهزة أهداف خارطة لـOne UI 8.5 / 9.0 وAndroid 16 / 17.",noticeTitle:"تجريبي وقيد العمل",noticeText:"ملف A11 نسخة تشخيصية للاختبار وليس رومًا مستقرًا. لا تتوفر تنزيلات عامة للأجهزة الأخرى بعد. تحقق من متغير الجهاز بدقة ولا تفلش ملفًا مخصصًا لطراز مختلف.",footerText:"مشروع نقل مجتمعي مستقل وغير تابع لشركة Samsung.",imageCredits:"مصادر الصور",backToTop:"العودة للأعلى",statusAvailable:"نسخة اختبار",statusWorking:"قيد العمل",statusPlanned:"مخطط له",noteA11:"تتوفر نسخة اختبار تشخيصية لـSM-A115F. هذه نسخة تجريبية وليست إصدارًا مستقرًا.",noteWorking:"العمل جارٍ. لم تُنشر نسخة تنزيل عامة لهذا الطراز بعد.",notePlanned:"هدف ضمن الخارطة فقط. لا تتوفر نسخة اختبار عامة بعد.",noteVariant:"هدف ضمن الخارطة فقط. يجب تأكيد متغير LTE/5G والمنطقة أولًا؛ لا توجد نسخة عامة بعد.",download:"تنزيل نسخة A11 التجريبية",notAvailable:"لا يوجد تنزيل بعد",altPrefix:"صورة منتج لـ",ariaSelect:"اختر جهاز Galaxy",deviceStatus:"حالة المشروع"},
-  es:{title:"ZineROM — Hoja de ruta Galaxy",meta:"Hoja de ruta comunitaria de ZineROM. Elige un Galaxy para consultar el objetivo de One UI y Android, el estado y las descargas de prueba disponibles.",navDevices:"Dispositivos",navGithub:"Proyecto A11",languageLabel:"Idioma",eyebrow:"HOJA DE RUTA COMUNITARIA",heroTitle:"Proyectos One UI.\nDispositivo a dispositivo.",heroText:"Elige un modelo Galaxy para ver el software objetivo, el estado actual y si existe una versión de prueba descargable.",selectDevice:"Selecciona un dispositivo",roadmapNotice:"Las versiones de la hoja de ruta son objetivos comunitarios, no lanzamientos oficiales de Samsung. Solo los builds de prueba disponibles tienen enlace de descarga.",selectedDevice:"DISPOSITIVO SELECCIONADO",targetUi:"One UI objetivo",targetAndroid:"Android objetivo",copy:"Copiar",copied:"Copiado",roadmapOverline:"HOJA DE RUTA",devicesTitle:"Elige tu Galaxy",devicesIntro:"A11 y A52s apuntan a One UI 7 / Android 15. Los demás dispositivos son objetivos para One UI 8.5 / 9.0 y Android 16 / 17.",noticeTitle:"Experimental y en desarrollo",noticeText:"El ZIP del A11 es una versión diagnóstica, no una ROM estable. Aún no hay descargas públicas para los otros dispositivos. Confirma la variante exacta antes de probar; no instales un build de otro modelo.",footerText:"Proyecto comunitario independiente. No afiliado a Samsung.",imageCredits:"Créditos de imágenes",backToTop:"Volver arriba",statusAvailable:"BUILD DE PRUEBA",statusWorking:"EN CURSO",statusPlanned:"PLANIFICADO",noteA11:"Hay un ZIP de prueba diagnóstico para SM-A115F. Es experimental, no estable.",noteWorking:"El trabajo continúa. Aún no hay descarga pública para este modelo.",notePlanned:"Solo es un objetivo de la hoja de ruta. Todavía no hay build público.",noteVariant:"Objetivo de hoja de ruta. Falta confirmar la variante LTE/5G y regional; no hay build público.",download:"Descargar prueba A11",notAvailable:"Aún no disponible",altPrefix:"Imagen del producto",ariaSelect:"Selecciona un Galaxy",deviceStatus:"Estado del proyecto"},
-  fr:{title:"ZineROM — Feuille de route Galaxy",meta:"Feuille de route communautaire ZineROM. Choisissez un Galaxy pour voir la cible One UI/Android, l’avancement et les téléchargements de test disponibles.",navDevices:"Appareils",navGithub:"Projet A11",languageLabel:"Langue",eyebrow:"FEUILLE DE ROUTE COMMUNAUTAIRE",heroTitle:"Projets One UI.\nUn appareil à la fois.",heroText:"Choisissez un modèle Galaxy pour voir le logiciel visé, l’avancement et la disponibilité d’une version de test.",selectDevice:"Choisir un appareil",roadmapNotice:"Les versions de la feuille de route sont des objectifs communautaires, pas des versions officielles Samsung. Seules les versions de test disponibles ont un lien de téléchargement.",selectedDevice:"APPAREIL SÉLECTIONNÉ",targetUi:"One UI visée",targetAndroid:"Android visé",copy:"Copier",copied:"Copié",roadmapOverline:"FEUILLE DE ROUTE",devicesTitle:"Choisissez votre Galaxy",devicesIntro:"A11 et A52s visent One UI 7 / Android 15. Les autres appareils sont des objectifs pour One UI 8.5 / 9.0 et Android 16 / 17.",noticeTitle:"Expérimental et en cours",noticeText:"Le ZIP A11 est une version de diagnostic, pas une ROM stable. Aucun téléchargement public n’est disponible pour les autres appareils. Vérifiez la variante exacte avant le test et ne flashez jamais un build destiné à un autre modèle.",footerText:"Projet communautaire indépendant, sans affiliation à Samsung.",imageCredits:"Crédits des images",backToTop:"Retour en haut",statusAvailable:"VERSION TEST",statusWorking:"EN COURS",statusPlanned:"PRÉVU",noteA11:"Un ZIP de diagnostic est disponible pour SM-A115F. Il s’agit d’une version expérimentale, non stable.",noteWorking:"Le développement continue. Aucun téléchargement public n’est encore publié pour ce modèle.",notePlanned:"Objectif de feuille de route uniquement. Aucun build public n’est disponible.",noteVariant:"Objectif de feuille de route. La variante LTE/5G et régionale doit être confirmée; aucun build public n’est disponible.",download:"Télécharger le test A11",notAvailable:"Pas encore de téléchargement",altPrefix:"Image du produit",ariaSelect:"Choisir un Galaxy",deviceStatus:"État du projet"},
-  de:{title:"ZineROM — Galaxy-Geräte-Roadmap",meta:"Community-Roadmap von ZineROM. Wähle ein Galaxy-Gerät, um One-UI- und Android-Ziel, Projektstatus und verfügbare Testdownloads zu sehen.",navDevices:"Geräte",navGithub:"A11-Projekt",languageLabel:"Sprache",eyebrow:"COMMUNITY-ROADMAP",heroTitle:"One-UI-Projekte.\nGerät für Gerät.",heroText:"Wähle ein Galaxy-Modell, um Zielsoftware, aktuellen Status und verfügbare Testversionen zu sehen.",selectDevice:"Gerät auswählen",roadmapNotice:"Roadmap-Versionen sind Community-Ziele und keine offiziellen Samsung-Veröffentlichungen. Nur eindeutig verfügbare Test-Builds haben einen Download-Link.",selectedDevice:"AUSGEWÄHLTES GERÄT",targetUi:"One-UI-Ziel",targetAndroid:"Android-Ziel",copy:"Kopieren",copied:"Kopiert",roadmapOverline:"GERÄTE-ROADMAP",devicesTitle:"Wähle dein Galaxy",devicesIntro:"A11 und A52s zielen auf One UI 7 / Android 15. Die übrigen Geräte sind Roadmap-Ziele für One UI 8.5 / 9.0 und Android 16 / 17.",noticeTitle:"Experimentell und in Arbeit",noticeText:"Das A11-ZIP ist ein diagnostischer Test-Build, kein stabiles ROM. Für die übrigen Geräte gibt es noch keine öffentlichen Downloads. Prüfe vor dem Test die genaue Variante und flashe niemals einen Build für ein anderes Modell.",footerText:"Unabhängiges Community-Portierungsprojekt. Nicht mit Samsung verbunden.",imageCredits:"Bildnachweise",backToTop:"Nach oben",statusAvailable:"TEST-BUILD",statusWorking:"IN ARBEIT",statusPlanned:"GEPLANT",noteA11:"Ein diagnostisches Test-ZIP für SM-A115F ist verfügbar. Es ist experimentell und nicht stabil.",noteWorking:"Die Arbeit läuft. Für dieses Modell wurde noch kein öffentlicher Download veröffentlicht.",notePlanned:"Nur ein Roadmap-Ziel. Noch kein öffentlicher Build verfügbar.",noteVariant:"Roadmap-Ziel. Die genaue LTE/5G- und Regionalvariante muss bestätigt werden; kein öffentlicher Build verfügbar.",download:"A11-Testversion laden",notAvailable:"Noch kein Download",altPrefix:"Produktbild für",ariaSelect:"Galaxy-Gerät auswählen",deviceStatus:"Projektstatus"},
-  tr:{title:"ZineROM — Galaxy cihaz yol haritası",meta:"ZineROM topluluk cihaz yol haritası. Hedef One UI ve Android sürümünü, durumu ve mevcut test indirmelerini görmek için bir Galaxy seçin.",navDevices:"Cihazlar",navGithub:"A11 projesi",languageLabel:"Dil",eyebrow:"TOPLULUK PORT YOL HARİTASI",heroTitle:"One UI projeleri.\nCihaz cihaz.",heroText:"Hedef yazılımı, güncel durumu ve test sürümünün gerçekten mevcut olup olmadığını görmek için bir Galaxy modeli seçin.",selectDevice:"Cihaz seçin",roadmapNotice:"Yol haritasındaki sürümler topluluk hedefleridir; resmi Samsung sürümleri değildir. Yalnızca açıkça belirtilen test yapılarının indirme bağlantısı vardır.",selectedDevice:"SEÇİLİ CİHAZ",targetUi:"Hedef One UI",targetAndroid:"Hedef Android",copy:"Kopyala",copied:"Kopyalandı",roadmapOverline:"CİHAZ YOL HARİTASI",devicesTitle:"Galaxy cihazını seç",devicesIntro:"A11 ve A52s için hedef One UI 7 / Android 15. Diğer cihazlar One UI 8.5 / 9.0 ve Android 16 / 17 yol haritası hedefleridir.",noticeTitle:"Deneysel ve geliştirme aşamasında",noticeText:"A11 ZIP dosyası tanılama amaçlı test yapısıdır, kararlı ROM değildir. Diğer cihazlar için henüz herkese açık indirme yok. Testten önce tam varyantı doğrulayın; başka modele ait yapıyı yüklemeyin.",footerText:"Bağımsız topluluk projesi. Samsung ile bağlantılı değildir.",imageCredits:"Görsel kaynakları",backToTop:"Başa dön",statusAvailable:"TEST YAPISI",statusWorking:"SÜRÜYOR",statusPlanned:"PLANLANIYOR",noteA11:"SM-A115F için tanılama test ZIP'i mevcut. Deneyseldir ve kararlı sürüm değildir.",noteWorking:"Çalışmalar sürüyor. Bu model için henüz herkese açık indirme yayımlanmadı.",notePlanned:"Yalnızca yol haritası hedefi. Henüz herkese açık yapı yok.",noteVariant:"Yol haritası hedefi. LTE/5G ve bölgesel varyant doğrulanmalı; herkese açık yapı yok.",download:"A11 testini indir",notAvailable:"Henüz indirme yok",altPrefix:"Ürün görseli:",ariaSelect:"Galaxy cihazı seçin",deviceStatus:"Proje durumu"},
-  pt:{title:"ZineROM — Roteiro de dispositivos Galaxy",meta:"Roteiro comunitário de dispositivos ZineROM. Escolha um Galaxy para ver o alvo One UI/Android, o estado do projeto e downloads de teste disponíveis.",navDevices:"Dispositivos",navGithub:"Projeto A11",languageLabel:"Idioma",eyebrow:"ROTEIRO COMUNITÁRIO",heroTitle:"Projetos One UI.\nUm dispositivo de cada vez.",heroText:"Escolha um modelo Galaxy para ver o software alvo, o estado atual e se há uma versão de teste disponível.",selectDevice:"Escolha um dispositivo",roadmapNotice:"As versões do roteiro são metas da comunidade, não lançamentos oficiais da Samsung. Só builds de teste claramente disponíveis têm link de download.",selectedDevice:"DISPOSITIVO SELECIONADO",targetUi:"One UI alvo",targetAndroid:"Android alvo",copy:"Copiar",copied:"Copiado",roadmapOverline:"ROTEIRO DE DISPOSITIVOS",devicesTitle:"Escolha seu Galaxy",devicesIntro:"A11 e A52s têm como alvo One UI 7 / Android 15. Os outros dispositivos são metas para One UI 8.5 / 9.0 e Android 16 / 17.",noticeTitle:"Experimental e em andamento",noticeText:"O ZIP do A11 é uma versão de teste de diagnóstico, não uma ROM estável. Ainda não há downloads públicos para os outros dispositivos. Confirme a variante exata antes de testar; nunca instale um build de outro modelo.",footerText:"Projeto comunitário independente. Sem vínculo com a Samsung.",imageCredits:"Créditos das imagens",backToTop:"Voltar ao topo",statusAvailable:"BUILD DE TESTE",statusWorking:"EM ANDAMENTO",statusPlanned:"PLANEJADO",noteA11:"Há um ZIP de teste de diagnóstico para SM-A115F. É experimental, não estável.",noteWorking:"O trabalho continua. Ainda não foi publicado download público para este modelo.",notePlanned:"Apenas uma meta do roteiro. Ainda não há build público.",noteVariant:"Meta do roteiro. A variante LTE/5G e regional precisa ser confirmada; não há build público.",download:"Baixar teste do A11",notAvailable:"Sem download ainda",altPrefix:"Imagem do produto",ariaSelect:"Escolha um Galaxy",deviceStatus:"Estado do projeto"},
-  id:{title:"ZineROM — Peta jalan perangkat Galaxy",meta:"Peta jalan perangkat komunitas ZineROM. Pilih Galaxy untuk melihat target One UI/Android, status proyek, dan unduhan uji yang tersedia.",navDevices:"Perangkat",navGithub:"Proyek A11",languageLabel:"Bahasa",eyebrow:"PETA JALAN PORT KOMUNITAS",heroTitle:"Proyek One UI.\nPerangkat demi perangkat.",heroText:"Pilih model Galaxy untuk melihat target perangkat lunak, status saat ini, dan ketersediaan build uji.",selectDevice:"Pilih perangkat",roadmapNotice:"Versi pada peta jalan adalah target komunitas, bukan rilis resmi Samsung. Hanya build uji yang tersedia jelas memiliki tautan unduhan.",selectedDevice:"PERANGKAT DIPILIH",targetUi:"Target One UI",targetAndroid:"Target Android",copy:"Salin",copied:"Tersalin",roadmapOverline:"PETA JALAN PERANGKAT",devicesTitle:"Pilih Galaxy Anda",devicesIntro:"A11 dan A52s menargetkan One UI 7 / Android 15. Perangkat lain adalah target peta jalan One UI 8.5 / 9.0 dan Android 16 / 17.",noticeTitle:"Eksperimental dan sedang dikerjakan",noticeText:"ZIP A11 adalah build uji diagnostik, bukan ROM stabil. Belum ada unduhan publik untuk perangkat lain. Pastikan varian perangkat tepat sebelum pengujian; jangan flash build untuk model lain.",footerText:"Proyek port komunitas independen. Tidak berafiliasi dengan Samsung.",imageCredits:"Kredit gambar",backToTop:"Kembali ke atas",statusAvailable:"BUILD UJI",statusWorking:"SEDANG DIKERJAKAN",statusPlanned:"DIRENCANAKAN",noteA11:"ZIP uji diagnostik tersedia untuk SM-A115F. Build ini eksperimental dan belum stabil.",noteWorking:"Pengerjaan berlangsung. Belum ada unduhan publik untuk model ini.",notePlanned:"Hanya target peta jalan. Belum ada build publik.",noteVariant:"Target peta jalan. Varian LTE/5G dan regional perlu dikonfirmasi; belum ada build publik.",download:"Unduh uji A11",notAvailable:"Belum ada unduhan",altPrefix:"Gambar produk untuk",ariaSelect:"Pilih perangkat Galaxy",deviceStatus:"Status proyek"},
-  hi:{title:"ZineROM — Galaxy डिवाइस रोडमैप",meta:"ZineROM समुदाय का डिवाइस रोडमैप। लक्ष्य One UI/Android, परियोजना स्थिति और उपलब्ध परीक्षण डाउनलोड देखने के लिए Galaxy चुनें।",navDevices:"डिवाइस",navGithub:"A11 प्रोजेक्ट",languageLabel:"भाषा",eyebrow:"कम्युनिटी पोर्ट रोडमैप",heroTitle:"One UI प्रोजेक्ट।\nहर डिवाइस के लिए।",heroText:"लक्ष्य सॉफ़्टवेयर, वर्तमान स्थिति और टेस्ट बिल्ड उपलब्ध है या नहीं देखने के लिए Galaxy मॉडल चुनें।",selectDevice:"डिवाइस चुनें",roadmapNotice:"रोडमैप संस्करण समुदाय के लक्ष्य हैं, Samsung के आधिकारिक रिलीज़ नहीं। डाउनलोड लिंक केवल स्पष्ट रूप से उपलब्ध टेस्ट बिल्ड के लिए है।",selectedDevice:"चुना गया डिवाइस",targetUi:"लक्ष्य One UI",targetAndroid:"लक्ष्य Android",copy:"कॉपी करें",copied:"कॉपी हो गया",roadmapOverline:"डिवाइस रोडमैप",devicesTitle:"अपना Galaxy चुनें",devicesIntro:"A11 और A52s का लक्ष्य One UI 7 / Android 15 है। बाकी डिवाइस One UI 8.5 / 9.0 और Android 16 / 17 के रोडमैप लक्ष्य हैं।",noticeTitle:"प्रायोगिक और विकास में",noticeText:"A11 ZIP डायग्नोस्टिक टेस्ट बिल्ड है, स्थिर ROM नहीं। अन्य डिवाइसों के लिए अभी सार्वजनिक डाउनलोड उपलब्ध नहीं हैं। टेस्ट से पहले सही वेरिएंट की पुष्टि करें; दूसरे मॉडल का बिल्ड फ्लैश न करें।",footerText:"स्वतंत्र कम्युनिटी पोर्टिंग प्रोजेक्ट। Samsung से संबद्ध नहीं।",imageCredits:"चित्र श्रेय",backToTop:"ऊपर जाएँ",statusAvailable:"टेस्ट बिल्ड",statusWorking:"काम जारी",statusPlanned:"योजना में",noteA11:"SM-A115F के लिए डायग्नोस्टिक टेस्ट ZIP उपलब्ध है। यह प्रायोगिक है, स्थिर रिलीज़ नहीं।",noteWorking:"काम जारी है। इस मॉडल के लिए अभी सार्वजनिक डाउनलोड नहीं है।",notePlanned:"केवल रोडमैप लक्ष्य। अभी सार्वजनिक बिल्ड उपलब्ध नहीं है।",noteVariant:"रोडमैप लक्ष्य। LTE/5G और क्षेत्रीय वेरिएंट की पुष्टि बाकी है; कोई सार्वजनिक बिल्ड नहीं।",download:"A11 टेस्ट डाउनलोड",notAvailable:"अभी डाउनलोड नहीं",altPrefix:"उत्पाद चित्र:",ariaSelect:"Galaxy डिवाइस चुनें",deviceStatus:"परियोजना स्थिति"},
-  ur:{title:"ZineROM — Galaxy آلات کا روڈمیپ",meta:"ZineROM کمیونٹی آلات کا روڈمیپ۔ ہدف One UI/Android، منصوبے کی حالت اور دستیاب ٹیسٹ ڈاؤن لوڈ دیکھنے کے لیے Galaxy منتخب کریں۔",navDevices:"آلات",navGithub:"A11 منصوبہ",languageLabel:"زبان",eyebrow:"کمیونٹی پورٹ روڈمیپ",heroTitle:"One UI منصوبے۔\nہر آلے کے لیے۔",heroText:"ہدف سافٹ ویئر، موجودہ حالت اور ٹیسٹ بلڈ کی دستیابی دیکھنے کے لیے Galaxy ماڈل منتخب کریں۔",selectDevice:"آلہ منتخب کریں",roadmapNotice:"روڈمیپ ورژن کمیونٹی کے اہداف ہیں، Samsung کی سرکاری ریلیز نہیں۔ ڈاؤن لوڈ لنک صرف واضح طور پر دستیاب ٹیسٹ بلڈ کے لیے ہے۔",selectedDevice:"منتخب آلہ",targetUi:"ہدف One UI",targetAndroid:"ہدف Android",copy:"کاپی",copied:"کاپی ہو گیا",roadmapOverline:"آلات کا روڈمیپ",devicesTitle:"اپنا Galaxy منتخب کریں",devicesIntro:"A11 اور A52s کا ہدف One UI 7 / Android 15 ہے۔ باقی آلات One UI 8.5 / 9.0 اور Android 16 / 17 کے روڈمیپ اہداف ہیں۔",noticeTitle:"تجرباتی اور زیرِ تکمیل",noticeText:"A11 ZIP تشخیصی ٹیسٹ بلڈ ہے، مستحکم ROM نہیں۔ دوسرے آلات کے لیے ابھی عوامی ڈاؤن لوڈ دستیاب نہیں۔ ٹیسٹ سے پہلے درست ویریئنٹ کی تصدیق کریں؛ دوسرے ماڈل کا بلڈ فلیش نہ کریں۔",footerText:"آزاد کمیونٹی پورٹنگ منصوبہ۔ Samsung سے وابستہ نہیں۔",imageCredits:"تصویری ذرائع",backToTop:"اوپر جائیں",statusAvailable:"ٹیسٹ بلڈ",statusWorking:"کام جاری",statusPlanned:"منصوبہ بند",noteA11:"SM-A115F کے لیے تشخیصی ٹیسٹ ZIP موجود ہے۔ یہ تجرباتی ہے، مستحکم ریلیز نہیں۔",noteWorking:"کام جاری ہے۔ اس ماڈل کے لیے ابھی عوامی ڈاؤن لوڈ نہیں۔",notePlanned:"صرف روڈمیپ ہدف۔ ابھی کوئی عوامی بلڈ دستیاب نہیں۔",noteVariant:"روڈمیپ ہدف۔ LTE/5G اور علاقائی ویریئنٹ کی تصدیق باقی ہے؛ کوئی عوامی بلڈ نہیں۔",download:"A11 ٹیسٹ ڈاؤن لوڈ",notAvailable:"ابھی ڈاؤن لوڈ نہیں",altPrefix:"پروڈکٹ تصویر:",ariaSelect:"Galaxy آلہ منتخب کریں",deviceStatus:"منصوبے کی حالت"},
-  bn:{title:"ZineROM — Galaxy ডিভাইস রোডম্যাপ",meta:"ZineROM কমিউনিটি ডিভাইস রোডম্যাপ। লক্ষ্য One UI/Android, প্রকল্পের অবস্থা এবং টেস্ট ডাউনলোড দেখতে Galaxy নির্বাচন করুন।",navDevices:"ডিভাইস",navGithub:"A11 প্রকল্প",languageLabel:"ভাষা",eyebrow:"কমিউনিটি পোর্ট রোডম্যাপ",heroTitle:"One UI প্রকল্প।\nডিভাইস ধরে ধরে।",heroText:"লক্ষ্য সফটওয়্যার, বর্তমান অবস্থা এবং টেস্ট বিল্ড পাওয়া যায় কি না দেখতে Galaxy মডেল নির্বাচন করুন।",selectDevice:"ডিভাইস নির্বাচন করুন",roadmapNotice:"রোডম্যাপ সংস্করণগুলো কমিউনিটির লক্ষ্য, Samsung-এর অফিসিয়াল রিলিজ নয়। স্পষ্টভাবে উপলভ্য টেস্ট বিল্ডের জন্যই ডাউনলোড লিংক রয়েছে।",selectedDevice:"নির্বাচিত ডিভাইস",targetUi:"লক্ষ্য One UI",targetAndroid:"লক্ষ্য Android",copy:"কপি করুন",copied:"কপি হয়েছে",roadmapOverline:"ডিভাইস রোডম্যাপ",devicesTitle:"আপনার Galaxy বেছে নিন",devicesIntro:"A11 ও A52s-এর লক্ষ্য One UI 7 / Android 15। বাকি ডিভাইসগুলো One UI 8.5 / 9.0 এবং Android 16 / 17-এর রোডম্যাপ লক্ষ্য।",noticeTitle:"পরীক্ষামূলক এবং কাজ চলছে",noticeText:"A11 ZIP একটি ডায়াগনস্টিক টেস্ট বিল্ড, স্থিতিশীল ROM নয়। অন্য ডিভাইসগুলোর জন্য এখনো কোনো পাবলিক ডাউনলোড নেই। পরীক্ষার আগে সঠিক ভ্যারিয়েন্ট নিশ্চিত করুন; অন্য মডেলের বিল্ড ফ্ল্যাশ করবেন না।",footerText:"স্বাধীন কমিউনিটি পোর্টিং প্রকল্প। Samsung-এর সঙ্গে যুক্ত নয়।",imageCredits:"ছবির কৃতিত্ব",backToTop:"উপরে ফিরে যান",statusAvailable:"টেস্ট বিল্ড",statusWorking:"কাজ চলছে",statusPlanned:"পরিকল্পিত",noteA11:"SM-A115F-এর জন্য ডায়াগনস্টিক টেস্ট ZIP আছে। এটি পরীক্ষামূলক, স্থিতিশীল নয়।",noteWorking:"কাজ চলছে। এই মডেলের জন্য এখনো পাবলিক ডাউনলোড প্রকাশিত হয়নি।",notePlanned:"শুধু রোডম্যাপ লক্ষ্য। এখনো কোনো পাবলিক বিল্ড নেই।",noteVariant:"রোডম্যাপ লক্ষ্য। LTE/5G ও আঞ্চলিক ভ্যারিয়েন্ট নিশ্চিত করা বাকি; পাবলিক বিল্ড নেই।",download:"A11 টেস্ট ডাউনলোড",notAvailable:"এখনো ডাউনলোড নেই",altPrefix:"পণ্যের ছবি:",ariaSelect:"Galaxy ডিভাইস নির্বাচন করুন",deviceStatus:"প্রকল্পের অবস্থা"},
-  ru:{title:"ZineROM — дорожная карта Galaxy",meta:"Дорожная карта устройств сообщества ZineROM. Выберите Galaxy, чтобы увидеть целевые версии One UI и Android, статус и доступные тестовые загрузки.",navDevices:"Устройства",navGithub:"Проект A11",languageLabel:"Язык",eyebrow:"ДОРОЖНАЯ КАРТА ПОРТА",heroTitle:"Проекты One UI.\nДля каждого устройства.",heroText:"Выберите модель Galaxy, чтобы увидеть целевую систему, текущий статус и наличие тестовой сборки.",selectDevice:"Выберите устройство",roadmapNotice:"Версии в дорожной карте — цели сообщества, а не официальные релизы Samsung. Ссылка есть только у явно доступной тестовой сборки.",selectedDevice:"ВЫБРАННОЕ УСТРОЙСТВО",targetUi:"Целевая One UI",targetAndroid:"Целевой Android",copy:"Копировать",copied:"Скопировано",roadmapOverline:"ДОРОЖНАЯ КАРТА",devicesTitle:"Выберите Galaxy",devicesIntro:"Для A11 и A52s цель — One UI 7 / Android 15. Для остальных устройств указаны планы One UI 8.5 / 9.0 и Android 16 / 17.",noticeTitle:"Экспериментальная разработка",noticeText:"ZIP для A11 — диагностическая тестовая сборка, не стабильная ROM. Для остальных устройств публичных загрузок пока нет. Перед тестом проверьте точную модификацию; не прошивайте сборку для другой модели.",footerText:"Независимый проект сообщества. Не связан с Samsung.",imageCredits:"Источники изображений",backToTop:"Наверх",statusAvailable:"ТЕСТОВАЯ СБОРКА",statusWorking:"В РАБОТЕ",statusPlanned:"ПЛАН",noteA11:"Доступен диагностический тестовый ZIP для SM-A115F. Это экспериментальная, не стабильная версия.",noteWorking:"Работа продолжается. Публичной загрузки для этой модели пока нет.",notePlanned:"Только план дорожной карты. Публичной сборки пока нет.",noteVariant:"План дорожной карты. Нужно уточнить вариант LTE/5G и регион; публичной сборки нет.",download:"Скачать тест A11",notAvailable:"Загрузки пока нет",altPrefix:"Изображение устройства",ariaSelect:"Выберите Galaxy",deviceStatus:"Статус проекта"}
-};
-
-const languageSelect = document.getElementById("language-select");
-const deviceSelect = document.getElementById("device-select");
-const deviceGrid = document.getElementById("device-grid");
-let language = "en";
-let currentDevice = devices[0];
-
-function t(key){return (translations[language] && translations[language][key]) || translations.en[key] || key;}
-function setText(selector,key){const el=document.querySelector(selector);if(el)el.textContent=t(key);}
-function imageAlt(device){return `${t("altPrefix")} ${device.name}`;}
-function statusText(status){return t(status==="available"?"statusAvailable":status==="working"?"statusWorking":"statusPlanned");}
-
-function applyLanguage(code){
-  language=translations[code]?code:"en";
-  const rtl=["ar","ur"].includes(language);
-  document.documentElement.lang=language;
-  document.documentElement.dir=rtl?"rtl":"ltr";
-  document.title=t("title");
-  const meta=document.querySelector('meta[name="description"]');
-  if(meta)meta.content=t("meta");
-  document.querySelectorAll("[data-i18n]").forEach(el=>{
-    const value=t(el.dataset.i18n);
-    if(el.tagName==="H1")el.innerHTML=value.replace("\n","<br>").replace("Device by device.",'<span class="blue-text">Device by device.</span>').replace("جهازًا بعد جهاز.",'<span class="blue-text">جهازًا بعد جهاز.</span>').replace("Un dispositivo a la vez.",'<span class="blue-text">Un dispositivo a la vez.</span>').replace("Un appareil à la fois.",'<span class="blue-text">Un appareil à la fois.</span>').replace("Gerät für Gerät.",'<span class="blue-text">Gerät für Gerät.</span>').replace("Cihaz cihaz.",'<span class="blue-text">Cihaz cihaz.</span>').replace("Um dispositivo de cada vez.",'<span class="blue-text">Um dispositivo de cada vez.</span>').replace("Perangkat demi perangkat.",'<span class="blue-text">Perangkat demi perangkat.</span>').replace("हर डिवाइस के लिए।",'<span class="blue-text">हर डिवाइस के लिए।</span>').replace("ہر آلے کے لیے۔",'<span class="blue-text">ہر آلے کے لیے۔</span>').replace("ডিভাইস ধরে ধরে।",'<span class="blue-text">ডিভাইস ধরে ধরে।</span>').replace("Для каждого устройства.",'<span class="blue-text">Для каждого устройства.</span>');
-    else el.textContent=value;
-  });
-  languageSelect.setAttribute("aria-label",t("languageLabel"));
-  deviceSelect.setAttribute("aria-label",t("ariaSelect"));
-  renderDevice(currentDevice.id);
-  renderGrid();
-}
-
-function initSelectors(){
-  devices.forEach(device=>{
-    const option=document.createElement("option");
-    option.value=device.id;
-    option.textContent=device.name;
-    deviceSelect.append(option);
-  });
-  deviceSelect.value=currentDevice.id;
-  languageSelect.value=language;
-  languageSelect.addEventListener("change",()=>applyLanguage(languageSelect.value));
-  deviceSelect.addEventListener("change",()=>renderDevice(deviceSelect.value));
-}
-
-function renderDevice(id){
-  const device=devices.find(item=>item.id===id)||devices[0];
-  currentDevice=device;
-  deviceSelect.value=device.id;
-  const image=document.getElementById("selected-image");
-  image.src=device.image;
-  image.alt=imageAlt(device);
-  document.getElementById("image-caption").textContent=device.name;
-  document.getElementById("selected-name").textContent=device.name;
-  document.getElementById("selected-code").textContent=device.code;
-  document.getElementById("selected-ui").textContent=device.ui;
-  document.getElementById("selected-android").textContent=device.android;
-  const badge=document.getElementById("selected-status");
-  badge.textContent=statusText(device.status);
-  badge.classList.toggle("is-live",device.status==="available");
-  document.getElementById("selected-note").textContent=t(device.noteKey);
-  const actionSlot=document.getElementById("action-slot");
-  actionSlot.replaceChildren();
-  if(device.download){
-    const link=document.createElement("a");
-    link.className="action-button";
-    link.href=device.download;
-    link.setAttribute("download","");
-    link.innerHTML='<svg width="17" height="17" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3v11m0 0 4-4m-4 4-4-4M5 17v1.5A1.5 1.5 0 0 0 6.5 20h11a1.5 1.5 0 0 0 1.5-1.5V17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>'+t("download")+'</span>';
-    actionSlot.append(link);
-  }else{
-    const button=document.createElement("button");
-    button.type="button";
-    button.className="action-button is-disabled";
-    button.disabled=true;
-    button.textContent=t("notAvailable");
-    actionSlot.append(button);
+const translations = window.ZINE_TRANSLATIONS || {};
+const extraCopy = {
+  en: {
+    navHome: "Home", navAbout: "About", navSupport: "Support", catalogLabel: "SUPPORTED DEVICE CATALOG",
+    catalogIntro: "Choose a device to see only the ROM information and downloads configured for that model.",
+    searchLabel: "Search devices", searchPlaceholder: "Search by device or model", filterLabel: "Filter device catalog",
+    filterAll: "All devices", filterPhones: "Phones", filterTablets: "Tablets", viewDevice: "View device",
+    deviceCount: "supported devices", versionCount: "One UI versions", testBuildCount: "verified test build", noResults: "No devices match your search.",
+    backCatalog: "Back to device catalog", modelLabel: "Model", variantLabel: "Network variant", versionTitle: "One UI version",
+    versionIntro: "Select a version to see its configured ROM status and download information.", chooseVersion: "Choose a One UI version to view its status.",
+    noVersionDetails: "ROM details are not configured for this One UI version.", noBuildStatus: "No public builds",
+    releaseProgress: "Work in progress. No public download is configured for this version.", missingDownload: "Download link not available yet.",
+    requestSupport: "Request Support", downloadWarning: "Experimental diagnostic test build — not a stable release. Confirm the exact model before flashing.",
+    checksumLabel: "SHA-256 checksum", copyChecksum: "Copy checksum", catalogStrip: "A catalog built on clear device matching and honest release status.",
+    aboutTitle: "Built around the device, not the other way around.", aboutStripTitle: "Device-specific work. Clear release information.",
+    aboutCopy: "ZineROM Project is an independent community custom-ROM effort. This catalog separates published test builds from work in progress and devices with no configured release. A listed device does not mean that every One UI version has a ROM available.",
+    deviceDetailIntro: "Review the device variant and choose a One UI version to see the release information currently configured for this model.",
+    aboutPrinciple: "Clear device matching", aboutPrincipleText: "Model and variant information is shown where it has been configured; unconfirmed details are identified rather than guessed.",
+    aboutRelease: "Honest release status", aboutReleaseText: "Download buttons appear only for a configured public link. Missing releases are labeled plainly.",
+    aboutCommunity: "Community support", aboutCommunityText: "Support requests are routed to the Telegram request page through the six categories provided by the project.",
+    githubProject: "GitHub repository", supportTitle: "Project support", supportCopy: "Choose the request category that fits best, then continue to the ZineROM Telegram request page to submit the complete details.",
+    supportCopyShort: "Need help with this device or build?", categoriesTitle: "Request categories", dialogTitle: "Request Support",
+    dialogIntro: "Choose a category before continuing. Telegram is where you can submit your full request details.",
+    supportEyebrow: "PROJECT SUPPORT", categoryLabel: "Request category", categoryPlaceholder: "Choose a category", continueTelegram: "Continue to Telegram", cancel: "Cancel",
+    releaseOverline: "BUILD SELECTOR", contextDevice: "Device", contextVersion: "One UI", modelNotProvided: "Regional model code not supplied",
+    themeLight: "Switch to light theme", themeDark: "Switch to dark theme", openMenu: "Open navigation", closeMenu: "Close navigation"
+  },
+  ar: {
+    navHome: "الرئيسية", navAbout: "عن المشروع", navSupport: "الدعم", catalogLabel: "كتالوج الأجهزة المدعومة",
+    catalogIntro: "اختر جهازًا للاطّلاع على معلومات الروم وروابط التنزيل المُعدّة فعليًا لهذا الطراز فقط.",
+    searchLabel: "البحث عن الأجهزة", searchPlaceholder: "ابحث باسم الجهاز أو الطراز", filterLabel: "تصفية كتالوج الأجهزة",
+    filterAll: "كل الأجهزة", filterPhones: "الهواتف", filterTablets: "الأجهزة اللوحية", viewDevice: "عرض الجهاز",
+    deviceCount: "أجهزة مدعومة", versionCount: "إصدارات One UI", testBuildCount: "نسخة اختبار موثقة", noResults: "لا توجد أجهزة تطابق بحثك.",
+    backCatalog: "العودة إلى كتالوج الأجهزة", modelLabel: "الطراز", variantLabel: "نسخة الشبكة", versionTitle: "إصدار One UI",
+    versionIntro: "اختر إصدارًا لعرض حالة الروم ومعلومات التنزيل المُعدّة له.", chooseVersion: "اختر إصدار One UI لعرض حالته.",
+    noVersionDetails: "لم تُعدّ تفاصيل روم لهذا الإصدار من One UI.", noBuildStatus: "لا توجد نسخ عامة",
+    releaseProgress: "العمل جارٍ. لا يوجد رابط تنزيل عام مُعدّ لهذا الإصدار.", missingDownload: "رابط التنزيل غير متاح بعد.",
+    requestSupport: "طلب الدعم", downloadWarning: "نسخة اختبار تشخيصية وتجريبية وليست إصدارًا مستقرًا. تأكد من الطراز الدقيق قبل التفليش.",
+    checksumLabel: "بصمة SHA-256", copyChecksum: "نسخ البصمة", catalogStrip: "كتالوج يركز على مطابقة الجهاز ووضوح حالة الإصدارات.",
+    aboutTitle: "الروم يبدأ من الجهاز، لا العكس.", aboutStripTitle: "عمل مخصص للأجهزة ومعلومات إصدار واضحة.",
+    aboutCopy: "مشروع ZineROM مبادرة مجتمعية مستقلة لتطوير رومات مخصصة. يميّز هذا الكتالوج بين نسخ الاختبار المنشورة والعمل الجاري والأجهزة التي لا يتوفر لها إصدار مُعدّ. ظهور الجهاز في القائمة لا يعني توافر روم لكل إصدار من One UI.",
+    deviceDetailIntro: "راجع نسخة الجهاز واختر إصدار One UI لعرض معلومات الإصدار المُعدّة حاليًا لهذا الطراز.",
+    aboutPrinciple: "مطابقة واضحة للجهاز", aboutPrincipleText: "تظهر معلومات الطراز والنسخة عندما تكون مُعدّة؛ أما المعلومات غير المؤكدة فيتم توضيحها بدل التخمين.",
+    aboutRelease: "حالة إصدار واضحة", aboutReleaseText: "لا يظهر زر التنزيل إلا عند إعداد رابط عام حقيقي. وتُعرض الإصدارات غير المتاحة بوضوح.",
+    aboutCommunity: "دعم المجتمع", aboutCommunityText: "تُوجّه طلبات الدعم إلى صفحة طلبات Telegram باستخدام الفئات الست التي حددها المشروع.",
+    githubProject: "مستودع GitHub", supportTitle: "دعم المشروع", supportCopy: "اختر فئة الطلب المناسبة، ثم انتقل إلى صفحة طلبات ZineROM على Telegram لإرسال التفاصيل كاملة.",
+    supportCopyShort: "هل تحتاج إلى مساعدة بشأن هذا الجهاز أو الإصدار؟", categoriesTitle: "فئات الطلبات", dialogTitle: "طلب الدعم",
+    dialogIntro: "اختر فئة قبل المتابعة. أرسل تفاصيل طلبك كاملة عبر Telegram.", supportEyebrow: "دعم المشروع", categoryLabel: "فئة الطلب", categoryPlaceholder: "اختر فئة",
+    continueTelegram: "المتابعة إلى Telegram", cancel: "إلغاء", releaseOverline: "اختيار الإصدار", contextDevice: "الجهاز", contextVersion: "One UI",
+    modelNotProvided: "رمز الطراز الإقليمي غير مُقدّم", themeLight: "التبديل إلى المظهر الفاتح", themeDark: "التبديل إلى المظهر الداكن", openMenu: "فتح القائمة", closeMenu: "إغلاق القائمة"
   }
-  const checksumPanel=document.getElementById("checksum-panel");
-  checksumPanel.hidden=!device.checksum;
-  if(device.checksum)document.getElementById("checksum-value").textContent=device.checksum;
-  renderGridSelection();
+};
+Object.assign(extraCopy, window.ZINE_EXTRA_COPY || {});
+
+const UI_LOCALES = ["en", "ar", "es", "fr", "de", "tr", "pt", "id", "hi", "ur", "bn", "ru"];
+const state = {
+  language: localStorage.getItem("zinerom-language") || "en",
+  theme: localStorage.getItem("zinerom-theme") || "dark",
+  filter: "all",
+  search: ""
+};
+if (!UI_LOCALES.includes(state.language)) state.language = "en";
+
+const app = document.getElementById("main-content");
+const languageSelect = document.getElementById("language-select");
+const supportDialog = document.getElementById("support-dialog");
+const supportForm = document.getElementById("support-form");
+const supportCategory = document.getElementById("support-category");
+const continueTelegram = document.getElementById("continue-telegram");
+const menuToggle = document.getElementById("menu-toggle");
+
+function t(key) {
+  return extraCopy[state.language]?.[key] ?? translations[state.language]?.[key] ?? extraCopy.en[key] ?? translations.en?.[key] ?? key;
 }
 
-function renderGrid(){
-  deviceGrid.replaceChildren();
-  devices.forEach(device=>{
-    const button=document.createElement("button");
-    button.type="button";
-    button.className="device-tile";
-    button.dataset.deviceId=device.id;
-    button.setAttribute("aria-pressed",device.id===currentDevice.id?"true":"false");
-    button.setAttribute("aria-label",`${device.name}, ${device.ui}, ${statusText(device.status)}`);
-    const media=document.createElement("span");media.className="tile-image";
-    const image=document.createElement("img");image.src=device.image;image.alt=imageAlt(device);image.loading="lazy";image.decoding="async";media.append(image);
-    const content=document.createElement("span");content.className="tile-content";
-    const row=document.createElement("span");row.className="tile-title-row";
-    const title=document.createElement("span");title.className="tile-title";title.textContent=device.name;
-    const status=document.createElement("span");status.className="tile-status"+(device.status==="available"?" is-live":"");status.textContent=statusText(device.status);
-    row.append(title,status);
-    const version=document.createElement("span");version.className="tile-version";version.textContent=`${device.ui} · ${device.android}`;
-    const code=document.createElement("span");code.className="tile-code";code.textContent=device.code;
-    content.append(row,version,code);button.append(media,content);
-    button.addEventListener("click",()=>renderDevice(device.id));
-    deviceGrid.append(button);
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>\"']/g, char => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#39;" }[char]));
+}
+
+function applyLocale() {
+  const rtl = ["ar", "ur"].includes(state.language);
+  document.documentElement.lang = state.language;
+  document.documentElement.dir = rtl ? "rtl" : "ltr";
+  languageSelect.value = state.language;
+  languageSelect.setAttribute("aria-label", t("languageLabel"));
+  document.querySelectorAll("[data-i18n]").forEach(element => {
+    element.textContent = t(element.dataset.i18n);
+  });
+  document.querySelectorAll("[data-nav]").forEach(link => {
+    const key = ({ home: "navHome", devices: "navDevices", about: "navAbout", support: "navSupport" })[link.dataset.nav];
+    if (key) link.textContent = t(key);
+  });
+  document.getElementById("theme-label").textContent = state.theme === "dark" ? t("themeLight") : t("themeDark");
+  document.getElementById("theme-toggle").setAttribute("aria-label", document.getElementById("theme-label").textContent);
+  menuToggle.setAttribute("aria-label", menuToggle.getAttribute("aria-expanded") === "true" ? t("closeMenu") : t("openMenu"));
+}
+
+function setTheme(theme) {
+  state.theme = theme === "light" ? "light" : "dark";
+  document.documentElement.dataset.theme = state.theme;
+  localStorage.setItem("zinerom-theme", state.theme);
+  applyLocale();
+}
+
+function statusForDevice(device) {
+  const builds = Object.values(device.builds);
+  if (builds.some(build => build.status === "test" && build.downloadUrl)) return { label: t("statusAvailable"), type: "available" };
+  if (builds.some(build => build.status === "in-progress")) return { label: t("statusWorking"), type: "working" };
+  return { label: t("noBuildStatus"), type: "planned" };
+}
+
+function configuredVersions(device) {
+  return ONE_UI_VERSIONS.filter(version => Object.prototype.hasOwnProperty.call(device.builds, version));
+}
+
+function deviceCard(device) {
+  const status = statusForDevice(device);
+  const versions = configuredVersions(device);
+  const versionSummary = versions.length
+    ? versions.map(version => `One UI ${escapeHTML(version)}`).join(" · ")
+    : escapeHTML(t("noBuildStatus"));
+  return `
+    <article class="device-card">
+      <a class="device-card-link" href="#/devices/${encodeURIComponent(device.id)}" aria-label="${escapeHTML(t("viewDevice"))}: ${escapeHTML(device.name)}">
+        <span class="device-card-image">
+          <img src="${escapeHTML(device.image)}" alt="${escapeHTML(t("altPrefix"))} ${escapeHTML(device.name)}" loading="lazy" decoding="async">
+          <span class="image-index">${String(devices.indexOf(device) + 1).padStart(2, "0")}</span>
+        </span>
+        <span class="device-card-content">
+          <span class="device-card-topline"><span class="device-family">${escapeHTML(device.family)}</span><span class="device-status status-${status.type}">${escapeHTML(status.label)}</span></span>
+          <span class="device-card-name">${escapeHTML(device.name)}</span>
+          <span class="device-card-variant">${escapeHTML(device.variant)}</span>
+          <span class="device-card-version">${versionSummary}</span>
+          <span class="card-cta">${escapeHTML(t("viewDevice"))}<span aria-hidden="true">↗</span></span>
+        </span>
+      </a>
+    </article>`;
+}
+
+function attachImageFallbacks(scope = document) {
+  scope.querySelectorAll("img").forEach(image => {
+    image.addEventListener("error", () => {
+      image.hidden = true;
+      image.parentElement?.classList.add("image-unavailable");
+    }, { once: true });
   });
 }
 
-function renderGridSelection(){
-  document.querySelectorAll(".device-tile").forEach(button=>button.setAttribute("aria-pressed",button.dataset.deviceId===currentDevice.id?"true":"false"));
+function renderCatalog() {
+  const featuredIds = ["a52s-5g", "a15-5g", "tab-a9-plus-5g-x216b"];
+  const featured = featuredIds.map(id => devices.find(device => device.id === id)).filter(Boolean);
+  app.innerHTML = `
+    <section class="shell hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>${escapeHTML(t("eyebrow"))}</p>
+        <h1>${escapeHTML(t("heroTitle")).replace(/\n/g, "<br>")}</h1>
+        <p class="hero-lead">${escapeHTML(t("heroText"))}</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#/devices">${escapeHTML(t("navDevices"))}<span aria-hidden="true">↓</span></a>
+          <a class="text-link" href="#/about">${escapeHTML(t("navAbout"))}<span aria-hidden="true">↗</span></a>
+        </div>
+        <p class="hero-note">${escapeHTML(t("roadmapNotice"))}</p>
+      </div>
+      <div class="hero-showcase" aria-label="Featured supported Galaxy devices">
+        <div class="showcase-orbit" aria-hidden="true"></div>
+        ${featured.map((device, index) => `
+          <a class="showcase-device showcase-device-${index + 1}" href="#/devices/${encodeURIComponent(device.id)}" aria-label="${escapeHTML(t("viewDevice"))}: ${escapeHTML(device.name)}">
+            <span class="showcase-image"><img src="${escapeHTML(device.image)}" alt="" loading="eager" decoding="async"></span>
+            <span class="showcase-label"><strong>${escapeHTML(device.name)}</strong><small>${escapeHTML(device.variant)}</small></span>
+          </a>`).join("")}
+        <span class="showcase-caption">ZINEROM / DEVICE CATALOG</span>
+      </div>
+    </section>
+
+    <section class="shell catalog-section" id="devices" aria-labelledby="catalog-title">
+      <div class="section-rule"><span>${escapeHTML(t("roadmapOverline"))}</span><span class="rule-line"></span><span>${String(devices.length).padStart(2, "0")}</span></div>
+      <div class="catalog-heading">
+        <div><p class="overline">${escapeHTML(t("catalogLabel"))}</p><h2 id="catalog-title">${escapeHTML(t("devicesTitle"))}</h2></div>
+        <p>${escapeHTML(t("catalogIntro"))}</p>
+      </div>
+      <div class="catalog-toolbar">
+        <label class="search-box"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.6"/><path d="m16 16 4.5 4.5"/></svg><span class="sr-only">${escapeHTML(t("searchLabel"))}</span><input id="device-search" type="search" placeholder="${escapeHTML(t("searchPlaceholder"))}" value="${escapeHTML(state.search)}"></label>
+        <div class="filter-tabs" role="group" aria-label="${escapeHTML(t("filterLabel"))}">
+          ${[["all", "filterAll"], ["phone", "filterPhones"], ["tablet", "filterTablets"]].map(([value, key]) => `<button type="button" class="filter-button${state.filter === value ? " is-active" : ""}" data-filter="${value}" aria-pressed="${state.filter === value}">${escapeHTML(t(key))}</button>`).join("")}
+        </div>
+      </div>
+      <p class="result-count" id="result-count"></p>
+      <div class="device-grid" id="device-grid" aria-live="polite"></div>
+      <div class="catalog-note"><span class="note-mark" aria-hidden="true">i</span><p>${escapeHTML(t("noticeText"))}</p></div>
+    </section>
+
+    <section class="about-strip">
+      <div class="shell about-strip-inner"><div><p class="eyebrow">ZINEROM PROJECT</p><h2>${escapeHTML(t("aboutStripTitle"))}</h2><p>${escapeHTML(t("aboutCopy"))}</p></div><a class="button button-outline" href="#/about">${escapeHTML(t("navAbout"))}<span aria-hidden="true">↗</span></a></div>
+    </section>`;
+  attachImageFallbacks(app);
+  populateCatalog();
+  bindCatalogControls();
 }
 
-async function copyChecksum(){
-  const value=document.getElementById("checksum-value").textContent;
-  const button=document.getElementById("copy-checksum");
-  try{await navigator.clipboard.writeText(value);button.textContent=t("copied");setTimeout(()=>button.textContent=t("copy"),1600);}
-  catch{button.textContent=value;setTimeout(()=>button.textContent=t("copy"),1600);}
+function populateCatalog() {
+  const grid = document.getElementById("device-grid");
+  const query = state.search.trim().toLocaleLowerCase();
+  const visible = devices.filter(device => {
+    const matchesFilter = state.filter === "all" || device.type === state.filter;
+    const searchable = `${device.name} ${device.family} ${device.variant} ${device.model}`.toLocaleLowerCase();
+    return matchesFilter && (!query || searchable.includes(query));
+  });
+  grid.innerHTML = visible.map(deviceCard).join("");
+  document.getElementById("result-count").textContent = `${visible.length} / ${devices.length} ${t("deviceCount")}`;
+  if (!visible.length) grid.innerHTML = `<p class="empty-state">${escapeHTML(t("noResults"))}</p>`;
+  attachImageFallbacks(grid);
 }
 
-document.getElementById("copy-checksum").addEventListener("click",copyChecksum);
-initSelectors();
-applyLanguage("en");
+function bindCatalogControls() {
+  const search = document.getElementById("device-search");
+  search.addEventListener("input", () => {
+    state.search = search.value;
+    populateCatalog();
+    const nextSearch = document.getElementById("device-search");
+    nextSearch.focus();
+    nextSearch.setSelectionRange(nextSearch.value.length, nextSearch.value.length);
+  });
+  document.querySelectorAll("[data-filter]").forEach(button => {
+    button.addEventListener("click", () => {
+      state.filter = button.dataset.filter;
+      document.querySelectorAll("[data-filter]").forEach(item => {
+        const active = item.dataset.filter === state.filter;
+        item.classList.toggle("is-active", active);
+        item.setAttribute("aria-pressed", String(active));
+      });
+      populateCatalog();
+    });
+  });
+}
+
+function versionFromHash(hash) {
+  const questionIndex = hash.indexOf("?");
+  if (questionIndex < 0) return null;
+  return new URLSearchParams(hash.slice(questionIndex + 1)).get("ui");
+}
+
+function detailDefaultVersion(device) {
+  const available = configuredVersions(device);
+  return available[0] || null;
+}
+
+function renderRelease(device, version) {
+  const host = document.getElementById("release-content");
+  if (!version) {
+    host.innerHTML = `<div class="release-empty"><span class="release-state">${escapeHTML(t("versionTitle"))}</span><p>${escapeHTML(t("chooseVersion"))}</p></div>`;
+    return;
+  }
+  const release = device.builds[version];
+  const versionLabel = `One UI ${escapeHTML(version)}`;
+  if (!release) {
+    host.innerHTML = `
+      <div class="release-empty">
+        <div class="release-empty-heading"><span class="release-state">${versionLabel}</span><span class="state-pill status-planned">${escapeHTML(t("noBuildStatus"))}</span></div>
+        <p>${escapeHTML(t("noVersionDetails"))}</p>
+        <p class="download-missing">${escapeHTML(t("missingDownload"))}</p>
+        <button class="button button-primary" type="button" data-request-support>${escapeHTML(t("requestSupport"))}<span aria-hidden="true">↗</span></button>
+      </div>`;
+    return;
+  }
+  const note = release.noteKey ? t(release.noteKey) : t("noVersionDetails");
+  if (release.status === "test" && release.downloadUrl) {
+    host.innerHTML = `
+      <div class="release-configured">
+        <div class="release-empty-heading"><span class="release-state">${versionLabel}</span><span class="state-pill status-available">${escapeHTML(t("statusAvailable"))}</span></div>
+        <p class="release-copy">${escapeHTML(note)}</p>
+        ${release.androidVersion ? `<div class="release-meta"><span>${escapeHTML(t("targetAndroid"))}</span><strong>Android ${escapeHTML(release.androidVersion)}</strong></div>` : ""}
+        <div class="experimental-warning"><span aria-hidden="true">!</span><p>${escapeHTML(t("downloadWarning"))}</p></div>
+        <a class="button button-primary download-button" href="${escapeHTML(release.downloadUrl)}" target="_blank" rel="noopener noreferrer"><span>${escapeHTML(t(release.downloadKey || "download"))}</span><span aria-hidden="true">↓</span></a>
+        ${release.sha256 ? `<div class="checksum-block"><div><span class="checksum-title">${escapeHTML(t("checksumLabel"))}</span><code id="checksum-value">${escapeHTML(release.sha256)}</code></div><button class="copy-button" id="copy-checksum" type="button">${escapeHTML(t("copyChecksum"))}</button></div>` : ""}
+        <div class="release-support"><p>${escapeHTML(t("supportCopyShort"))}</p><button class="button button-quiet" type="button" data-request-support>${escapeHTML(t("requestSupport"))}</button></div>
+      </div>`;
+    const copyButton = document.getElementById("copy-checksum");
+    if (copyButton) copyButton.addEventListener("click", copyChecksum);
+    return;
+  }
+  const progress = release.status === "in-progress";
+  host.innerHTML = `
+    <div class="release-empty">
+      <div class="release-empty-heading"><span class="release-state">${versionLabel}</span><span class="state-pill ${progress ? "status-working" : "status-planned"}">${escapeHTML(progress ? t("statusWorking") : t("noBuildStatus"))}</span></div>
+      <p>${escapeHTML(note || t("releaseProgress"))}</p>
+      <p class="download-missing">${escapeHTML(t("missingDownload"))}</p>
+      <button class="button button-primary" type="button" data-request-support>${escapeHTML(t("requestSupport"))}<span aria-hidden="true">↗</span></button>
+    </div>`;
+}
+
+function bindSupportButtons(device, version) {
+  document.querySelectorAll("[data-request-support]").forEach(button => {
+    button.addEventListener("click", () => openSupportDialog(`${device.name} · One UI ${version || ""}`.trim()));
+  });
+}
+
+function renderDevicePage(device, hash) {
+  const requestedVersion = versionFromHash(hash);
+  const selectedVersion = ONE_UI_VERSIONS.includes(requestedVersion) ? requestedVersion : detailDefaultVersion(device);
+  app.innerHTML = `
+    <section class="shell detail-page">
+      <a class="back-link" href="#/devices"><span aria-hidden="true">←</span>${escapeHTML(t("backCatalog"))}</a>
+      <div class="detail-hero">
+        <div class="detail-image-panel"><span class="detail-image-label">${escapeHTML(device.family)}</span><img src="${escapeHTML(device.image)}" alt="${escapeHTML(t("altPrefix"))} ${escapeHTML(device.name)}" fetchpriority="high"></div>
+        <div class="detail-copy">
+          <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>${escapeHTML(t("selectedDevice"))}</p>
+          <div class="detail-title-row"><h1>${escapeHTML(device.name)}</h1><span class="state-pill status-${statusForDevice(device).type}">${escapeHTML(statusForDevice(device).label)}</span></div>
+          <p class="detail-lead">${escapeHTML(t("deviceDetailIntro"))}</p>
+          <div class="detail-specs">
+            <div><span>${escapeHTML(t("variantLabel"))}</span><strong>${escapeHTML(device.variant)}</strong></div>
+            <div><span>${escapeHTML(t("modelLabel"))}</span><code>${escapeHTML(device.model)}</code></div>
+          </div>
+          ${device.id === "a11-4g" ? `<p class="detail-note">${escapeHTML(t("noteA11"))}</p>` : ""}
+          <button class="button button-outline" type="button" data-request-support>${escapeHTML(t("requestSupport"))}<span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+
+      <section class="version-section" aria-labelledby="version-title">
+        <div class="version-heading"><div><p class="overline">${escapeHTML(t("releaseOverline"))}</p><h2 id="version-title">${escapeHTML(t("versionTitle"))}</h2></div><p>${escapeHTML(t("versionIntro"))}</p></div>
+        <div class="version-selector" role="group" aria-label="${escapeHTML(t("versionTitle"))}">
+          ${ONE_UI_VERSIONS.map(version => `<button type="button" class="version-button${selectedVersion === version ? " is-active" : ""}" data-version="${version}" aria-pressed="${selectedVersion === version}">One UI <strong>${version}</strong></button>`).join("")}
+        </div>
+        <div class="release-panel" id="release-content"></div>
+      </section>
+      <section class="detail-support-strip"><div><p class="overline">${escapeHTML(t("supportEyebrow"))}</p><h2>${escapeHTML(t("supportTitle"))}</h2><p>${escapeHTML(t("supportCopy"))}</p></div><button class="button button-primary" type="button" data-request-support>${escapeHTML(t("requestSupport"))}<span aria-hidden="true">↗</span></button></section>
+    </section>`;
+  attachImageFallbacks(app);
+  renderRelease(device, selectedVersion);
+  bindSupportButtons(device, selectedVersion);
+  document.querySelectorAll("[data-version]").forEach(button => {
+    button.addEventListener("click", () => {
+      const nextHash = `#/devices/${encodeURIComponent(device.id)}?ui=${encodeURIComponent(button.dataset.version)}`;
+      if (window.location.hash === nextHash) renderRoute(false);
+      else window.location.hash = nextHash;
+    });
+  });
+}
+
+function renderAbout() {
+  app.innerHTML = `
+    <section class="shell editorial-page about-page">
+      <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>ZINEROM PROJECT</p>
+      <h1>${escapeHTML(t("aboutTitle"))}</h1>
+      <p class="editorial-lead">${escapeHTML(t("aboutCopy"))}</p>
+      <div class="principles-grid">
+        <article><span class="principle-number">01</span><h2>${escapeHTML(t("aboutPrinciple"))}</h2><p>${escapeHTML(t("aboutPrincipleText"))}</p></article>
+        <article><span class="principle-number">02</span><h2>${escapeHTML(t("aboutRelease"))}</h2><p>${escapeHTML(t("aboutReleaseText"))}</p></article>
+        <article><span class="principle-number">03</span><h2>${escapeHTML(t("aboutCommunity"))}</h2><p>${escapeHTML(t("aboutCommunityText"))}</p></article>
+      </div>
+      <div class="about-actions"><a class="button button-primary" href="#/devices">${escapeHTML(t("navDevices"))}<span aria-hidden="true">↗</span></a><a class="text-link" href="https://github.com/ZineFather/zinerom-a115f-landing" target="_blank" rel="noopener noreferrer">${escapeHTML(t("githubProject"))}<span aria-hidden="true">↗</span></a></div>
+      <p class="disclaimer">${escapeHTML(t("footerText"))}</p>
+    </section>`;
+}
+
+function renderSupport() {
+  const categories = ["S21", "S21 FE", "S23", "S23 FE", "A73", "Stock ROM Modifications"];
+  app.innerHTML = `
+    <section class="shell editorial-page support-page">
+      <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>${escapeHTML(t("supportEyebrow"))}</p>
+      <h1>${escapeHTML(t("supportTitle"))}</h1>
+      <p class="editorial-lead">${escapeHTML(t("supportCopy"))}</p>
+      <h2 class="categories-heading">${escapeHTML(t("categoriesTitle"))}</h2>
+      <div class="support-category-grid" aria-label="${escapeHTML(t("categoriesTitle"))}">
+        ${categories.map((category, index) => `<div class="support-category"><span class="category-index">0${index + 1}</span><strong>${escapeHTML(category)}</strong></div>`).join("")}
+      </div>
+      <div class="support-action-panel"><div><h2>${escapeHTML(t("dialogTitle"))}</h2><p>${escapeHTML(t("dialogIntro"))}</p></div><button class="button button-primary" type="button" id="open-support-dialog">${escapeHTML(t("requestSupport"))}<span aria-hidden="true">↗</span></button></div>
+    </section>`;
+  document.getElementById("open-support-dialog").addEventListener("click", () => openSupportDialog(""));
+}
+
+function updateNavigation(routeName) {
+  document.querySelectorAll("[data-nav]").forEach(link => {
+    const active = link.dataset.nav === routeName || (routeName === "device" && link.dataset.nav === "devices");
+    link.classList.toggle("is-current", active);
+    if (active) link.setAttribute("aria-current", "page");
+    else link.removeAttribute("aria-current");
+  });
+}
+
+function renderRoute(scroll = true) {
+  const hash = window.location.hash.slice(1) || "/";
+  const route = hash.split("?")[0];
+  let routeName = "home";
+  if (route.startsWith("/devices/")) {
+    const id = decodeURIComponent(route.slice("/devices/".length));
+    const device = devices.find(item => item.id === id);
+    if (device) {
+      routeName = "device";
+      renderDevicePage(device, hash);
+      document.title = `${device.name} — ZineROM Project`;
+    } else {
+      renderCatalog();
+      document.title = "ZineROM Project — Galaxy Device Catalog";
+      window.location.hash = "#/devices";
+    }
+  } else if (route === "/about") {
+    routeName = "about";
+    renderAbout();
+    document.title = `${t("navAbout")} — ZineROM Project`;
+  } else if (route === "/support") {
+    routeName = "support";
+    renderSupport();
+    document.title = `${t("navSupport")} — ZineROM Project`;
+  } else {
+    routeName = route === "/devices" ? "devices" : "home";
+    renderCatalog();
+    document.title = "ZineROM Project — Galaxy Device Catalog";
+  }
+  updateNavigation(routeName);
+  applyLocale();
+  if (scroll) {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const catalog = routeName === "devices" ? document.getElementById("devices") : null;
+    const target = catalog ? catalog.getBoundingClientRect().top + window.scrollY : 0;
+    window.scrollTo({ top: target, behavior: reduceMotion ? "auto" : "smooth" });
+    document.getElementById("main-content").focus({ preventScroll: true });
+  }
+}
+
+function openSupportDialog(context) {
+  supportForm.reset();
+  continueTelegram.disabled = true;
+  document.getElementById("dialog-context").textContent = context ? `${t("contextDevice")}: ${context}` : "";
+  if (typeof supportDialog.showModal === "function") supportDialog.showModal();
+  else supportDialog.setAttribute("open", "open");
+  supportCategory.focus();
+}
+
+async function copyChecksum() {
+  const value = document.getElementById("checksum-value")?.textContent;
+  if (!value) return;
+  const button = document.getElementById("copy-checksum");
+  try {
+    await navigator.clipboard.writeText(value);
+    button.textContent = t("copied");
+  } catch {
+    const selection = document.createRange();
+    selection.selectNodeContents(document.getElementById("checksum-value"));
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(selection);
+    button.textContent = value;
+  }
+  window.setTimeout(() => { if (button.isConnected) button.textContent = t("copyChecksum"); }, 1800);
+}
+
+function toggleMenu(force) {
+  const open = typeof force === "boolean" ? force : menuToggle.getAttribute("aria-expanded") !== "true";
+  menuToggle.setAttribute("aria-expanded", String(open));
+  document.getElementById("primary-nav").classList.toggle("is-open", open);
+  applyLocale();
+}
+
+languageSelect.addEventListener("change", () => {
+  state.language = UI_LOCALES.includes(languageSelect.value) ? languageSelect.value : "en";
+  localStorage.setItem("zinerom-language", state.language);
+  renderRoute(false);
+});
+
+document.getElementById("theme-toggle").addEventListener("click", () => setTheme(state.theme === "dark" ? "light" : "dark"));
+window.addEventListener("hashchange", () => {
+  toggleMenu(false);
+  renderRoute(true);
+});
+menuToggle.addEventListener("click", () => toggleMenu());
+document.getElementById("back-to-top").addEventListener("click", event => {
+  event.preventDefault();
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: 0, behavior: reduceMotion ? "auto" : "smooth" });
+});
+document.getElementById("dialog-close").addEventListener("click", () => supportDialog.close());
+document.getElementById("dialog-cancel").addEventListener("click", () => supportDialog.close());
+supportCategory.addEventListener("change", () => { continueTelegram.disabled = !supportCategory.value; });
+supportForm.addEventListener("submit", event => {
+  event.preventDefault();
+  if (!supportCategory.value) {
+    supportCategory.reportValidity();
+    return;
+  }
+  window.location.assign(TELEGRAM_URL);
+  if (typeof supportDialog.close === "function") supportDialog.close();
+});
+document.getElementById("current-year").textContent = new Date().getFullYear();
+
+setTheme(state.theme);
+renderRoute(true);

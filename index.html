@@ -1,107 +1,112 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" data-theme="dark">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#071324">
-  <meta name="description" content="ZineROM community device roadmap. Select a Galaxy device to see its planned One UI and Android target, project status, and available test downloads.">
+  <meta name="theme-color" content="#08111f">
+  <meta name="description" content="ZineROM Project device catalog. Browse supported Galaxy devices, check configured One UI builds, and find official project support links.">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="ZineROM — Galaxy Device Roadmap">
-  <meta property="og:description" content="Community One UI ports, device by device. Experimental builds and roadmap targets are clearly marked.">
-  <title>ZineROM — Galaxy Device Roadmap</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230b1d36'/%3E%3Cpath d='M16 18h32v8L27 46h21' fill='none' stroke='%237fc4ff' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+  <meta property="og:title" content="ZineROM Project — Galaxy Device Catalog">
+  <meta property="og:description" content="A clear, device-by-device catalog of ZineROM community builds and support information.">
+  <title>ZineROM Project — Galaxy Device Catalog</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2308111f'/%3E%3Cpath d='M17 18h30L17 46h30' fill='none' stroke='%2385bdff' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css">
+  <script src="translations.js" defer></script>
+  <script src="locales-extra.js" defer></script>
   <script src="app.js" defer></script>
 </head>
 <body>
-  <header class="shell topbar" id="top">
-    <a class="brand" href="#top" aria-label="ZineROM home">
-      <span class="brand-mark" aria-hidden="true">ZR</span>
-      <span>ZineROM</span>
-    </a>
-    <nav class="top-actions" aria-label="Main navigation">
-      <a class="nav-link" href="#devices" data-i18n="navDevices">Devices</a>
-      <a class="nav-link" href="https://github.com/nova-arch008/ZineROM-A115F-OneUI7-boot-test" target="_blank" rel="noopener noreferrer" data-i18n="navGithub">A11 project</a>
-      <label class="sr-only" for="language-select" data-i18n="languageLabel">Language</label>
-      <select class="language-select" id="language-select" aria-label="Language">
-        <option value="en">English</option>
-        <option value="ar">العربية</option>
-        <option value="es">Español</option>
-        <option value="fr">Français</option>
-        <option value="de">Deutsch</option>
-        <option value="tr">Türkçe</option>
-        <option value="pt">Português</option>
-        <option value="id">Bahasa Indonesia</option>
-        <option value="hi">हिन्दी</option>
-        <option value="ur">اردو</option>
-        <option value="bn">বাংলা</option>
-        <option value="ru">Русский</option>
-      </select>
-    </nav>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header">
+    <div class="shell topbar">
+      <a class="brand" href="#/" aria-label="ZineROM Project home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 40 40" fill="none"><path d="M9 11h22L9 29h22" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="30" r="2" fill="currentColor"/></svg>
+        </span>
+        <span class="brand-name"><strong>ZineROM</strong><small>PROJECT</small></span>
+      </a>
+
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open navigation">
+        <span></span><span></span>
+      </button>
+
+      <nav class="primary-nav" id="primary-nav" aria-label="Main navigation">
+        <a href="#/" data-nav="home">Home</a>
+        <a href="#/devices" data-nav="devices">Devices</a>
+        <a href="#/about" data-nav="about">About</a>
+        <a href="#/support" data-nav="support">Support</a>
+      </nav>
+
+      <div class="header-tools">
+        <label class="sr-only" for="language-select" data-i18n="languageLabel">Language</label>
+        <select class="language-select" id="language-select" aria-label="Language">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="tr">Türkçe</option>
+          <option value="pt">Português</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ur">اردو</option>
+          <option value="bn">বাংলা</option>
+          <option value="ru">Русский</option>
+        </select>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch color theme">
+          <svg class="theme-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M2 12h2m16 0h2M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/></svg>
+          <span class="sr-only" id="theme-label">Light theme</span>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <main>
-    <section class="shell hero" aria-labelledby="hero-title">
-      <div class="hero-copy">
-        <span class="eyebrow"><span class="live-dot" aria-hidden="true"></span><span data-i18n="eyebrow">COMMUNITY PORT ROADMAP</span></span>
-        <h1 id="hero-title" data-i18n="heroTitle">One UI projects.<br><span class="blue-text">Device by device.</span></h1>
-        <p class="lead" data-i18n="heroText">Choose a Galaxy model to see its target software, current status, and whether a test build is actually available.</p>
-        <label class="field-label" for="device-select" data-i18n="selectDevice">Select a device</label>
-        <select class="device-select" id="device-select" aria-label="Select a Galaxy device"></select>
-        <p class="roadmap-note" data-i18n="roadmapNotice">Roadmap versions are community targets, not official Samsung releases. Only a clearly marked test build has a download link.</p>
-      </div>
+  <main id="main-content" class="main-content" tabindex="-1"></main>
 
-      <aside class="selected-card" aria-live="polite" aria-label="Selected device details">
-        <div class="selected-image-wrap">
-          <img id="selected-image" src="device-a11.webp" alt="Galaxy A11 product image" fetchpriority="high">
-          <span class="image-caption" id="image-caption">Galaxy A11</span>
-        </div>
-        <div class="selected-body">
-          <div class="selected-heading">
-            <div>
-              <p class="overline" data-i18n="selectedDevice">SELECTED DEVICE</p>
-              <h2 id="selected-name">Galaxy A11</h2>
-              <p class="model-code" id="selected-code">SM-A115F</p>
-            </div>
-            <span class="status-badge" id="selected-status"></span>
-          </div>
-          <div class="spec-grid">
-            <div class="spec"><span data-i18n="targetUi">Target One UI</span><strong id="selected-ui">One UI 7</strong></div>
-            <div class="spec"><span data-i18n="targetAndroid">Target Android</span><strong id="selected-android">Android 15</strong></div>
-          </div>
-          <p class="device-note" id="selected-note"></p>
-          <div id="action-slot" class="action-slot"></div>
-          <div class="checksum" id="checksum-panel" hidden>
-            <span class="checksum-label">SHA-256</span>
-            <div class="hash-row"><code id="checksum-value"></code><button class="copy-button" type="button" id="copy-checksum" data-i18n="copy">Copy</button></div>
-          </div>
-        </div>
-      </aside>
-    </section>
-
-    <section class="shell section" id="devices" aria-labelledby="devices-title">
-      <div class="section-heading">
-        <div>
-          <p class="overline" data-i18n="roadmapOverline">DEVICE ROADMAP</p>
-          <h2 id="devices-title" data-i18n="devicesTitle">Choose your Galaxy</h2>
-        </div>
-        <p class="section-intro" data-i18n="devicesIntro">A11 and A52s target One UI 7 / Android 15. The remaining listed devices are roadmap targets for One UI 8.5 / 9.0 and Android 16 / 17.</p>
+  <footer class="site-footer">
+    <div class="shell footer-main">
+      <div class="footer-brand-block">
+        <a class="brand footer-brand" href="#/" aria-label="ZineROM Project home">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 40 40" fill="none"><path d="M9 11h22L9 29h22" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="30" cy="30" r="2" fill="currentColor"/></svg></span>
+          <span class="brand-name"><strong>ZineROM</strong><small>PROJECT</small></span>
+        </a>
+        <p data-i18n="footerText">Independent community project. Not affiliated with Samsung.</p>
       </div>
-      <div class="device-grid" id="device-grid"></div>
-      <div class="notice-box">
-        <strong data-i18n="noticeTitle">Experimental and in progress</strong>
-        <p data-i18n="noticeText">The A11 ZIP is a diagnostic test build, not a stable ROM. No public downloads are available yet for the other devices. Check the exact device variant before testing; never flash a build intended for a different model.</p>
+      <div class="footer-links">
+        <a href="#/devices" data-i18n="navDevices">Devices</a>
+        <a href="#/about" data-nav="about">About</a>
+        <a href="#/support" data-nav="support">Support</a>
+        <a href="IMAGE_CREDITS.md" data-i18n="imageCredits">Image credits</a>
+        <a href="#top" id="back-to-top" data-i18n="backToTop">Back to top</a>
       </div>
-    </section>
-  </main>
-
-  <footer class="shell footer">
-    <div><strong>ZineROM</strong><span class="footer-copy" data-i18n="footerText"> Independent community porting project. Not affiliated with Samsung.</span></div>
-    <div class="footer-links">
-      <a href="https://github.com/nova-arch008/ZineROM-A115F-OneUI7-boot-test" target="_blank" rel="noopener noreferrer" data-i18n="navGithub">A11 project</a>
-      <a href="IMAGE_CREDITS.md" data-i18n="imageCredits">Image credits</a>
-      <a href="#top" data-i18n="backToTop">Back to top</a>
     </div>
+    <div class="shell footer-bottom"><span>© <span id="current-year"></span> ZineROM Project</span><span>Galaxy and Samsung are trademarks of their respective owners.</span></div>
   </footer>
+
+  <dialog class="support-dialog" id="support-dialog" aria-labelledby="dialog-title">
+    <form id="support-form">
+      <button class="dialog-close" id="dialog-close" type="button" aria-label="Close dialog">×</button>
+      <p class="eyebrow" data-i18n="supportEyebrow">PROJECT SUPPORT</p>
+      <h2 id="dialog-title" data-i18n="dialogTitle">Request Support</h2>
+      <p class="dialog-copy" data-i18n="dialogIntro">Choose the category that best matches your request. Continue to the ZineROM Telegram request page to submit the full details.</p>
+      <label class="field-label" for="support-category" data-i18n="categoryLabel">Request category</label>
+      <select id="support-category" name="category" required>
+        <option value="" selected disabled data-i18n="categoryPlaceholder">Choose a category</option>
+        <option value="S21">S21</option>
+        <option value="S21 FE">S21 FE</option>
+        <option value="S23">S23</option>
+        <option value="S23 FE">S23 FE</option>
+        <option value="A73">A73</option>
+        <option value="Stock ROM Modifications">Stock ROM Modifications</option>
+      </select>
+      <p class="dialog-context" id="dialog-context"></p>
+      <div class="dialog-actions">
+        <button class="button button-quiet" id="dialog-cancel" type="button" data-i18n="cancel">Cancel</button>
+        <button class="button button-primary" id="continue-telegram" type="submit" disabled data-i18n="continueTelegram">Continue to Telegram</button>
+      </div>
+    </form>
+  </dialog>
+
+  <noscript><div class="noscript-message">ZineROM Project needs JavaScript to display the device catalog and its configured release information.</div></noscript>
 </body>
 </html>
