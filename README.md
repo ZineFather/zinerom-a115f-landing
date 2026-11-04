@@ -10,6 +10,10 @@ Only configure a public download after the build has been published and verified
 
 The existing A11 entry is an experimental diagnostic test build, not a stable ROM. Confirm the exact device variant before flashing. The support categories and Telegram destination are configured in `app.js` and `index.html`.
 
+## Screenshot gallery
+
+The Screenshots page discovers image files directly from the public `screenshots/` folder on GitHub when the page opens. Keep uploaded originals in that folder; the site links to the original files and does not crop, resize, recompress, or annotate them. `screenshots/metadata.json` supplies descriptive titles and category assignments for known images. Newly added images appear automatically; until a metadata entry is added, they use their filename as the title and appear under “Other Features.” The gallery only displays category filters that have at least one image. If GitHub's directory API is temporarily unavailable, the metadata file provides the saved-list fallback.
+
 ## Run locally
 
 This project has no build step or third-party runtime dependency. From the repository root, run:

@@ -138,7 +138,9 @@ const extraCopy = {
     modelNotProvided: "رمز الطراز الإقليمي غير مُقدّم", themeLight: "التبديل إلى المظهر الفاتح", themeDark: "التبديل إلى المظهر الداكن", openMenu: "فتح القائمة", closeMenu: "إغلاق القائمة"
   }
 };
-Object.assign(extraCopy, window.ZINE_EXTRA_COPY || {});
+for (const [locale, values] of Object.entries(window.ZINE_EXTRA_COPY || {})) {
+  extraCopy[locale] = { ...(extraCopy[locale] || {}), ...values };
+}
 
 const UI_LOCALES = ["en", "ar", "es", "fr", "de", "tr", "pt", "id", "hi", "ur", "bn", "ru"];
 const state = {
@@ -491,6 +493,10 @@ function renderRoute(scroll = true) {
       document.title = "ZineROM Project — Galaxy Device Catalog";
       window.location.hash = "#/devices";
     }
+  } else if (route === "/screenshots") {
+    routeName = "screenshots";
+    window.ZINE_SCREENSHOT_GALLERY.render(app, t, escapeHTML);
+    document.title = `${t("screenshotsTitle")} — ZineROM Project`;
   } else if (route === "/about") {
     routeName = "about";
     renderAbout();
