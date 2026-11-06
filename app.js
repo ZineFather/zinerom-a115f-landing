@@ -7,6 +7,9 @@
  */
 const ONE_UI_VERSIONS = ["6.1", "6.1.1", "7.0", "8.0", "8.5", "9.0"];
 const TELEGRAM_URL = "https://t.me/ZineROMProject/109";
+const COMMUNITY_DESTINATIONS = window.ZINE_COMMUNITY_PAGE?.destinations || {};
+const INSTALLATION_TUTORIAL_URL = COMMUNITY_DESTINATIONS.tutorial || "https://t.me/ZineROMProject/139";
+const BUG_REPORT_URL = COMMUNITY_DESTINATIONS.bugs || "https://t.me/ZineROMProject/9";
 const devices = [
   {
     id: "a15-4g", name: "Galaxy A15 4G", family: "Galaxy A15", variant: "4G / LTE",
@@ -18,15 +21,24 @@ const devices = [
   },
   {
     id: "a16-4g", name: "Galaxy A16 4G", family: "Galaxy A16", variant: "4G / LTE",
-    model: "Regional model code not supplied", image: "device-images/a16-4g.png", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "device-images/a16-4g.png", type: "phone",
+    builds: {
+      "9.0": [{ status: "planned", downloadUrl: null, sourceDevice: null, architecture: null, note: "Requested One UI 9 catalog entry. Exact 4G/5G compatibility, source device, and download link are not yet specified.", features: [], knownBugs: [] }]
+    }
   },
   {
     id: "a16-5g", name: "Galaxy A16 5G", family: "Galaxy A16", variant: "5G",
-    model: "Regional model code not supplied", image: "device-images/a16-5g.png", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "device-images/a16-5g.png", type: "phone",
+    builds: {
+      "9.0": [{ status: "planned", downloadUrl: null, sourceDevice: null, architecture: null, note: "Requested One UI 9 catalog entry. Exact 4G/5G compatibility, source device, and download link are not yet specified.", features: [], knownBugs: [] }]
+    }
   },
   {
     id: "a25-5g", name: "Galaxy A25 5G", family: "Galaxy A25", variant: "5G",
-    model: "SM-A256 family", image: "device-images/a25-5g.png", type: "phone", builds: {}
+    model: "SM-A256 family", image: "device-images/a25-5g.png", type: "phone",
+    builds: {
+      "8.5": [{ status: "planned", downloadUrl: null, sourceDevice: null, architecture: null, note: "Requested One UI 8.5 catalog entry. Source base and download link have not been supplied yet.", features: [], knownBugs: [] }]
+    }
   },
   {
     id: "a34-5g", name: "Galaxy A34 5G", family: "Galaxy A34", variant: "5G",
@@ -34,27 +46,43 @@ const devices = [
   },
   {
     id: "a53-5g", name: "Galaxy A53 5G", family: "Galaxy A53", variant: "5G",
-    model: "SM-A536 family", image: "device-images/a53-5g.png", type: "phone", builds: {}
+    model: "SM-A536 family", image: "device-images/a53-5g.png", type: "phone",
+    builds: {
+      "8.5": [{ status: "planned", downloadUrl: null, sourceDevice: null, architecture: null, note: "Requested One UI 8.5 catalog entry. Source base and download link have not been supplied yet.", features: [], knownBugs: [] }]
+    }
   },
   {
     id: "a52s-5g", name: "Galaxy A52s 5G", family: "Galaxy A52s", variant: "5G",
     model: "SM-A528 family", image: "device-images/a52s-5g.png", type: "phone",
     builds: {
-      "6.1": {
-        status: "test",
-        downloadUrl: "https://gofile.io/d/TYKq0wOl",
-        noteKey: "noteA52s61",
-        warningKey: "warningA52s61",
-        downloadKey: "downloadA52s61"
-      },
+      "6.1": [
+        {
+          id: "s23-fe-exynos", variantName: "Variant A — S23 FE Base",
+          sourceDevice: "Samsung Galaxy S23 FE", architecture: "Exynos", stabilityKey: "stabilityExperimental",
+          status: "planned", downloadUrl: null,
+          note: "Experimental and less-stable S23 FE (Exynos)-based One UI 6.1 variant for Galaxy A52s 5G. Its download link has not been supplied yet.",
+          features: [], knownBugs: []
+        },
+        {
+          id: "s23-snapdragon", variantName: "Variant B — S23 Base",
+          sourceDevice: "Samsung Galaxy S23", architecture: "Snapdragon", stabilityKey: "stabilityMoreStable",
+          status: "test", downloadUrl: "https://gofile.io/d/FZRgeM8N", downloadKey: "downloadA52sS23",
+          note: "More-stable S23 (Snapdragon)-based One UI 6.1 variant for Galaxy A52s 5G.",
+          features: [], knownBugs: []
+        }
+      ],
       "6.1.1": {
         status: "info",
         infoUrl: "https://t.me/ZineROMProject/3/3898",
+        sourceDevice: "Samsung Galaxy S23 FE",
         noteKey: "noteA52s611",
-        detailsKey: "detailsA52s611"
+        detailsKey: "detailsA52s611",
+        features: [], knownBugs: []
       },
-      "7.0": { status: "in-progress", noteKey: "noteWorking" }
-    }
+      "7.0": { status: "in-progress", noteKey: "noteWorking", features: [], knownBugs: [] }
+    },
+    // Retain the earlier public URL without assigning it to either new base variant until its source is confirmed.
+    legacyUnassignedBuilds: [{ version: "6.1", downloadUrl: "https://gofile.io/d/TYKq0wOl", noteKey: "noteA52s61", sourceDevice: null }]
   },
   {
     id: "a11-4g", name: "Galaxy A11", family: "Galaxy A11", variant: "4G / LTE",
@@ -141,6 +169,9 @@ const extraCopy = {
 for (const [locale, values] of Object.entries(window.ZINE_EXTRA_COPY || {})) {
   extraCopy[locale] = { ...(extraCopy[locale] || {}), ...values };
 }
+for (const [locale, values] of Object.entries(window.ZINE_ROM_COPY || {})) {
+  extraCopy[locale] = { ...(extraCopy[locale] || {}), ...values };
+}
 
 const UI_LOCALES = ["en", "ar", "es", "fr", "de", "tr", "pt", "id", "hi", "ur", "bn", "ru"];
 const state = {
@@ -192,11 +223,21 @@ function setTheme(theme) {
   applyLocale();
 }
 
+function releaseRecords(value) {
+  if (Array.isArray(value)) return value;
+  if (value && Array.isArray(value.variants)) return value.variants;
+  return value ? [value] : [];
+}
+
+function allDeviceReleases(device) {
+  return Object.values(device.builds).flatMap(releaseRecords);
+}
+
 function statusForDevice(device) {
-  const builds = Object.values(device.builds);
+  const builds = allDeviceReleases(device);
   if (builds.some(build => build.status === "test" && build.downloadUrl)) return { label: t("statusAvailable"), type: "available" };
   if (builds.some(build => build.status === "in-progress")) return { label: t("statusWorking"), type: "working" };
-  return { label: t("noBuildStatus"), type: "planned" };
+  return { label: t(builds.length ? "statusPlanned" : "noBuildStatus"), type: "planned" };
 }
 
 function configuredVersions(device) {
@@ -334,58 +375,91 @@ function detailDefaultVersion(device) {
   return available[0] || null;
 }
 
+function renderBuildDetails(release = {}) {
+  const features = Array.isArray(release.features) ? release.features : [];
+  const knownBugs = Array.isArray(release.knownBugs) ? release.knownBugs : [];
+  const listOrMessage = (items, emptyKey) => items.length
+    ? `<ul class="release-detail-list">${items.map(item => `<li>${escapeHTML(item)}</li>`).join("")}</ul>`
+    : `<p class="release-detail-empty">${escapeHTML(t(emptyKey))}</p>`;
+  return `
+    <div class="release-detail-grid">
+      <section class="release-detail-section" aria-label="${escapeHTML(t("romFeaturesTitle"))}">
+        <h4>${escapeHTML(t("romFeaturesTitle"))}</h4>${listOrMessage(features, "noVerifiedFeatures")}
+      </section>
+      <section class="release-detail-section" aria-label="${escapeHTML(t("knownBugsTitle"))}">
+        <h4>${escapeHTML(t("knownBugsTitle"))}</h4>${listOrMessage(knownBugs, "noKnownBugs")}
+      </section>
+    </div>`;
+}
+
+function renderEmptyRelease(version, noVersionSelected = false) {
+  const heading = noVersionSelected ? t("versionTitle") : `One UI ${version}`;
+  const message = noVersionSelected ? t("chooseVersion") : t("noVersionDetails");
+  return `
+    <article class="release-variant-card">
+      <header class="release-variant-heading">
+        <div><p class="release-variant-overline">${escapeHTML(noVersionSelected ? t("releaseOverline") : `One UI ${version}`)}</p><h3>${escapeHTML(heading)}</h3></div>
+        <span class="state-pill status-planned">${escapeHTML(t("noBuildStatus"))}</span>
+      </header>
+      <p class="release-copy">${escapeHTML(message)}</p>
+      ${noVersionSelected ? "" : `<p class="download-missing">${escapeHTML(t("missingDownload"))}</p>`}
+      ${renderBuildDetails()}
+      <button class="button button-quiet" type="button" data-request-support>${escapeHTML(t("requestSupport"))}</button>
+    </article>`;
+}
+
+function renderReleaseVariant(release, version) {
+  const available = release.status === "test" && Boolean(release.downloadUrl);
+  const working = release.status === "in-progress";
+  const informationOnly = release.status === "info";
+  const statusType = available ? "available" : working ? "working" : "planned";
+  const statusLabel = available ? t("statusAvailable") : working ? t("statusWorking") : informationOnly ? t("releaseInformation") : t("statusPlanned");
+  const title = release.variantName || `${t("versionTitle")} ${version}`;
+  const note = release.noteKey ? t(release.noteKey) : release.note || t("noVersionDetails");
+  const warning = release.warningKey ? t(release.warningKey) : (release.status === "test" && !release.stabilityKey ? t("downloadWarning") : "");
+  const source = release.sourceDevice || t("notSupplied");
+  const architecture = release.architecture || t("notSupplied");
+  const stability = release.stabilityKey ? t(release.stabilityKey) : t("notSupplied");
+  let action;
+  if (available) {
+    action = `<a class="button button-primary download-button" href="${escapeHTML(release.downloadUrl)}" target="_blank" rel="noopener noreferrer"><span>${escapeHTML(t(release.downloadKey || "download"))}</span><span aria-hidden="true">↓</span></a>`;
+  } else if (informationOnly && release.infoUrl) {
+    action = `<a class="button button-outline" href="${escapeHTML(release.infoUrl)}" target="_blank" rel="noopener noreferrer"><span>${escapeHTML(t(release.detailsKey || "detailsA52s611"))}</span><span aria-hidden="true">↗</span></a>`;
+  } else {
+    action = `<div class="release-link-pending"><p class="download-missing">${escapeHTML(t("missingDownload"))}</p><button class="button button-quiet" type="button" data-request-support>${escapeHTML(t("requestSupport"))}</button></div>`;
+  }
+  return `
+    <article class="release-variant-card">
+      <header class="release-variant-heading">
+        <div><p class="release-variant-overline">One UI ${escapeHTML(version)}</p><h3>${escapeHTML(title)}</h3></div>
+        <span class="state-pill status-${statusType}">${escapeHTML(statusLabel)}</span>
+      </header>
+      <dl class="release-specs">
+        <div><dt>${escapeHTML(t("sourceDeviceLabel"))}</dt><dd>${escapeHTML(source)}</dd></div>
+        <div><dt>${escapeHTML(t("baseArchitectureLabel"))}</dt><dd>${escapeHTML(architecture)}</dd></div>
+        <div><dt>${escapeHTML(t("stabilityLabel"))}</dt><dd>${escapeHTML(stability)}</dd></div>
+      </dl>
+      <p class="release-copy">${escapeHTML(note)}</p>
+      ${release.androidVersion ? `<div class="release-meta"><span>${escapeHTML(t("targetAndroid"))}</span><strong>Android ${escapeHTML(release.androidVersion)}</strong></div>` : ""}
+      ${warning ? `<div class="experimental-warning"><span aria-hidden="true">!</span><p>${escapeHTML(warning)}</p></div>` : ""}
+      ${action}
+      ${release.sha256 ? `<div class="checksum-block"><div><span class="checksum-title">${escapeHTML(t("checksumLabel"))}</span><code id="checksum-value">${escapeHTML(release.sha256)}</code></div><button class="copy-button" id="copy-checksum" type="button">${escapeHTML(t("copyChecksum"))}</button></div>` : ""}
+      ${renderBuildDetails(release)}
+    </article>`;
+}
+
 function renderRelease(device, version) {
   const host = document.getElementById("release-content");
   if (!version) {
-    host.innerHTML = `<div class="release-empty"><span class="release-state">${escapeHTML(t("versionTitle"))}</span><p>${escapeHTML(t("chooseVersion"))}</p></div>`;
+    host.innerHTML = `<div class="release-variant-grid">${renderEmptyRelease(null, true)}</div>`;
     return;
   }
-  const release = device.builds[version];
-  const versionLabel = `One UI ${escapeHTML(version)}`;
-  if (!release) {
-    host.innerHTML = `
-      <div class="release-empty">
-        <div class="release-empty-heading"><span class="release-state">${versionLabel}</span><span class="state-pill status-planned">${escapeHTML(t("noBuildStatus"))}</span></div>
-        <p>${escapeHTML(t("noVersionDetails"))}</p>
-        <p class="download-missing">${escapeHTML(t("missingDownload"))}</p>
-        <button class="button button-primary" type="button" data-request-support>${escapeHTML(t("requestSupport"))}<span aria-hidden="true">↗</span></button>
-      </div>`;
-    return;
-  }
-  const note = release.noteKey ? t(release.noteKey) : t("noVersionDetails");
-  const warning = release.warningKey ? t(release.warningKey) : t("downloadWarning");
-  if (release.status === "info" && release.infoUrl) {
-    host.innerHTML = `
-      <div class="release-configured release-info">
-        <div class="release-empty-heading"><span class="release-state">${versionLabel}</span></div>
-        <p class="release-copy">${escapeHTML(note)}</p>
-        <a class="button button-outline" href="${escapeHTML(release.infoUrl)}" target="_blank" rel="noopener noreferrer"><span>${escapeHTML(t(release.detailsKey || "detailsA52s611"))}</span><span aria-hidden="true">↗</span></a>
-      </div>`;
-    return;
-  }
-  if (release.status === "test" && release.downloadUrl) {
-    host.innerHTML = `
-      <div class="release-configured">
-        <div class="release-empty-heading"><span class="release-state">${versionLabel}</span><span class="state-pill status-available">${escapeHTML(t("statusAvailable"))}</span></div>
-        <p class="release-copy">${escapeHTML(note)}</p>
-        ${release.androidVersion ? `<div class="release-meta"><span>${escapeHTML(t("targetAndroid"))}</span><strong>Android ${escapeHTML(release.androidVersion)}</strong></div>` : ""}
-        <div class="experimental-warning"><span aria-hidden="true">!</span><p>${escapeHTML(warning)}</p></div>
-        <a class="button button-primary download-button" href="${escapeHTML(release.downloadUrl)}" target="_blank" rel="noopener noreferrer"><span>${escapeHTML(t(release.downloadKey || "download"))}</span><span aria-hidden="true">↓</span></a>
-        ${release.sha256 ? `<div class="checksum-block"><div><span class="checksum-title">${escapeHTML(t("checksumLabel"))}</span><code id="checksum-value">${escapeHTML(release.sha256)}</code></div><button class="copy-button" id="copy-checksum" type="button">${escapeHTML(t("copyChecksum"))}</button></div>` : ""}
-        <div class="release-support"><p>${escapeHTML(t("supportCopyShort"))}</p><button class="button button-quiet" type="button" data-request-support>${escapeHTML(t("requestSupport"))}</button></div>
-      </div>`;
-    const copyButton = document.getElementById("copy-checksum");
-    if (copyButton) copyButton.addEventListener("click", copyChecksum);
-    return;
-  }
-  const progress = release.status === "in-progress";
-  host.innerHTML = `
-    <div class="release-empty">
-      <div class="release-empty-heading"><span class="release-state">${versionLabel}</span><span class="state-pill ${progress ? "status-working" : "status-planned"}">${escapeHTML(progress ? t("statusWorking") : t("noBuildStatus"))}</span></div>
-      <p>${escapeHTML(note || t("releaseProgress"))}</p>
-      <p class="download-missing">${escapeHTML(t("missingDownload"))}</p>
-      <button class="button button-primary" type="button" data-request-support>${escapeHTML(t("requestSupport"))}<span aria-hidden="true">↗</span></button>
-    </div>`;
+  const releases = releaseRecords(device.builds[version]);
+  host.innerHTML = releases.length
+    ? `<div class="release-variant-grid">${releases.map(release => renderReleaseVariant(release, version)).join("")}</div>`
+    : `<div class="release-variant-grid">${renderEmptyRelease(version)}</div>`;
+  const copyButton = document.getElementById("copy-checksum");
+  if (copyButton) copyButton.addEventListener("click", copyChecksum);
 }
 
 function bindSupportButtons(device, version) {
@@ -422,6 +496,10 @@ function renderDevicePage(device, hash) {
         </div>
         <div class="release-panel" id="release-content"></div>
       </section>
+      <nav class="device-guide-links" aria-label="${escapeHTML(t("installationTutorial"))} and bug reporting for ${escapeHTML(device.name)}">
+        <a class="button button-outline" href="${escapeHTML(device.installationUrl || INSTALLATION_TUTORIAL_URL)}" target="_blank" rel="noopener noreferrer">${escapeHTML(t("installationTutorial"))}<span aria-hidden="true">↗</span></a>
+        <a class="button button-primary" href="${escapeHTML(device.bugReportUrl || BUG_REPORT_URL)}" target="_blank" rel="noopener noreferrer">${escapeHTML(t("reportBug"))}<span aria-hidden="true">↗</span></a>
+      </nav>
       <section class="detail-support-strip"><div><p class="overline">${escapeHTML(t("supportEyebrow"))}</p><h2>${escapeHTML(t("supportTitle"))}</h2><p>${escapeHTML(t("supportCopy"))}</p></div><button class="button button-primary" type="button" data-request-support>${escapeHTML(t("requestSupport"))}<span aria-hidden="true">↗</span></button></section>
     </section>`;
   attachImageFallbacks(app);
