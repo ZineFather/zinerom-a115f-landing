@@ -59,8 +59,8 @@ const devices = [
         {
           id: "s23-fe-exynos", variantName: "Variant A — S23 FE Base",
           sourceDevice: "Samsung Galaxy S23 FE", architecture: "Exynos", stabilityKey: "stabilityExperimental",
-          status: "planned", downloadUrl: null,
-          note: "Experimental and less-stable S23 FE (Exynos)-based One UI 6.1 variant for Galaxy A52s 5G. Its download link has not been supplied yet.",
+          status: "test", downloadUrl: "https://gofile.io/d/TYKq0wOl", downloadKey: "downloadA52sS23FE", warningKey: "warningA52s61",
+          note: "Experimental and less-stable S23 FE (Exynos)-based One UI 6.1 variant for Galaxy A52s 5G.",
           features: [], knownBugs: []
         },
         {
@@ -80,9 +80,7 @@ const devices = [
         features: [], knownBugs: []
       },
       "7.0": { status: "in-progress", noteKey: "noteWorking", features: [], knownBugs: [] }
-    },
-    // Retain the earlier public URL without assigning it to either new base variant until its source is confirmed.
-    legacyUnassignedBuilds: [{ version: "6.1", downloadUrl: "https://gofile.io/d/TYKq0wOl", noteKey: "noteA52s61", sourceDevice: null }]
+    }
   },
   {
     id: "a11-4g", name: "Galaxy A11", family: "Galaxy A11", variant: "4G / LTE",
