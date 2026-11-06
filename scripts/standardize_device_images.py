@@ -41,10 +41,12 @@ DEVICES = {
 
 # Protected source-space device bodies that white-background segmentation can
 # confuse with the studio backdrop. Each entry is (x0, y0, x1, y1, corner_radius).
-# The A16 4G rear shell is nearly white, so its observed rounded-rectangle body
-# silhouette is restored without changing any source RGB pixels or other assets.
+# The A16 4G rear shell is nearly white, and the A53 dark glass/frame can be
+# confused with openings by saliency segmentation. Restore only their observed
+# source-bounded rounded device silhouettes without changing source RGB pixels.
 PROTECTED_BODIES = {
     "a16-4g": ((329, 56, 585, 765, 43),),
+    "a53-5g": ((190, 61, 486, 958, 42), (445, 61, 869, 958, 46)),
 }
 
 
