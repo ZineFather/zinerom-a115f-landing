@@ -10,35 +10,35 @@ const TELEGRAM_URL = "https://t.me/ZineROMProject/109";
 const devices = [
   {
     id: "a15-4g", name: "Galaxy A15 4G", family: "Galaxy A15", variant: "4G / LTE",
-    model: "Regional model code not supplied", image: "1793813811813.jpg", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "device-images/a15-4g.png", type: "phone", builds: {}
   },
   {
     id: "a15-5g", name: "Galaxy A15 5G", family: "Galaxy A15", variant: "5G",
-    model: "Regional model code not supplied", image: "1793813814861.jpg", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "device-images/a15-5g.png", type: "phone", builds: {}
   },
   {
     id: "a16-4g", name: "Galaxy A16 4G", family: "Galaxy A16", variant: "4G / LTE",
-    model: "Regional model code not supplied", image: "device-a16-4g.webp", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "device-images/a16-4g.png", type: "phone", builds: {}
   },
   {
     id: "a16-5g", name: "Galaxy A16 5G", family: "Galaxy A16", variant: "5G",
-    model: "Regional model code not supplied", image: "device-a16-5g.webp", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "device-images/a16-5g.png", type: "phone", builds: {}
   },
   {
     id: "a25-5g", name: "Galaxy A25 5G", family: "Galaxy A25", variant: "5G",
-    model: "SM-A256 family", image: "1793813822634.jpg", type: "phone", builds: {}
+    model: "SM-A256 family", image: "device-images/a25-5g.png", type: "phone", builds: {}
   },
   {
     id: "a34-5g", name: "Galaxy A34 5G", family: "Galaxy A34", variant: "5G",
-    model: "SM-A346 family", image: "1793813824175.jpg", type: "phone", builds: {}
+    model: "SM-A346 family", image: "device-images/a34-5g.png", type: "phone", builds: {}
   },
   {
     id: "a53-5g", name: "Galaxy A53 5G", family: "Galaxy A53", variant: "5G",
-    model: "SM-A536 family", image: "a53.webp", type: "phone", builds: {}
+    model: "SM-A536 family", image: "device-images/a53-5g.png", type: "phone", builds: {}
   },
   {
     id: "a52s-5g", name: "Galaxy A52s 5G", family: "Galaxy A52s", variant: "5G",
-    model: "SM-A528 family", image: "58e741a0-d82b-11f1-be9c-4d568969b7f5.jpg", type: "phone",
+    model: "SM-A528 family", image: "device-images/a52s-5g.png", type: "phone",
     builds: {
       "6.1": {
         status: "test",
@@ -58,7 +58,7 @@ const devices = [
   },
   {
     id: "a11-4g", name: "Galaxy A11", family: "Galaxy A11", variant: "4G / LTE",
-    model: "SM-A115F", image: "Samsung-Galaxy-A11.jpg", type: "phone",
+    model: "SM-A115F", image: "device-images/a11-4g.png", type: "phone",
     builds: {
       "7.0": {
         status: "test",
@@ -72,11 +72,11 @@ const devices = [
   },
   {
     id: "a24-4g", name: "Galaxy A24", family: "Galaxy A24", variant: "4G / LTE",
-    model: "SM-A245 family", image: "device-a24.webp", type: "phone", builds: {}
+    model: "SM-A245 family", image: "device-images/a24-4g.png", type: "phone", builds: {}
   },
   {
     id: "tab-a9-plus-5g-x216b", name: "Galaxy Tab A9+ 5G", family: "Galaxy Tab A9+", variant: "5G",
-    model: "SM-X216B", image: "device-tab-a9plus-5g.webp", type: "tablet", builds: {}
+    model: "SM-X216B", image: "device-images/tab-a9-plus-5g-x216b.png", type: "tablet", builds: {}
   }
 ];
 
