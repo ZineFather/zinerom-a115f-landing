@@ -293,9 +293,9 @@ html[data-theme="light"] .button-primary { background: linear-gradient(135deg, #
 .screenshot-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 17px; background: var(--panel); transition: border-color .2s ease, transform .2s ease, box-shadow .2s ease; animation: rise-in .35s ease both; }
 .screenshot-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--accent) 48%, var(--line)); box-shadow: 0 16px 36px rgba(0,0,0,.14); }
 .screenshot-open { display: flex; width: 100%; height: 100%; flex-direction: column; padding: 0; border: 0; background: transparent; color: inherit; text-align: start; cursor: zoom-in; }
-.screenshot-thumb { display: grid; height: clamp(280px, 34vw, 410px); place-items: center; overflow: hidden; padding: 10px; background: var(--panel-raised); }
-.screenshot-thumb img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; transition: transform .28s ease; }
-.screenshot-card:hover .screenshot-thumb img { transform: scale(1.025); }
+.screenshot-thumb { display: block; height: auto; overflow: hidden; padding: 10px; background: var(--panel-raised); }
+.screenshot-thumb img { display: block; width: 100%; height: auto; aspect-ratio: auto 9 / 20; object-fit: contain; object-position: center; }
+.screenshot-card:hover .screenshot-thumb img { transform: none; }
 .screenshot-card-copy { display: flex; flex: 1; flex-direction: column; padding: 13px 15px 14px; }
 .screenshot-category { margin-bottom: 5px; color: var(--accent); font-size: 8.5px; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
 .screenshot-card-copy > strong { font-family: var(--font-display); font-size: 13.5px; line-height: 1.4; }
@@ -467,7 +467,6 @@ html[dir="rtl"] .detail-image-label { right: auto; left: 12px; }
   .support-category { min-height: 57px; gap: 8px; padding: 10px; }
   .support-category strong { font-size: 10.5px; }
   .screenshot-grid { grid-template-columns: 1fr; }
-  .screenshot-thumb { height: min(108vw, 460px); }
   .screenshot-lightbox { width: calc(100vw - 12px); max-height: calc(100dvh - 12px); padding: 6px; border-radius: 13px; }
   .lightbox-stage { grid-template-columns: 34px minmax(0,1fr) 34px; gap: 3px; }
   .lightbox-arrow { width: 32px; height: 40px; }
