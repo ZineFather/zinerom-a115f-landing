@@ -7,6 +7,7 @@ modified; this script writes standardized images under device-images/.
 """
 from __future__ import annotations
 
+import argparse
 from io import BytesIO
 from pathlib import Path
 
@@ -38,8 +39,16 @@ DEVICES = {
     "tab-a9-plus-5g-x216b": ("device-tab-a9plus-5g.webp", (132, 198, 985, 730), 16, "tablet"),
 }
 
+# Protected source-space device bodies that white-background segmentation can
+# confuse with the studio backdrop. Each entry is (x0, y0, x1, y1, corner_radius).
+# The A16 4G rear shell is nearly white, so its observed rounded-rectangle body
+# silhouette is restored without changing any source RGB pixels or other assets.
+PROTECTED_BODIES = {
+    "a16-4g": ((329, 56, 585, 765, 43),),
+}
 
-def foreground_rgba(source_path: Path, screen_rect: tuple[int, int, int, int], radius: int, session) -> Image.Image:
+
+def foreground_rgba(source_path: Path, screen_rect: tuple[int, int, int, int], radius: int, session, protected_bodies=()) -> Image.Image:
     source = Image.open(source_path).convert("RGB")
     model_result = Image.open(BytesIO(remove(source_path.read_bytes(), session=session))).convert("RGBA")
     if source.size != model_result.size:
@@ -56,6 +65,16 @@ def foreground_rgba(source_path: Path, screen_rect: tuple[int, int, int, int], r
         raise ValueError(f"Screen mask outside source bounds: {source_path.name}")
     draw.rounded_rectangle((x0, y0, x1 - 1, y1 - 1), radius=radius, fill=255)
     alpha = np.maximum(alpha, np.asarray(screen, dtype=np.uint8))
+
+    # Preserve complete, known device bodies when their white product finish is
+    # indistinguishable from the studio backdrop to the segmentation model.
+    body_mask = Image.new("L", source.size, 0)
+    body_draw = ImageDraw.Draw(body_mask)
+    for bx0, by0, bx1, by1, body_radius in protected_bodies:
+        if not (0 <= bx0 < bx1 <= source.width and 0 <= by0 < by1 <= source.height):
+            raise ValueError(f"Protected body mask outside source bounds: {source_path.name}")
+        body_draw.rounded_rectangle((bx0, by0, bx1 - 1, by1 - 1), radius=body_radius, fill=255)
+    alpha = np.maximum(alpha, np.asarray(body_mask, dtype=np.uint8))
 
     # Remove white-background matte from partially covered exterior edge pixels.
     # The source product renders use white studio backgrounds; unassociated RGB is
@@ -75,7 +94,7 @@ def foreground_rgba(source_path: Path, screen_rect: tuple[int, int, int, int], r
 
 
 def standardize(slug: str, source_path: Path, screen_rect, radius: int, form: str, session) -> tuple[Image.Image, dict]:
-    cutout = foreground_rgba(source_path, screen_rect, radius, session)
+    cutout = foreground_rgba(source_path, screen_rect, radius, session, PROTECTED_BODIES.get(slug, ()))
     alpha = cutout.getchannel("A")
     bounds = alpha.point(lambda value: 255 if value > 24 else 0).getbbox()
     if not bounds:
@@ -107,9 +126,13 @@ def standardize(slug: str, source_path: Path, screen_rect, radius: int, form: st
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--device", choices=sorted(DEVICES), help="Regenerate only this device image")
+    args = parser.parse_args()
     OUTPUT.mkdir(parents=True, exist_ok=True)
     session = new_session("u2net")
-    for slug, (filename, screen_rect, radius, form) in DEVICES.items():
+    selected = {args.device: DEVICES[args.device]} if args.device else DEVICES
+    for slug, (filename, screen_rect, radius, form) in selected.items():
         image, metrics = standardize(slug, ROOT / filename, screen_rect, radius, form, session)
         target = OUTPUT / f"{slug}.png"
         image.save(target, format="PNG", optimize=True, compress_level=9)

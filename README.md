@@ -12,7 +12,7 @@ The existing A11 entry is an experimental diagnostic test build, not a stable RO
 
 All 11 catalog device illustrations are served from `device-images/` as transparent 1000×1200 RGBA PNGs. Phone pairs share a 940 px visual height and are centered on the canvas; the landscape Tab A9+ has a 900 px visual width. The site continues to use its existing centered `object-fit: contain` image containers. Original source renders remain untouched in the repository root.
 
-To regenerate the cutouts from the originals, install Pillow and `rembg[cpu]` with `python3 -m pip install Pillow 'rembg[cpu]'`, then run `python3 scripts/standardize_device_images.py`. The first run downloads the U²-Net model weights. Run `python3 scripts/verify_device_images.py` to check dimensions, PNG/RGBA format, transparent canvas margins, silhouette placement/scale, and all `app.js` image mappings before publishing.
+To regenerate the cutouts from the originals, install Pillow and `rembg[cpu]` with `python3 -m pip install Pillow 'rembg[cpu]'`, then run `python3 scripts/standardize_device_images.py`. The first run downloads the U²-Net model weights. To regenerate only one asset, pass its device id, for example `python3 scripts/standardize_device_images.py --device a16-4g`. Near-white phone bodies that merge into the studio backdrop are protected by source-bounded rounded silhouettes in the standardization script. Run `python3 scripts/verify_device_images.py` to check dimensions, PNG/RGBA format, transparent canvas margins, silhouette placement/scale, and all `app.js` image mappings before publishing.
 
 ## Screenshot gallery
 
