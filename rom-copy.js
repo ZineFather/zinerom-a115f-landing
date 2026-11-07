@@ -4,84 +4,84 @@ window.ZINE_ROM_COPY = {
   en: {
     romFeaturesTitle: "ROM Features", noVerifiedFeatures: "No verified features are documented for this build.",
     knownBugsTitle: "Known Bugs", noKnownBugs: "No known bugs are documented for this build.",
-    reportBug: "Report a Bug", installationTutorial: "Installation Tutorial", sourceDeviceLabel: "ROM source", downloadA52sS23: "Download Galaxy A52s One UI 6.1 (S23 base)", downloadA52sS23FE: "Download Galaxy A52s One UI 6.1 (S23 FE / Exynos base)",
+    reportBug: "Report a Bug", installationTutorial: "Installation Tutorial", sourceDeviceLabel: "ROM source", downloadA52sS23: "Download Galaxy A52s One UI 6.1 (S23 base)", downloadA52sS23FE: "Download Galaxy A52s One UI 6.1 (S23 FE / Exynos base)", downloadA15_4g_UI9_S23: "Download Galaxy A15 4G One UI 9 (S23 base)", downloadA25_5G_UI85_S23FE: "Download Galaxy A25 5G One UI 8.5 (S23 FE base)", downloadA53_5G_UI85_S23FE: "Download Galaxy A53 5G One UI 8.5 (S23 FE base)",
     baseArchitectureLabel: "Base / architecture", stabilityLabel: "Stability", stabilityExperimental: "Experimental · less stable",
     stabilityMoreStable: "More stable (relative)", notSupplied: "Not supplied", releaseInformation: "Information only"
   },
   ar: {
     romFeaturesTitle: "ميزات الروم", noVerifiedFeatures: "لم تُوثّق ميزات مؤكدة لهذا الإصدار.",
     knownBugsTitle: "الأخطاء المعروفة", noKnownBugs: "لا توجد أخطاء معروفة موثقة لهذا الإصدار.",
-    reportBug: "الإبلاغ عن خطأ", installationTutorial: "دليل التثبيت", sourceDeviceLabel: "مصدر الروم", downloadA52sS23: "تنزيل One UI 6.1 لهاتف Galaxy A52s (قاعدة S23)", downloadA52sS23FE: "تنزيل One UI 6.1 لهاتف Galaxy A52s (قاعدة S23 FE / Exynos)",
+    reportBug: "الإبلاغ عن خطأ", installationTutorial: "دليل التثبيت", sourceDeviceLabel: "مصدر الروم", downloadA52sS23: "تنزيل One UI 6.1 لهاتف Galaxy A52s (قاعدة S23)", downloadA52sS23FE: "تنزيل One UI 6.1 لهاتف Galaxy A52s (قاعدة S23 FE / Exynos)", downloadA15_4g_UI9_S23: "تنزيل One UI 9 لهاتف Galaxy A15 4G (قاعدة S23)", downloadA25_5G_UI85_S23FE: "تنزيل One UI 8.5 لهاتف Galaxy A25 5G (قاعدة S23 FE)", downloadA53_5G_UI85_S23FE: "تنزيل One UI 8.5 لهاتف Galaxy A53 5G (قاعدة S23 FE)",
     baseArchitectureLabel: "القاعدة / المعمارية", stabilityLabel: "الاستقرار", stabilityExperimental: "تجريبي · أقل استقرارًا",
     stabilityMoreStable: "أكثر استقرارًا (نسبيًا)", notSupplied: "غير متوفر", releaseInformation: "معلومات فقط"
   },
   es: {
     romFeaturesTitle: "Funciones de la ROM", noVerifiedFeatures: "No hay funciones verificadas documentadas para esta compilación.",
     knownBugsTitle: "Errores conocidos", noKnownBugs: "No hay errores conocidos documentados para esta compilación.",
-    reportBug: "Informar de un error", installationTutorial: "Guía de instalación", sourceDeviceLabel: "ROM de origen", downloadA52sS23: "Descargar One UI 6.1 para Galaxy A52s (base S23)", downloadA52sS23FE: "Descargar One UI 6.1 para Galaxy A52s (base S23 FE / Exynos)",
+    reportBug: "Informar de un error", installationTutorial: "Guía de instalación", sourceDeviceLabel: "ROM de origen", downloadA52sS23: "Descargar One UI 6.1 para Galaxy A52s (base S23)", downloadA52sS23FE: "Descargar One UI 6.1 para Galaxy A52s (base S23 FE / Exynos)", downloadA15_4g_UI9_S23: "Descargar One UI 9 para Galaxy A15 4G (base S23)", downloadA25_5G_UI85_S23FE: "Descargar One UI 8.5 para Galaxy A25 5G (base S23 FE)", downloadA53_5G_UI85_S23FE: "Descargar One UI 8.5 para Galaxy A53 5G (base S23 FE)",
     baseArchitectureLabel: "Base / arquitectura", stabilityLabel: "Estabilidad", stabilityExperimental: "Experimental · menos estable",
     stabilityMoreStable: "Más estable (en comparación)", notSupplied: "No indicado", releaseInformation: "Solo información"
   },
   fr: {
     romFeaturesTitle: "Fonctionnalités de la ROM", noVerifiedFeatures: "Aucune fonctionnalité vérifiée n’est documentée pour cette version.",
     knownBugsTitle: "Bugs connus", noKnownBugs: "Aucun bug connu n’est documenté pour cette version.",
-    reportBug: "Signaler un bug", installationTutorial: "Guide d’installation", sourceDeviceLabel: "ROM source", downloadA52sS23: "Télécharger One UI 6.1 pour Galaxy A52s (base S23)", downloadA52sS23FE: "Télécharger One UI 6.1 pour Galaxy A52s (base S23 FE / Exynos)",
+    reportBug: "Signaler un bug", installationTutorial: "Guide d’installation", sourceDeviceLabel: "ROM source", downloadA52sS23: "Télécharger One UI 6.1 pour Galaxy A52s (base S23)", downloadA52sS23FE: "Télécharger One UI 6.1 pour Galaxy A52s (base S23 FE / Exynos)", downloadA15_4g_UI9_S23: "Télécharger One UI 9 pour Galaxy A15 4G (base S23)", downloadA25_5G_UI85_S23FE: "Télécharger One UI 8.5 pour Galaxy A25 5G (base S23 FE)", downloadA53_5G_UI85_S23FE: "Télécharger One UI 8.5 pour Galaxy A53 5G (base S23 FE)",
     baseArchitectureLabel: "Base / architecture", stabilityLabel: "Stabilité", stabilityExperimental: "Expérimental · moins stable",
     stabilityMoreStable: "Plus stable (en comparaison)", notSupplied: "Non renseigné", releaseInformation: "Informations uniquement"
   },
   de: {
     romFeaturesTitle: "ROM-Funktionen", noVerifiedFeatures: "Für diesen Build sind keine verifizierten Funktionen dokumentiert.",
     knownBugsTitle: "Bekannte Fehler", noKnownBugs: "Für diesen Build sind keine bekannten Fehler dokumentiert.",
-    reportBug: "Fehler melden", installationTutorial: "Installationsanleitung", sourceDeviceLabel: "ROM-Quelle", downloadA52sS23: "Galaxy A52s One UI 6.1 herunterladen (S23-Basis)", downloadA52sS23FE: "Galaxy A52s One UI 6.1 herunterladen (S23-FE-/Exynos-Basis)",
+    reportBug: "Fehler melden", installationTutorial: "Installationsanleitung", sourceDeviceLabel: "ROM-Quelle", downloadA52sS23: "Galaxy A52s One UI 6.1 herunterladen (S23-Basis)", downloadA52sS23FE: "Galaxy A52s One UI 6.1 herunterladen (S23-FE-/Exynos-Basis)", downloadA15_4g_UI9_S23: "Galaxy A15 4G One UI 9 herunterladen (S23-Basis)", downloadA25_5G_UI85_S23FE: "Galaxy A25 5G One UI 8.5 herunterladen (S23-FE-Basis)", downloadA53_5G_UI85_S23FE: "Galaxy A53 5G One UI 8.5 herunterladen (S23-FE-Basis)",
     baseArchitectureLabel: "Basis / Architektur", stabilityLabel: "Stabilität", stabilityExperimental: "Experimentell · weniger stabil",
     stabilityMoreStable: "Stabiler (im Vergleich)", notSupplied: "Nicht angegeben", releaseInformation: "Nur Informationen"
   },
   tr: {
     romFeaturesTitle: "ROM Özellikleri", noVerifiedFeatures: "Bu derleme için doğrulanmış özellik belgelenmedi.",
     knownBugsTitle: "Bilinen Hatalar", noKnownBugs: "Bu derleme için bilinen hata belgelenmedi.",
-    reportBug: "Hata Bildir", installationTutorial: "Kurulum Rehberi", sourceDeviceLabel: "ROM kaynağı", downloadA52sS23: "Galaxy A52s One UI 6.1'i indir (S23 tabanı)", downloadA52sS23FE: "Galaxy A52s One UI 6.1'i indir (S23 FE / Exynos tabanı)",
+    reportBug: "Hata Bildir", installationTutorial: "Kurulum Rehberi", sourceDeviceLabel: "ROM kaynağı", downloadA52sS23: "Galaxy A52s One UI 6.1'i indir (S23 tabanı)", downloadA52sS23FE: "Galaxy A52s One UI 6.1'i indir (S23 FE / Exynos tabanı)", downloadA15_4g_UI9_S23: "Galaxy A15 4G One UI 9'u indir (S23 tabanı)", downloadA25_5G_UI85_S23FE: "Galaxy A25 5G One UI 8.5'i indir (S23 FE tabanı)", downloadA53_5G_UI85_S23FE: "Galaxy A53 5G One UI 8.5'i indir (S23 FE tabanı)",
     baseArchitectureLabel: "Taban / mimari", stabilityLabel: "Kararlılık", stabilityExperimental: "Deneysel · daha az kararlı",
     stabilityMoreStable: "Daha kararlı (karşılaştırmalı)", notSupplied: "Belirtilmedi", releaseInformation: "Yalnızca bilgi"
   },
   pt: {
     romFeaturesTitle: "Recursos da ROM", noVerifiedFeatures: "Nenhum recurso verificado está documentado para esta compilação.",
     knownBugsTitle: "Problemas conhecidos", noKnownBugs: "Nenhum problema conhecido está documentado para esta compilação.",
-    reportBug: "Relatar um problema", installationTutorial: "Tutorial de instalação", sourceDeviceLabel: "ROM de origem", downloadA52sS23: "Baixar One UI 6.1 para Galaxy A52s (base S23)", downloadA52sS23FE: "Baixar One UI 6.1 para Galaxy A52s (base S23 FE / Exynos)",
+    reportBug: "Relatar um problema", installationTutorial: "Tutorial de instalação", sourceDeviceLabel: "ROM de origem", downloadA52sS23: "Baixar One UI 6.1 para Galaxy A52s (base S23)", downloadA52sS23FE: "Baixar One UI 6.1 para Galaxy A52s (base S23 FE / Exynos)", downloadA15_4g_UI9_S23: "Baixar One UI 9 para Galaxy A15 4G (base S23)", downloadA25_5G_UI85_S23FE: "Baixar One UI 8.5 para Galaxy A25 5G (base S23 FE)", downloadA53_5G_UI85_S23FE: "Baixar One UI 8.5 para Galaxy A53 5G (base S23 FE)",
     baseArchitectureLabel: "Base / arquitetura", stabilityLabel: "Estabilidade", stabilityExperimental: "Experimental · menos estável",
     stabilityMoreStable: "Mais estável (em comparação)", notSupplied: "Não informado", releaseInformation: "Somente informações"
   },
   id: {
     romFeaturesTitle: "Fitur ROM", noVerifiedFeatures: "Belum ada fitur terverifikasi yang didokumentasikan untuk build ini.",
     knownBugsTitle: "Bug yang Diketahui", noKnownBugs: "Belum ada bug yang diketahui dan didokumentasikan untuk build ini.",
-    reportBug: "Laporkan Bug", installationTutorial: "Panduan Instalasi", sourceDeviceLabel: "Sumber ROM", downloadA52sS23: "Unduh One UI 6.1 Galaxy A52s (basis S23)", downloadA52sS23FE: "Unduh One UI 6.1 Galaxy A52s (basis S23 FE / Exynos)",
+    reportBug: "Laporkan Bug", installationTutorial: "Panduan Instalasi", sourceDeviceLabel: "Sumber ROM", downloadA52sS23: "Unduh One UI 6.1 Galaxy A52s (basis S23)", downloadA52sS23FE: "Unduh One UI 6.1 Galaxy A52s (basis S23 FE / Exynos)", downloadA15_4g_UI9_S23: "Unduh One UI 9 Galaxy A15 4G (basis S23)", downloadA25_5G_UI85_S23FE: "Unduh One UI 8.5 Galaxy A25 5G (basis S23 FE)", downloadA53_5G_UI85_S23FE: "Unduh One UI 8.5 Galaxy A53 5G (basis S23 FE)",
     baseArchitectureLabel: "Basis / arsitektur", stabilityLabel: "Stabilitas", stabilityExperimental: "Eksperimental · kurang stabil",
     stabilityMoreStable: "Lebih stabil (secara relatif)", notSupplied: "Belum diberikan", releaseInformation: "Informasi saja"
   },
   hi: {
     romFeaturesTitle: "ROM सुविधाएँ", noVerifiedFeatures: "इस बिल्ड के लिए कोई सत्यापित सुविधा दर्ज नहीं है।",
     knownBugsTitle: "ज्ञात बग", noKnownBugs: "इस बिल्ड के लिए कोई ज्ञात बग दर्ज नहीं है।",
-    reportBug: "बग की रिपोर्ट करें", installationTutorial: "इंस्टॉलेशन गाइड", sourceDeviceLabel: "ROM स्रोत", downloadA52sS23: "Galaxy A52s One UI 6.1 डाउनलोड करें (S23 बेस)", downloadA52sS23FE: "Galaxy A52s One UI 6.1 डाउनलोड करें (S23 FE / Exynos बेस)",
+    reportBug: "बग की रिपोर्ट करें", installationTutorial: "इंस्टॉलेशन गाइड", sourceDeviceLabel: "ROM स्रोत", downloadA52sS23: "Galaxy A52s One UI 6.1 डाउनलोड करें (S23 बेस)", downloadA52sS23FE: "Galaxy A52s One UI 6.1 डाउनलोड करें (S23 FE / Exynos बेस)", downloadA15_4g_UI9_S23: "Galaxy A15 4G One UI 9 डाउनलोड करें (S23 बेस)", downloadA25_5G_UI85_S23FE: "Galaxy A25 5G One UI 8.5 डाउनलोड करें (S23 FE बेस)", downloadA53_5G_UI85_S23FE: "Galaxy A53 5G One UI 8.5 डाउनलोड करें (S23 FE बेस)",
     baseArchitectureLabel: "बेस / आर्किटेक्चर", stabilityLabel: "स्थिरता", stabilityExperimental: "प्रायोगिक · कम स्थिर",
     stabilityMoreStable: "तुलनात्मक रूप से अधिक स्थिर", notSupplied: "उपलब्ध नहीं", releaseInformation: "केवल जानकारी"
   },
   ur: {
     romFeaturesTitle: "ROM کی خصوصیات", noVerifiedFeatures: "اس بلڈ کے لیے کوئی تصدیق شدہ خصوصیات درج نہیں ہیں۔",
     knownBugsTitle: "معلوم مسائل", noKnownBugs: "اس بلڈ کے لیے کوئی معلوم مسئلہ درج نہیں ہے۔",
-    reportBug: "بگ کی اطلاع دیں", installationTutorial: "انسٹالیشن گائیڈ", sourceDeviceLabel: "ROM کا ماخذ", downloadA52sS23: "Galaxy A52s One UI 6.1 ڈاؤن لوڈ کریں (S23 بیس)", downloadA52sS23FE: "Galaxy A52s One UI 6.1 ڈاؤن لوڈ کریں (S23 FE / Exynos بیس)",
+    reportBug: "بگ کی اطلاع دیں", installationTutorial: "انسٹالیشن گائیڈ", sourceDeviceLabel: "ROM کا ماخذ", downloadA52sS23: "Galaxy A52s One UI 6.1 ڈاؤن لوڈ کریں (S23 بیس)", downloadA52sS23FE: "Galaxy A52s One UI 6.1 ڈاؤن لوڈ کریں (S23 FE / Exynos بیس)", downloadA15_4g_UI9_S23: "Galaxy A15 4G One UI 9 ڈاؤن لوڈ کریں (S23 بیس)", downloadA25_5G_UI85_S23FE: "Galaxy A25 5G One UI 8.5 ڈاؤن لوڈ کریں (S23 FE بیس)", downloadA53_5G_UI85_S23FE: "Galaxy A53 5G One UI 8.5 ڈاؤن لوڈ کریں (S23 FE بیس)",
     baseArchitectureLabel: "بیس / آرکیٹیکچر", stabilityLabel: "استحکام", stabilityExperimental: "تجرباتی · کم مستحکم",
     stabilityMoreStable: "نسبتاً زیادہ مستحکم", notSupplied: "فراہم نہیں کیا گیا", releaseInformation: "صرف معلومات"
   },
   bn: {
     romFeaturesTitle: "ROM-এর বৈশিষ্ট্য", noVerifiedFeatures: "এই বিল্ডের জন্য কোনো যাচাইকৃত বৈশিষ্ট্য নথিভুক্ত নেই।",
     knownBugsTitle: "পরিচিত বাগ", noKnownBugs: "এই বিল্ডের জন্য কোনো পরিচিত বাগ নথিভুক্ত নেই।",
-    reportBug: "বাগ রিপোর্ট করুন", installationTutorial: "ইনস্টলেশন নির্দেশিকা", sourceDeviceLabel: "ROM-এর উৎস", downloadA52sS23: "Galaxy A52s One UI 6.1 ডাউনলোড করুন (S23 বেস)", downloadA52sS23FE: "Galaxy A52s One UI 6.1 ডাউনলোড করুন (S23 FE / Exynos বেস)",
+    reportBug: "বাগ রিপোর্ট করুন", installationTutorial: "ইনস্টলেশন নির্দেশিকা", sourceDeviceLabel: "ROM-এর উৎস", downloadA52sS23: "Galaxy A52s One UI 6.1 ডাউনলোড করুন (S23 বেস)", downloadA52sS23FE: "Galaxy A52s One UI 6.1 ডাউনলোড করুন (S23 FE / Exynos বেস)", downloadA15_4g_UI9_S23: "Galaxy A15 4G One UI 9 ডাউনলোড করুন (S23 বেস)", downloadA25_5G_UI85_S23FE: "Galaxy A25 5G One UI 8.5 ডাউনলোড করুন (S23 FE বেস)", downloadA53_5G_UI85_S23FE: "Galaxy A53 5G One UI 8.5 ডাউনলোড করুন (S23 FE বেস)",
     baseArchitectureLabel: "বেস / আর্কিটেকচার", stabilityLabel: "স্থিতিশীলতা", stabilityExperimental: "পরীক্ষামূলক · কম স্থিতিশীল",
     stabilityMoreStable: "তুলনামূলকভাবে বেশি স্থিতিশীল", notSupplied: "দেওয়া হয়নি", releaseInformation: "শুধু তথ্য"
   },
   ru: {
     romFeaturesTitle: "Возможности ROM", noVerifiedFeatures: "Для этой сборки не задокументированы проверенные функции.",
     knownBugsTitle: "Известные ошибки", noKnownBugs: "Для этой сборки не задокументированы известные ошибки.",
-    reportBug: "Сообщить об ошибке", installationTutorial: "Руководство по установке", sourceDeviceLabel: "Источник ROM", downloadA52sS23: "Скачать One UI 6.1 для Galaxy A52s (база S23)", downloadA52sS23FE: "Скачать One UI 6.1 для Galaxy A52s (база S23 FE / Exynos)",
+    reportBug: "Сообщить об ошибке", installationTutorial: "Руководство по установке", sourceDeviceLabel: "Источник ROM", downloadA52sS23: "Скачать One UI 6.1 для Galaxy A52s (база S23)", downloadA52sS23FE: "Скачать One UI 6.1 для Galaxy A52s (база S23 FE / Exynos)", downloadA15_4g_UI9_S23: "Скачать One UI 9 для Galaxy A15 4G (база S23)", downloadA25_5G_UI85_S23FE: "Скачать One UI 8.5 для Galaxy A25 5G (база S23 FE)", downloadA53_5G_UI85_S23FE: "Скачать One UI 8.5 для Galaxy A53 5G (база S23 FE)",
     baseArchitectureLabel: "База / архитектура", stabilityLabel: "Стабильность", stabilityExperimental: "Экспериментальная · менее стабильная",
     stabilityMoreStable: "Стабильнее (относительно)", notSupplied: "Не указано", releaseInformation: "Только информация"
   }

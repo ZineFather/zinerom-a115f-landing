@@ -13,7 +13,14 @@ const BUG_REPORT_URL = COMMUNITY_DESTINATIONS.bugs || "https://t.me/ZineROMProje
 const devices = [
   {
     id: "a15-4g", name: "Galaxy A15 4G", family: "Galaxy A15", variant: "4G / LTE",
-    model: "Regional model code not supplied", image: "device-images/a15-4g.png", type: "phone", builds: {}
+    model: "Regional model code not supplied", image: "device-images/a15-4g.png", type: "phone",
+    builds: {
+      "9.0": [{
+        id: "s23-base", variantName: "Galaxy S23 Base", sourceDevice: "Samsung Galaxy S23",
+        status: "test", downloadUrl: "https://gofile.io/d/ZHoAfVo3", downloadKey: "downloadA15_4g_UI9_S23",
+        note: "Galaxy S23-based One UI 9 build for Galaxy A15 4G.", features: [], knownBugs: []
+      }]
+    }
   },
   {
     id: "a15-5g", name: "Galaxy A15 5G", family: "Galaxy A15", variant: "5G",
@@ -37,7 +44,11 @@ const devices = [
     id: "a25-5g", name: "Galaxy A25 5G", family: "Galaxy A25", variant: "5G",
     model: "SM-A256 family", image: "device-images/a25-5g.png", type: "phone",
     builds: {
-      "8.5": [{ status: "planned", downloadUrl: null, sourceDevice: null, architecture: null, note: "Requested One UI 8.5 catalog entry. Source base and download link have not been supplied yet.", features: [], knownBugs: [] }]
+      "8.5": [{
+        id: "s23-fe-base", variantName: "Galaxy S23 FE Base", sourceDevice: "Samsung Galaxy S23 FE",
+        status: "test", downloadUrl: "https://gofile.io/d/0bGtzT0F", downloadKey: "downloadA25_5G_UI85_S23FE",
+        note: "Galaxy S23 FE-based One UI 8.5 build for Galaxy A25 5G.", features: [], knownBugs: []
+      }]
     }
   },
   {
@@ -48,7 +59,11 @@ const devices = [
     id: "a53-5g", name: "Galaxy A53 5G", family: "Galaxy A53", variant: "5G",
     model: "SM-A536 family", image: "device-images/a53-5g.png", type: "phone",
     builds: {
-      "8.5": [{ status: "planned", downloadUrl: null, sourceDevice: null, architecture: null, note: "Requested One UI 8.5 catalog entry. Source base and download link have not been supplied yet.", features: [], knownBugs: [] }]
+      "8.5": [{
+        id: "s23-fe-base", variantName: "Galaxy S23 FE Base", sourceDevice: "Samsung Galaxy S23 FE",
+        status: "test", downloadUrl: "https://gofile.io/d/3ZUAmnvR", downloadKey: "downloadA53_5G_UI85_S23FE",
+        note: "Galaxy S23 FE-based One UI 8.5 build for Galaxy A53 5G.", features: [], knownBugs: []
+      }]
     }
   },
   {
