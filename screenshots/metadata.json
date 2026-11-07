@@ -1,53 +1,53 @@
 {
-  "version": 1,
+  "version": 2,
   "screenshots": [
     {
       "filename": "IMG_20261104_235706_090.jpg",
       "title": "Lavender Lock Screen",
       "description": "Lavender lock screen showing 01:25, Friday 9 October, and phone and camera shortcuts.",
-      "category": "lockScreen"
+      "generation": null
     },
     {
       "filename": "IMG_20261104_235705_962.jpg",
       "title": "Home Screen with Weather Widget",
       "description": "One UI Home screen with a weather prompt, Google search bar, and app dock on a dark starry wallpaper.",
-      "category": "homeSystemUi"
+      "generation": null
     },
     {
       "filename": "IMG_20261104_235705_605.jpg",
       "title": "Home Screen with Media Volume Slider",
       "description": "One UI Home screen with app icons and the media-volume slider overlaid along the right edge.",
-      "category": "homeSystemUi"
+      "generation": null
     },
     {
       "filename": "IMG_20261104_235706_115.jpg",
       "title": "Expanded Volume Controls",
       "description": "Expanded four-slider One UI volume panel displayed over the home screen.",
-      "category": "homeSystemUi"
+      "generation": null
     },
     {
       "filename": "IMG_20261104_235705_814.jpg",
       "title": "Quick Settings and Device Controls",
       "description": "Expanded quick settings with Wi-Fi, Bluetooth, brightness and volume controls, media playback, and device tiles.",
-      "category": "homeSystemUi"
+      "generation": null
     },
     {
       "filename": "IMG_20261104_235705_791.jpg",
       "title": "Galaxy AI Feature Overview",
       "description": "Galaxy AI introduction featuring Note assist, Transcript assist, Browsing assist, and Now brief.",
-      "category": "galaxyAi"
+      "generation": null
     },
     {
       "filename": "IMG_20261104_235705_421.jpg",
       "title": "Camera Video Resolution",
       "description": "Samsung Camera video options with UHD selected at 30 FPS and FHD and HD alternatives.",
-      "category": "samsungApps"
+      "generation": null
     },
     {
       "filename": "IMG_20261104_235705_851.jpg",
       "title": "Samsung DeX Setup",
       "description": "Samsung DeX setup screen describing wired or wireless display connections and the Start DeX option.",
-      "category": "samsungDex"
+      "generation": null
     }
   ]
 }

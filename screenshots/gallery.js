@@ -3,21 +3,19 @@
 window.ZINE_SCREENSHOT_GALLERY = (() => {
   const REPO_API = "https://api.github.com/repos/ZineFather/zinerom-a115f-landing/contents/screenshots?ref=main";
   const RAW_BASE = "https://raw.githubusercontent.com/ZineFather/zinerom-a115f-landing/main/screenshots/";
-  const CATEGORIES = {
-    lockScreen: "categoryLockScreen",
-    homeSystemUi: "categoryHomeSystemUi",
-    samsungDex: "categorySamsungDex",
-    galaxyAi: "categoryGalaxyAi",
-    samsungApps: "categorySamsungApps",
-    settingsCustomization: "categorySettingsCustomization",
-    performanceSystem: "categoryPerformanceSystem",
-    additionalRom: "categoryAdditionalRom",
-    otherFeatures: "categoryOtherFeatures"
+  const GENERATIONS = {
+    oneUi7: { title: "One UI 7", subtitleKey: "screenshotsPreviousGeneration" },
+    oneUi9: { title: "One UI 9", subtitleKey: "screenshotsLatestGeneration" }
   };
+  const GENERATION_IDS = Object.keys(GENERATIONS);
   const IMAGE_EXTENSION = /\.(?:png|jpe?g|webp|avif)$/i;
 
   function safeFilename(name) {
     return typeof name === "string" && name.length <= 240 && !name.includes("/") && name !== "." && name !== ".." && IMAGE_EXTENSION.test(name);
+  }
+
+  function validGeneration(value) {
+    return GENERATION_IDS.includes(value);
   }
 
   async function loadItems() {
@@ -32,41 +30,60 @@ window.ZINE_SCREENSHOT_GALLERY = (() => {
       })
     ]);
     const manifest = manifestResult.status === "fulfilled" ? manifestResult.value : { screenshots: [] };
-    const metadata = new Map((manifest.screenshots || []).filter(item => safeFilename(item.filename)).map(item => [item.filename, item]));
+    const manifestItems = Array.isArray(manifest.screenshots) ? manifest.screenshots : [];
+    const metadata = new Map(manifestItems.filter(item => safeFilename(item.filename)).map(item => [item.filename, item]));
     const directoryAvailable = directoryResult.status === "fulfilled" && Array.isArray(directoryResult.value);
-    const filenames = directoryAvailable
+    const discoveredFilenames = directoryAvailable
       ? directoryResult.value.filter(item => item.type === "file" && safeFilename(item.name)).map(item => item.name)
       : [...metadata.keys()];
+    const filenames = [...new Set(discoveredFilenames)];
+    const order = new Map(manifestItems.map((item, index) => [item.filename, index]));
     const items = filenames.map(filename => {
       const info = metadata.get(filename) || {};
-      const category = Object.prototype.hasOwnProperty.call(CATEGORIES, info.category) ? info.category : "otherFeatures";
+      if (!validGeneration(info.generation)) return null;
       const stem = filename.replace(/\.[^.]+$/, "").replace(/[_-]+/g, " ");
       return {
         filename,
         url: RAW_BASE + encodeURIComponent(filename),
         title: info.title || stem,
         description: info.description || info.title || stem,
-        category
+        generation: info.generation
       };
-    });
-    const order = new Map((manifest.screenshots || []).map((item, index) => [item.filename, index]));
+    }).filter(Boolean);
     items.sort((a, b) => (order.get(a.filename) ?? Number.MAX_SAFE_INTEGER) - (order.get(b.filename) ?? Number.MAX_SAFE_INTEGER) || a.filename.localeCompare(b.filename));
-    return { items, directoryAvailable };
+    const assigned = new Set(items.map(item => item.filename));
+    return {
+      items,
+      directoryAvailable,
+      unassignedFilenames: filenames.filter(filename => !assigned.has(filename))
+    };
   }
 
   function render(container, t, escapeHTML) {
     let allItems = [];
     let visibleItems = [];
-    let filter = "all";
+    let activeGeneration = "oneUi9";
     let previewIndex = 0;
     container.innerHTML = `
       <section class="shell editorial-page screenshot-page" aria-labelledby="screenshots-title">
         <p class="eyebrow"><span class="eyebrow-dot" aria-hidden="true"></span>${escapeHTML(t("screenshotsEyebrow"))}</p>
         <h1 id="screenshots-title">${escapeHTML(t("screenshotsTitle"))}</h1>
         <p class="editorial-lead">${escapeHTML(t("screenshotsIntro"))}</p>
-        <div class="screenshot-filter-row" id="screenshot-filters" role="group" aria-label="${escapeHTML(t("screenshotsFilterLabel"))}"></div>
-        <p class="screenshot-status" id="screenshot-status" role="status" aria-live="polite">${escapeHTML(t("screenshotsLoading"))}</p>
-        <div class="screenshot-grid" id="screenshot-grid"></div>
+        <p class="screenshot-load-status" id="screenshot-load-status" role="status" aria-live="polite">${escapeHTML(t("screenshotsLoading"))}</p>
+        <p class="screenshot-unassigned-note" id="screenshot-unassigned-note" role="status" aria-live="polite" hidden></p>
+        <div class="screenshot-generation-tabs" id="screenshot-generation-tabs" role="tablist" aria-label="${escapeHTML(t("screenshotsGenerationNavigation"))}"></div>
+        <section class="screenshot-generation-panel" id="screenshot-generation-panel" role="tabpanel" tabindex="0">
+          <header class="screenshot-generation-heading">
+            <div class="screenshot-generation-heading-copy">
+              <p class="screenshot-generation-overline" id="screenshot-generation-overline"></p>
+              <h2 id="screenshot-generation-title"></h2>
+              <p class="screenshot-generation-subtitle" id="screenshot-generation-subtitle"></p>
+            </div>
+            <span class="screenshot-generation-count" id="screenshot-generation-count" aria-live="polite"></span>
+          </header>
+          <p class="screenshot-status" id="screenshot-status" role="status" aria-live="polite"></p>
+          <div class="screenshot-grid" id="screenshot-grid"></div>
+        </section>
       </section>
       <dialog class="screenshot-lightbox" id="screenshot-lightbox" aria-labelledby="screenshot-caption-title">
         <div class="lightbox-toolbar">
@@ -77,14 +94,17 @@ window.ZINE_SCREENSHOT_GALLERY = (() => {
           <button class="lightbox-arrow" type="button" data-lightbox-prev aria-label="${escapeHTML(t("lightboxPrevious"))}">‹</button>
           <figure class="lightbox-figure">
             <img id="lightbox-image" alt="" decoding="async">
-            <figcaption><strong id="screenshot-caption-title"></strong><span id="screenshot-caption-category"></span></figcaption>
+            <figcaption><strong id="screenshot-caption-title"></strong><span id="screenshot-caption-generation"></span></figcaption>
           </figure>
           <button class="lightbox-arrow" type="button" data-lightbox-next aria-label="${escapeHTML(t("lightboxNext"))}">›</button>
         </div>
       </dialog>`;
 
+    const tabsHost = container.querySelector("#screenshot-generation-tabs");
+    const panel = container.querySelector("#screenshot-generation-panel");
     const grid = container.querySelector("#screenshot-grid");
-    const filterHost = container.querySelector("#screenshot-filters");
+    const loadStatus = container.querySelector("#screenshot-load-status");
+    const unassignedNote = container.querySelector("#screenshot-unassigned-note");
     const status = container.querySelector("#screenshot-status");
     const dialog = container.querySelector("#screenshot-lightbox");
 
@@ -94,7 +114,7 @@ window.ZINE_SCREENSHOT_GALLERY = (() => {
       container.querySelector("#lightbox-image").src = item.url;
       container.querySelector("#lightbox-image").alt = item.description;
       container.querySelector("#screenshot-caption-title").textContent = item.title;
-      container.querySelector("#screenshot-caption-category").textContent = t(CATEGORIES[item.category]);
+      container.querySelector("#screenshot-caption-generation").textContent = GENERATIONS[item.generation].title;
       container.querySelector("#lightbox-count").textContent = `${previewIndex + 1} / ${visibleItems.length}`;
     }
 
@@ -107,13 +127,24 @@ window.ZINE_SCREENSHOT_GALLERY = (() => {
     }
 
     function renderGallery() {
-      visibleItems = filter === "all" ? allItems : allItems.filter(item => item.category === filter);
-      const categories = [...new Set(allItems.map(item => item.category))];
-      filterHost.innerHTML = [["all", t("screenshotsAll")], ...categories.map(category => [category, t(CATEGORIES[category])])]
-        .map(([id, label]) => `<button class="filter-button${filter === id ? " is-active" : ""}" type="button" data-gallery-filter="${escapeHTML(id)}" aria-pressed="${filter === id}">${escapeHTML(label)}<span class="filter-count">${id === "all" ? allItems.length : allItems.filter(item => item.category === id).length}</span></button>`).join("");
+      visibleItems = allItems.filter(item => item.generation === activeGeneration);
+      const activeIndex = GENERATION_IDS.indexOf(activeGeneration);
+      tabsHost.innerHTML = GENERATION_IDS.map((id, index) => {
+        const count = allItems.filter(item => item.generation === id).length;
+        return `<button class="screenshot-generation-tab${id === activeGeneration ? " is-active" : ""}" type="button" role="tab" id="screenshot-tab-${id}" data-generation="${id}" aria-selected="${id === activeGeneration}" aria-controls="screenshot-generation-panel" tabindex="${id === activeGeneration ? "0" : "-1"}">
+          <span class="generation-tab-index" aria-hidden="true">0${index + 1}</span>
+          <span class="generation-tab-title">${escapeHTML(GENERATIONS[id].title)}</span>
+          <span class="generation-tab-count" aria-label="${escapeHTML(String(count))}">${count}</span>
+        </button>`;
+      }).join("");
+      panel.setAttribute("aria-labelledby", `screenshot-tab-${activeGeneration}`);
+      container.querySelector("#screenshot-generation-overline").textContent = `ZINEROM · GENERATION 0${activeIndex + 1}`;
+      container.querySelector("#screenshot-generation-title").textContent = GENERATIONS[activeGeneration].title;
+      container.querySelector("#screenshot-generation-subtitle").textContent = t(GENERATIONS[activeGeneration].subtitleKey);
+      container.querySelector("#screenshot-generation-count").textContent = String(visibleItems.length).padStart(2, "0");
       if (!visibleItems.length) {
         grid.innerHTML = "";
-        status.textContent = t("screenshotsEmpty");
+        status.textContent = t("screenshotsGenerationEmpty").replace("{generation}", GENERATIONS[activeGeneration].title);
         status.hidden = false;
         return;
       }
@@ -122,16 +153,30 @@ window.ZINE_SCREENSHOT_GALLERY = (() => {
         <article class="screenshot-card">
           <button class="screenshot-open" type="button" data-gallery-open="${index}" aria-label="${escapeHTML(t("screenshotPreview"))}: ${escapeHTML(item.title)}">
             <span class="screenshot-thumb"><img src="${escapeHTML(item.url)}" alt="${escapeHTML(item.description)}" loading="lazy" decoding="async"></span>
-            <span class="screenshot-card-copy"><span class="screenshot-category">${escapeHTML(t(CATEGORIES[item.category]))}</span><strong>${escapeHTML(item.title)}</strong><span class="screenshot-card-cta">${escapeHTML(t("screenshotPreview"))}<span aria-hidden="true">↗</span></span></span>
+            <span class="screenshot-card-copy"><span class="screenshot-generation-tag">${escapeHTML(GENERATIONS[item.generation].title)}</span><strong>${escapeHTML(item.title)}</strong><span class="screenshot-card-cta">${escapeHTML(t("screenshotPreview"))}<span aria-hidden="true">↗</span></span></span>
           </button>
         </article>`).join("");
     }
 
-    filterHost.addEventListener("click", event => {
-      const button = event.target.closest("[data-gallery-filter]");
-      if (!button) return;
-      filter = button.dataset.galleryFilter;
+    function selectGeneration(id, focusTab = false) {
+      if (!validGeneration(id)) return;
+      activeGeneration = id;
+      if (dialog.open) dialog.close?.();
       renderGallery();
+      if (focusTab) tabsHost.querySelector(`[data-generation="${id}"]`)?.focus();
+    }
+
+    tabsHost.addEventListener("click", event => {
+      const button = event.target.closest("[data-generation]");
+      if (button) selectGeneration(button.dataset.generation);
+    });
+    tabsHost.addEventListener("keydown", event => {
+      if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(event.key)) return;
+      event.preventDefault();
+      const current = GENERATION_IDS.indexOf(activeGeneration);
+      const next = event.key === "Home" ? 0 : event.key === "End" ? GENERATION_IDS.length - 1
+        : (current + (event.key === "ArrowRight" ? 1 : -1) + GENERATION_IDS.length) % GENERATION_IDS.length;
+      selectGeneration(GENERATION_IDS[next], true);
     });
     grid.addEventListener("click", event => {
       const button = event.target.closest("[data-gallery-open]");
@@ -149,13 +194,31 @@ window.ZINE_SCREENSHOT_GALLERY = (() => {
     loadItems().then(result => {
       if (!grid.isConnected) return;
       allItems = result.items;
-      if (!result.directoryAvailable && allItems.length) status.textContent = t("screenshotsFallback");
-      else if (!allItems.length) { status.textContent = t("screenshotsEmpty"); return; }
-      else status.hidden = true;
+      if (allItems.some(item => item.generation === "oneUi9")) activeGeneration = "oneUi9";
+      else if (allItems.some(item => item.generation === "oneUi7")) activeGeneration = "oneUi7";
+      loadStatus.hidden = true;
+      if (!result.directoryAvailable && allItems.length) {
+        loadStatus.textContent = t("screenshotsFallback");
+        loadStatus.hidden = false;
+      }
+      if (!result.directoryAvailable && !allItems.length && !result.unassignedFilenames.length) {
+        loadStatus.textContent = t("screenshotsError");
+        loadStatus.hidden = false;
+      } else if (result.directoryAvailable && !allItems.length && !result.unassignedFilenames.length) {
+        loadStatus.textContent = t("screenshotsEmpty");
+        loadStatus.hidden = false;
+      }
+      if (result.unassignedFilenames.length) {
+        unassignedNote.textContent = t("screenshotsUnassigned").replace("{count}", String(result.unassignedFilenames.length));
+        unassignedNote.hidden = false;
+        unassignedNote.title = result.unassignedFilenames.join(", ");
+      }
       renderGallery();
     }).catch(() => {
       if (!grid.isConnected) return;
-      status.textContent = t("screenshotsError");
+      loadStatus.textContent = t("screenshotsError");
+      loadStatus.hidden = false;
+      renderGallery();
     });
   }
 

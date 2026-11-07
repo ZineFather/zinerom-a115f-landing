@@ -22,7 +22,7 @@ To regenerate the cutouts from the originals, install Pillow and `rembg[cpu]` wi
 
 ## Screenshot gallery
 
-The Screenshots page discovers image files directly from the public `screenshots/` folder on GitHub when the page opens. Keep uploaded originals in that folder; the site links to the original files and does not crop, resize, recompress, or annotate them. `screenshots/metadata.json` supplies descriptive titles, category assignments, and the category-grouped display order for known images. Gallery thumbnails keep each source image's natural proportions. Newly added images appear automatically; until a metadata entry is added, they use their filename as the title and appear under “Other Features.” The gallery only displays category filters that have at least one image. If GitHub's directory API is temporarily unavailable, the metadata file provides the saved-list fallback.
+The Screenshots page has exactly two independent galleries: **One UI 7** (`generation: "oneUi7"`) and **One UI 9** (`generation: "oneUi9"`). Upload original screenshots to the repository's `screenshots/` directory, then add their exact filenames, descriptions, and generation to `screenshots/metadata.json`. Use `generation: null` only while an image's version is not confirmed; unassigned files are intentionally kept out of both galleries and counted in an on-page notice rather than placed in an extra category. Screenshots retain their original files and aspect ratios; the site does not crop, resize, recompress, or annotate them. The lightbox's previous/next controls stay within the selected generation. If GitHub's directory API is temporarily unavailable, the assigned manifest entries provide the saved-list fallback.
 
 ## Run locally
 
